@@ -20,6 +20,7 @@ Static rebuild of [graphicsinscience.com](https://www.graphicsinscience.com), mo
 - **Add a video instead**: use `video` and `poster` in place of `src`; it plays muted on a loop, like the 3D maps.
 - **Change text**: edit `js/site-data.js`.
 - **Change the look**: edit the variables at the top of `css/style.css`.
+- **New page**: copy an existing page as a starting point; the Cloudflare Web Analytics snippet sits just before `</body>` in every page and needs to be copied along.
 
 ## Preview locally
 
