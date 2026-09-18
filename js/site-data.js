@@ -328,6 +328,13 @@ window.SITE = {
           width: 1500, height: 874,
           alt: "Scrolly preview",
           caption: "<a target=\"_blank\" rel=\"noopener\" href=\"https://india.mongabay.com/2026/05/what-a-coastal-zoning-map-leaves-out-explained-through-maps/\">Full story here</a>"
+        },
+        {
+          video: "images/portfolio/storymaps/Scrolly_Whales.mp4",
+          poster: "images/portfolio/storymaps/Scrolly_Whales-poster.jpg",
+          width: 800, height: 418,
+          alt: "Opening screen of the Mongabay story \"Collision course\", on why whales are dying in the Mediterranean's shipping lanes.",
+          caption: "<a target=\"_blank\" rel=\"noopener\" href=\"https://news.mongabay.com/custom-story/2026/09/can-we-stop-ships-from-killing-the-mediterraneans-last-great-whales/\">Full story here</a>"
         }
       ]
     },
