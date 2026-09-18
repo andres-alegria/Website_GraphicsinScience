@@ -32,6 +32,6 @@ Then open http://localhost:8000.
 
 ## Before going live
 
-- **Contact form**: set `contactForm.endpoint` (a form service such as Formspree) or `contactForm.email` in `js/site-data.js`. Until then the form only shows a "not connected" message.
+- **Contact form**: goes through Web3Forms; the access key sits in `contactForm.hiddenFields` in `js/site-data.js`. Messages arrive at the address linked in the Web3Forms dashboard.
 - **Font**: the Squarespace site used Aktiv Grotesk (Adobe Fonts). This version falls back to Helvetica Neue / Arial. To switch back, add an Adobe Fonts web project `<link>` to the pages and update `--font-main`.
 - **Hosting**: GitHub Pages (Settings → Pages → `main`, root). For the custom domain, add a `CNAME` file containing `www.graphicsinscience.com` and point the DNS records to GitHub Pages.

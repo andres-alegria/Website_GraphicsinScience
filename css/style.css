@@ -564,6 +564,11 @@ h3 {
   display: none;
 }
 
+/* spam trap for Web3Forms: must stay invisible to real visitors */
+.spam-trap {
+  display: none !important;
+}
+
 /* ==========================================================================
    Grid pages (FAQs, Contact, About, Services)
    ========================================================================== */

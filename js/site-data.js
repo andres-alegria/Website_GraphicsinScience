@@ -17,11 +17,17 @@ window.SITE = {
     { label: "LinkedIn", href: "https://www.linkedin.com/in/graphicsinscience", text: "in" }
   ],
 
-  // Contact form: there is no backend, so connect a form service or an email address.
-  // endpoint: a form-handling URL that accepts POST requests (e.g. Formspree); leave empty to skip
-  // email: fallback that opens the visitor's email app when no endpoint is set
+  // Contact form: there is no backend, so submissions go to Web3Forms (web3forms.com),
+  // which emails them on. The access key belongs in client-side code and is public.
+  // hiddenFields: extra values posted with the form; subject and from_name shape the email you receive
+  // email: fallback that opens the visitor's email app when endpoint is empty
   contactForm: {
-    endpoint: "",
+    endpoint: "https://api.web3forms.com/submit",
+    hiddenFields: {
+      access_key: "00aaceb8-6230-4448-8030-af61e3e7e9cb",
+      subject: "New message from graphicsinscience.com",
+      from_name: "graphicsinscience.com"
+    },
     email: "",
     heading: "Get in touch.",
     emailLabel: "Email",

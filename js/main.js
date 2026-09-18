@@ -107,6 +107,7 @@
         </div>
         <button class="button" type="submit">${escapeHtml(f.submitLabel)}</button>
         <p class="form-status" role="status" aria-live="polite"></p>
+        <input class="spam-trap" type="checkbox" name="botcheck" tabindex="-1" aria-hidden="true">
       </form>`;
   }
 
@@ -120,6 +121,7 @@
       const data = new FormData(form);
 
       if (f.endpoint) {
+        Object.entries(f.hiddenFields || {}).forEach(([key, value]) => data.append(key, value));
         button.disabled = true;
         status.textContent = "";
         try {
