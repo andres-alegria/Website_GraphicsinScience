@@ -318,9 +318,9 @@ window.SITE = {
           caption: "<a target=\"_blank\" rel=\"noopener\" href=\"https://news.mongabay.com/custom-story/2025/09/satellite-images-reveal-oil-project-surge-in-ugandan-park-and-wetland/\">Full story here</a>"
         },
         {
-          src: "images/portfolio/storymaps/Screenshot_2026-03-24_at_12.47.04.jpg",
-          width: 1500, height: 680,
-          alt: "Interactive StoryMap",
+          src: "images/portfolio/storymaps/Scrolly_Dual.jpg",
+          width: 1500, height: 867,
+          alt: "Opening screen of the Mongabay story \"Dual-purpose?\", on a Chinese research vessel that may serve civilian and military roles, over a photograph of the seabed.",
           caption: "<a target=\"_blank\" rel=\"noopener\" href=\"https://news.mongabay.com/custom-story/2026/03/chinas-deep-sea-mining-fleet-may-also-track-us-submarines/\">Full story here</a>"
         },
         {
@@ -330,10 +330,9 @@ window.SITE = {
           caption: "<a target=\"_blank\" rel=\"noopener\" href=\"https://india.mongabay.com/2026/05/what-a-coastal-zoning-map-leaves-out-explained-through-maps/\">Full story here</a>"
         },
         {
-          video: "images/portfolio/storymaps/Scrolly_Whales.mp4",
-          poster: "images/portfolio/storymaps/Scrolly_Whales-poster.jpg",
-          width: 800, height: 418,
-          alt: "Opening screen of the Mongabay story \"Collision course\", on why whales are dying in the Mediterranean's shipping lanes.",
+          src: "images/portfolio/storymaps/Scrolly_Collision.jpg",
+          width: 1500, height: 867,
+          alt: "Opening screen of the Mongabay story \"Collision course\", showing a ship and a whale on converging tracks in the Mediterranean.",
           caption: "<a target=\"_blank\" rel=\"noopener\" href=\"https://news.mongabay.com/custom-story/2026/09/can-we-stop-ships-from-killing-the-mediterraneans-last-great-whales/\">Full story here</a>"
         }
       ]
