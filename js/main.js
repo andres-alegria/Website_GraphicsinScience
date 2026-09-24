@@ -33,11 +33,11 @@
 
   const allItems = () => SITE.portfolio.flatMap((sec) => sec.items.map((item) => ({ ...item, category: sec.id, categoryTitle: sec.title })));
 
-  // Media markup shared by the wall, the work grid and the lightbox
-  const mediaHtml = (item, { lazy = true, sizes = "" } = {}) =>
+  // Media markup shared by the wall and the work grid: the 800 px thumb when there is one, the full file in the lightbox
+  const mediaHtml = (item, { lazy = true, priority = false } = {}) =>
     item.video
       ? html`<video src="${item.video}" poster="${item.poster}" width="${item.width}" height="${item.height}" ${reduceMotion ? "controls" : "autoplay"} muted loop playsinline preload="metadata" aria-label="${escapeHtml(item.alt)}"></video>`
-      : html`<img src="${item.src}" width="${item.width}" height="${item.height}" alt="${escapeHtml(item.alt)}" ${lazy ? 'loading="lazy"' : ""} decoding="async">`;
+      : html`<img src="${item.thumb || item.src}" width="${item.width}" height="${item.height}" alt="${escapeHtml(item.alt)}" ${lazy ? 'loading="lazy"' : ""} ${priority ? 'fetchpriority="high"' : ""} decoding="async">`;
 
   const metaLine = (item) => {
     const bits = [item.client];
@@ -275,9 +275,9 @@
     const cols = [[], [], []];
     featured.forEach((item, i) => cols[i % 3].push(item));
     const colHtml = cols.map((col) => html`
-      <div class="wall__col">${col.map((item) => html`
+      <div class="wall__col">${col.map((item, row) => html`
         <figure class="wall__item">
-          <button class="wall__btn" type="button" data-src="${item.src || item.video}" aria-label="Open ${escapeHtml(item.title)}">${mediaHtml(item, { lazy: false })}</button>
+          <button class="wall__btn" type="button" data-src="${item.src || item.video}" aria-label="Open ${escapeHtml(item.title)}">${mediaHtml(item, { lazy: row > 1, priority: row === 0 })}</button>
           <figcaption class="wall__caption"><b>${escapeHtml(item.title)}</b>${escapeHtml(metaLine(item))}</figcaption>
         </figure>`).join("")}</div>`).join("");
     const el = section("wall", html`

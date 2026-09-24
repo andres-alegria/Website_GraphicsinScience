@@ -1961,3 +1961,12 @@ html.header-hidden .chips--sticky {
     width: 100%;
   }
 }
+
+/* ==========================================================================
+   Round 4 additions
+   ========================================================================== */
+
+/* the skills ticker pauses under the pointer */
+.marquee:hover .marquee__track {
+  animation-play-state: paused;
+}
