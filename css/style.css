@@ -1641,3 +1641,165 @@ a:hover .arrow::after,
 [id] {
   scroll-margin-top: calc(var(--header-h) + 1rem);
 }
+
+/* ==========================================================================
+   Round 2 additions
+   ========================================================================== */
+
+/* header call to action (desktop only) */
+.nav-cta {
+  padding: 0.55em 1em;
+  font-size: var(--fs-label);
+  letter-spacing: 0.04em;
+}
+
+/* filter chips stay reachable while the grid scrolls */
+.chips--sticky {
+  position: sticky;
+  top: var(--header-h);
+  z-index: 20;
+  margin-inline: calc(-1 * var(--gutter));
+  padding: 0.75rem var(--gutter);
+  background: rgb(228 229 225 / 0.94);
+  border-bottom: 1px solid var(--line);
+}
+
+.chips__row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.work-more {
+  margin: 0.5rem 0 0;
+  text-align: center;
+}
+
+.work-more[hidden] {
+  display: none;
+}
+
+.work-more .button {
+  color: var(--forest);
+}
+
+/* card meta in sentence case; uppercase stays for section labels only */
+.card__meta {
+  text-transform: none;
+  letter-spacing: 0;
+  font-size: var(--fs-small);
+  font-weight: 500;
+}
+
+/* wall captions appear on hover, so the scattered pictures stay clean */
+@media (hover: hover) {
+  .wall__caption {
+    opacity: 0;
+    transform: translateY(-4px);
+    transition: opacity 0.3s var(--ease), transform 0.3s var(--ease);
+  }
+
+  .wall__item:hover .wall__caption,
+  .wall__item:focus-within .wall__caption {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* stories page: the latest piece leads with an image */
+.story-feature {
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+  gap: 0 clamp(1.5rem, 3vw, 3rem);
+  align-items: center;
+  margin-top: clamp(2rem, 4vw, 3.5rem);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  background: var(--forest);
+  color: var(--bone);
+  transition: transform 0.35s var(--ease);
+}
+
+.story-feature:hover {
+  transform: translateY(-3px);
+  color: var(--bone);
+}
+
+.story-feature img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.story-feature__body {
+  display: grid;
+  gap: 0.7rem;
+  padding: clamp(1.5rem, 3vw, 2.5rem) clamp(1.5rem, 3vw, 2.5rem) clamp(1.5rem, 3vw, 2.5rem) 0;
+}
+
+.story-feature__body .label {
+  color: rgb(216 205 185 / 0.75);
+}
+
+.story-feature__title {
+  font-size: var(--fs-h2);
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  color: var(--white);
+}
+
+.story-feature__deck {
+  font-size: var(--fs-small);
+  opacity: 0.9;
+}
+
+.story-feature .story-row__cta {
+  color: var(--bone);
+}
+
+.lightbox__hint {
+  margin: 0.4rem 0 0;
+  font-size: var(--fs-label);
+  letter-spacing: 0.04em;
+  opacity: 0.55;
+}
+
+@media (max-width: 1023px) {
+  .lightbox__hint {
+    display: none;
+  }
+}
+
+@media (max-width: 767px) {
+  .nav-cta {
+    display: none;
+  }
+
+  .chips--sticky {
+    padding-block: 0.6rem;
+  }
+
+  .chips__row {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    scrollbar-width: none;
+    padding-bottom: 2px;
+  }
+
+  .chips__row::-webkit-scrollbar {
+    display: none;
+  }
+
+  .chip {
+    flex: none;
+  }
+
+  .story-feature {
+    grid-template-columns: 1fr;
+  }
+
+  .story-feature__body {
+    padding: 1.2rem 1.2rem 1.4rem;
+  }
+}

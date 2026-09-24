@@ -60,6 +60,7 @@
         <a class="site-title" href="index.html">${escapeHtml(SITE.name)}<small>${escapeHtml(SITE.tagline)}</small></a>
         <nav class="site-nav" aria-label="Main">${links}</nav>
         <div class="header-social">${social}</div>
+        <a class="button nav-cta" href="contact.html">Get in touch</a>
         <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-menu" aria-label="Open menu">
           <span class="menu-toggle__bar menu-toggle__bar--top"></span>
           <span class="menu-toggle__bar menu-toggle__bar--bottom"></span>
@@ -195,6 +196,7 @@
         <p class="lightbox__meta"></p>
         <p class="lightbox__desc"></p>
         <div class="lightbox__story"></div>
+        <p class="lightbox__hint">← → to move between pieces · Esc to close</p>
       </aside>`;
     document.body.appendChild(root);
 
@@ -245,6 +247,11 @@
     root.querySelector(".lightbox__nav--prev").addEventListener("click", () => step(-1));
     root.querySelector(".lightbox__nav--next").addEventListener("click", () => step(1));
     root.querySelector(".lightbox__stage").addEventListener("click", (e) => { if (e.target === e.currentTarget) close(); });
+    // swipe between pieces on touch screens
+    if (window.gsap && window.Observer) {
+      window.gsap.registerPlugin(window.Observer);
+      window.Observer.create({ target: root.querySelector(".lightbox__stage"), type: "touch", tolerance: 40, onLeft: () => step(1), onRight: () => step(-1) });
+    }
     document.addEventListener("keydown", (e) => {
       if (root.hidden) return;
       if (e.key === "Escape") close();
@@ -321,16 +328,21 @@
     const el = section("section work", html`
       <div class="wrap">
         ${sectionHead(SITE.work.label, SITE.work.title, escapeHtml(SITE.work.intro))}
-        <div class="chips" role="group" aria-label="Filter by type">${chips}</div>
+        <div class="chips chips--sticky" role="group" aria-label="Filter by type"><div class="chips__row">${chips}</div></div>
         <p class="label work__blurb" aria-live="polite"></p>
         <div class="work-grid">${cards}</div>
+        <p class="work-more"><button class="button button--ghost" type="button">${escapeHtml(SITE.work.showMore.replace("{count}", items.length))}</button></p>
       </div>`, { id: "work" });
     main.appendChild(el);
 
     const grid = el.querySelector(".work-grid");
     const blurb = el.querySelector(".work__blurb");
+    const more = el.querySelector(".work-more");
     const cardEls = [...grid.querySelectorAll(".card")];
     const visibleItems = () => cardEls.filter((c) => !c.hidden).map((c) => items[+c.dataset.index]);
+    const initial = SITE.work.initial || items.length;
+    let expanded = initial >= items.length;
+    let current = "all";
 
     grid.addEventListener("click", (e) => {
       const btn = e.target.closest(".card__media");
@@ -341,9 +353,17 @@
     });
 
     const applyFilter = (cat) => {
+      current = cat;
       const Flip = window.Flip;
       const state = Flip && !reduceMotion ? Flip.getState(cardEls) : null;
-      cardEls.forEach((c) => { c.hidden = cat !== "all" && c.dataset.cat !== cat; });
+      let shownCount = 0;
+      cardEls.forEach((c) => {
+        const inCat = cat === "all" || c.dataset.cat === cat;
+        // "All" starts with a first page of cards; the button below the grid opens the rest
+        c.hidden = !inCat || (cat === "all" && !expanded && shownCount >= initial);
+        if (!c.hidden) shownCount++;
+      });
+      more.hidden = !(cat === "all" && !expanded);
       const sec = SITE.portfolio.find((s) => s.id === cat);
       blurb.textContent = sec ? sec.blurb : "";
       el.querySelectorAll(".chip").forEach((chip) => chip.setAttribute("aria-pressed", String(chip.dataset.cat === cat)));
@@ -365,6 +385,8 @@
       const chip = e.target.closest(".chip");
       if (chip) applyFilter(chip.dataset.cat);
     });
+    more.querySelector("button").addEventListener("click", () => { expanded = true; applyFilter(current); });
+    applyFilter("all");
   }
 
   function renderStoriesTeaser(main) {
@@ -449,11 +471,21 @@
 
   function renderStories(main) {
     const s = SITE.stories;
+    const latest = s.items[0];
     main.appendChild(section("stories-hero", html`
       <div class="wrap">
         <p class="label">${escapeHtml(s.label)}</p>
         <h1>${escapeHtml(s.title)}</h1>
         <p class="lead prose">${escapeHtml(s.lead)}</p>
+        <a class="story-feature" href="${latest.url}" target="_blank" rel="noopener">
+          <img src="${latest.image.src}" width="${latest.image.width}" height="${latest.image.height}" alt="${escapeHtml(latest.image.alt)}" decoding="async">
+          <span class="story-feature__body">
+            <span class="label">Latest · ${escapeHtml(latest.outlet)} · ${formatDate(latest.date)}</span>
+            <span class="story-feature__title">${escapeHtml(latest.title)}</span>
+            <span class="story-feature__deck">${escapeHtml(latest.deck)}</span>
+            <span class="story-row__cta arrow arrow--ext">Read the story</span>
+          </span>
+        </a>
       </div>`));
 
     const rows = s.items.map((story, i) => html`

@@ -40,7 +40,7 @@ window.SITE = {
 
   wall: {
     label: "Selected work",
-    note: "A dozen pieces from the last few years. Click any of them to see it at full size."
+    note: "Twelve pieces from the last few years. Open any of them to read it at full size."
   },
 
   marquee: ["Information design", "Cartography", "QGIS", "Tableau", "R", "Graphic design", "Layout", "Mapbox", "Illustrator", "StoryMaps"],
@@ -48,7 +48,9 @@ window.SITE = {
   work: {
     label: "Work",
     title: "Maps, charts, diagrams and stories",
-    intro: "Everything below was made for a scientist, an NGO or a newsroom. Filter by type, or open a piece to read it properly and jump to the story it ran in."
+    intro: "Everything here was made for a scientist, an NGO or a newsroom. Filter by type, open a piece to read it properly, and jump to the story it ran in.",
+    showMore: "Show all {count} pieces",
+    initial: 18
   },
 
   clients: {
@@ -451,41 +453,208 @@ window.SITE = {
       ]
     },
     {
-      id: "dashboards",
-      title: "Dashboards",
-      blurb: "Interactive Tableau dashboards embedded in news coverage.",
+      id: "storymaps",
+      title: "StoryMaps",
+      blurb: "Scrollytelling stories built with Mapbox, React and GSAP.",
       items: [
         {
-          src: "images/portfolio/dashboards/1739517558747.gif",
-          width: 800, height: 800,
-          title: "Moves to curtail bottom trawling in European MPAs",
-          client: "Mongabay · Tableau",
-          story: { url: "https://news.mongabay.com/2025/02/lawsuit-is-latest-push-to-curb-bottom-trawling-in-protected-european-waters/", title: "Lawsuit is latest push to curb bottom trawling in protected European waters", date: "2025-02-13", outlet: "Mongabay" },
-          alt: "Map illustrating moves to curtail bottom trawling in European Marine Protected Areas from 2023 to 2025, showing MPAs, EEA zones, and policy advocacy points."
+          src: "images/portfolio/storymaps/StoryMap_1.png",
+          width: 1500, height: 867,
+          title: "Shifting Sands",
+          client: "Mongabay India",
+          story: { url: "https://india.mongabay.com/2025/11/quarries-devour-buffer-forests-of-western-ghats-after-sand-mining-ban/", title: "Shifting Sands", date: null, outlet: "Mongabay India" },
+          alt: "Opening screen of the Mongabay India story “Shifting Sands”, on quarries eating into the buffer forests of the Western Ghats."
         },
         {
-          src: "images/portfolio/dashboards/1734085544489.jpeg",
-          width: 800, height: 800,
-          title: "Global methane emissions dashboard",
-          client: "Mongabay India · Tableau",
+          src: "images/portfolio/storymaps/ScrollyMap_2.png",
+          width: 1500, height: 870,
+          title: "Damming the Arai River",
+          client: "Mongabay",
+          story: { url: "https://news.mongabay.com/2025/09/cambodian-irrigation-dam-construction-threatens-riverine-communities-in-the-cardamoms/", title: "Damming the Arai River", date: null, outlet: "Mongabay" },
+          alt: "Opening screen of the Mongabay story “Damming the Arai River”, on an irrigation dam in Cambodia’s Cardamom Mountains."
+        },
+        {
+          src: "images/portfolio/storymaps/ScrollyMap_1.png",
+          width: 1500, height: 868,
+          title: "Clearing the Way",
+          client: "Mongabay",
+          story: { url: "https://news.mongabay.com/custom-story/2025/09/satellite-images-reveal-oil-project-surge-in-ugandan-park-and-wetland/", title: "Clearing the Way", date: null, outlet: "Mongabay" },
+          alt: "Opening screen of the Mongabay story “Clearing the Way”, on satellite images of an oil project in a Ugandan park and wetland."
+        },
+        {
+          src: "images/portfolio/storymaps/Scrolly_Dual.jpg",
+          width: 1500, height: 867,
+          title: "Dual-purpose?",
+          client: "Mongabay",
           featured: true,
-          story: { url: "https://india.mongabay.com/2024/12/the-methane-puzzle-of-ambition-and-action-unfolds-at-cop29/", title: "The methane puzzle of ambition and action unfolds at COP29", date: "2024-12-13", outlet: "Mongabay India" },
-          alt: "Line charts showing global methane emission projections from 1990 to 2050, and main human sources of methane by sector (agriculture, energy, industrial, waste) with filters for country, region, and subregion."
+          story: { url: "https://news.mongabay.com/custom-story/2026/03/chinas-deep-sea-mining-fleet-may-also-track-us-submarines/", title: "Dual-purpose?", date: null, outlet: "Mongabay" },
+          alt: "Opening screen of the Mongabay story \"Dual-purpose?\", on a Chinese research vessel that may serve civilian and military roles, over a photograph of the seabed."
         },
         {
-          src: "images/portfolio/dashboards/1734626854137.gif",
-          width: 800, height: 800,
-          title: "Protected areas in Africa",
-          client: "Tableau Public",
-          alt: "Map of Africa showing protected areas, with filters by country, governance, and designation status, and a legend indicating extent in square kilometers for terrestrial and marine/costal areas."
+          src: "images/portfolio/storymaps/Scrolly.png",
+          width: 1500, height: 874,
+          title: "What does a map miss?",
+          client: "Mongabay India",
+          story: { url: "https://india.mongabay.com/2026/05/what-a-coastal-zoning-map-leaves-out-explained-through-maps/", title: "What does a map miss?", date: null, outlet: "Mongabay India" },
+          alt: "Opening screen of the Mongabay India story “What does a map miss?”, on a coastal zoning map and the details it leaves out."
         },
         {
-          src: "images/portfolio/dashboards/1736430176113.gif",
+          src: "images/portfolio/storymaps/Scrolly_Collision.jpg",
+          width: 1500, height: 867,
+          title: "Collision course",
+          client: "Mongabay",
+          featured: true,
+          story: { url: "https://news.mongabay.com/custom-story/2026/09/can-we-stop-ships-from-killing-the-mediterraneans-last-great-whales/", title: "Collision course", date: null, outlet: "Mongabay" },
+          alt: "Opening screen of the Mongabay story \"Collision course\", showing a ship and a whale on converging tracks in the Mediterranean."
+        }
+      ]
+    },
+    {
+      id: "ipcc",
+      title: "IPCC report figures",
+      blurb: "Figures from the IPCC Sixth Assessment Report, Working Group II.",
+      items: [
+        {
+          src: "images/portfolio/ipcc/ipcc-06.jpg",
+          width: 1500, height: 1620,
+          title: "Reindeer herding under climate pressure, Sweden",
+          client: "IPCC AR6 WGII",
+          alt: "Map of Sweden showing reindeer herding areas with a list of factors affecting indigenous reindeer livelihood, weather condition impacts, effects on people and animals, and land pressure effects, with icons indicating impacts and their severity."
+        },
+        {
+          src: "images/portfolio/ipcc/ipcc-08.jpg",
+          width: 1500, height: 1620,
+          title: "Projected risks for 65 European cities",
+          client: "IPCC AR6 WGII",
+          alt: "A chart showing projected changes in risk levels of pluvial flooding, extreme heat, and meteorological drought across 65 European cities over mid and far future periods. The chart uses colored dots and shaded areas to indicate risk levels, population size, and European regions."
+        },
+        {
+          src: "images/portfolio/ipcc/ipcc-05.jpg",
+          width: 1500, height: 1620,
+          title: "Sea level rise and flooding in Venice, 1900–2020",
+          client: "IPCC AR6 WGII",
+          featured: true,
+          alt: "A detailed infographic showing the relationship between sea level rise and flooding in Venice from 1900 to 2020. The upper section illustrates rising relative sea levels, flood events, and significant water management milestones. The middle section projects future sea level rises with confidence ranges and milestones for lagoon closures. The lower section visualizes projected sea level rises in Venice with confidence intervals. The right side features a satellite map of Venice highlighting key features like the city center, lagoon, barrier islands, and inlets connecting to the sea, with annotations explaining flood prevention infrastructure."
+        },
+        {
+          src: "images/portfolio/ipcc/ipcc-07.jpg",
+          width: 1500, height: 1620,
+          title: "Relative risk by sector and hazard, North America",
+          client: "IPCC AR6 WGII",
+          alt: "A detailed chart titled 'Rapid assessment of relative risk by sector and climate hazard for North America,' showing levels of risk for various sectors and hazards using colored squares to indicate risk levels, with legend indicating purple for very high, red for high, yellow for moderate, and white for not applicable or not assessed."
+        },
+        {
+          src: "images/portfolio/ipcc/ipcc-04.jpg",
+          width: 1500, height: 1620,
+          title: "Climate risks to hydropower and irrigation in Africa",
+          client: "IPCC AR6 WGII",
+          alt: "Map and charts illustrating climate risks to hydropower and irrigation in Africa, including distribution of hydropower plants, correlation of river flows, capacity, forecast revenues, and irrigation data for major river basins like Congo, Nile, Zambezi, Niger, and Senegal."
+        },
+        {
+          src: "images/portfolio/ipcc/ipcc-03.jpg",
+          width: 1500, height: 1620,
+          title: "How climate change affects food security through water",
+          client: "IPCC AR6 WGII",
+          alt: "A detailed infographic explaining how climate change impacts food security through water issues, divided into three sections. The first section shows a timeline of food production loss events from 1970 to 2013, highlighting an increase in drought-related and other climate-related events. The second section projects the rise of land and population affected by droughts from 2006 to 2099. The third section compares impacts across regions and water systems on crop yield and water quality, with various symbols indicating positive or negative influences and confidence levels."
+        },
+        {
+          src: "images/portfolio/ipcc/ipcc-02.jpg",
+          width: 1500, height: 1620,
+          title: "Observed impacts on ecosystems and human systems",
+          client: "IPCC AR6 WGII",
+          featured: true,
+          alt: "A detailed infographic showing the impacts of climate change on ecosystems and human systems worldwide, divided into sections for impacts on ecosystems and human systems, with various geographic regions and categories."
+        },
+        {
+          src: "images/portfolio/ipcc/ipcc-09.jpg",
+          width: 1500, height: 1620,
+          title: "Risk management options across sectors",
+          client: "IPCC AR6 WGII",
+          alt: "Chart illustrating risk management options in society, categorized by risk type such as coastal systems, ecosystems, infrastructure, health, food security, water security, peace, and migration, with color-coded confidence levels and governance responsibilities."
+        },
+        {
+          src: "images/portfolio/ipcc/ipcc-13.jpg",
+          width: 1500, height: 1620,
+          title: "Global economic impact estimates by warming level",
+          client: "IPCC AR6 WGII",
+          alt: "Graph titled 'Global aggregate economic impact estimates by global warming level' showing multiple charts. The first four show estimated percentage loss in global GDP relative to global temperature increase, using different modeling methods: statistical, structural, meta-analyses, and AR5 methods. The fifth chart shows global average temperature change over time at different warming levels, with projections for near 2000s, mid-2050s, and long 2090s, color-coded by warming levels from 1.9°C to 5.8°C."
+        },
+        {
+          src: "images/portfolio/ipcc/ipcc-10.jpg",
+          width: 1500, height: 1620,
+          title: "The urban adaptation gap by region",
+          client: "IPCC AR6 WGII",
+          alt: "A chart displaying the urban adaptation gap to current climate risks across different regions and adaptation actions, with categories including Africa, Asia, Australasia, the Americas, Europe, North America, and Small Islands. The chart compares high and lower income exposure populations and shows adaptation measures for flood, storm, heatwaves, water, and food security."
+        },
+        {
+          src: "images/portfolio/ipcc/ipcc-11.jpg",
+          width: 1500, height: 1620,
+          title: "Financial linkages spreading flood costs from Europe",
+          client: "IPCC AR6 WGII",
+          alt: "Diagram illustrating how European regions are connected through financial linkages that distribute flood damage costs to other parts of the world. The diagram shows arcs from Europe to regions worldwide, with bubbles representing costs in millions of USD, highlighting the impact of flood risks and adaptation levels."
+        },
+        {
+          src: "images/portfolio/ipcc/ipcc-12.jpg",
+          width: 1500, height: 1620,
+          title: "Projected warming and reasons for concern",
+          client: "IPCC AR6 WGII",
+          alt: "A scientific chart showing projected global temperature change from 1950 to 2100 under different scenarios, with risk levels for climate concerns indicated by color-coded bars representing very high, high, moderate, and undetectable risks. The chart also lists reasons for concern related to climate impacts, such as systems threatened and impacts magnitude."
+        }
+      ]
+    },
+    {
+      id: "peer-reviewed",
+      title: "Peer-reviewed",
+      blurb: "Figures for papers in peer-reviewed journals.",
+      items: [
+        {
+          src: "images/portfolio/peer-reviewed/1733307062760.jpeg",
+          width: 1500, height: 1501,
+          title: "Progress and gaps in climate change adaptation in coastal cities",
+          client: "Journal article",
+          alt: "Open magazine or journal page titled \"Progress and gaps in climate change adaptation in coastal cities across the globe\" with charts and graphs about climate risks and vulnerabilities."
+        },
+        {
+          src: "images/portfolio/peer-reviewed/1733306697481.jpeg",
+          width: 1500, height: 1501,
+          title: "The tragedy of climate change science",
+          client: "Nature Climate Change",
+          alt: "Page from academic journal titled 'The tragedy of climate change science' with a graph showing responses by science to climate change since 1970, and indicators of adverse change."
+        },
+        {
+          src: "images/portfolio/peer-reviewed/1733307273965.jpeg",
+          width: 1500, height: 1501,
+          title: "A global assessment of actors and their roles in climate change adaptation",
+          client: "Nature Climate Change",
+          alt: "Open publication of a scientific article titled 'A global assessment of factors and their roles in climate change adaptation' with colorful pie charts and data visualizations on climate adaptation by region and actor type."
+        },
+        {
+          src: "images/portfolio/peer-reviewed/1733396318491.jpeg",
+          width: 1500, height: 1501,
+          title: "Towards an IPCC Atlas for comprehensive climate change risk assessments",
+          client: "Journal article",
+          alt: "Scientific article titled 'Towards an IPCC Atlas for comprehensive climate change risk assessments' with maps and diagrams about climate risk, exposure, and response, and authors listed below the title."
+        },
+        {
+          src: "images/portfolio/peer-reviewed/1733475367753.jpeg",
+          width: 1500, height: 1501,
+          title: "Declining snow cover and winter tourism",
+          client: "Journal of Environmental Management",
+          alt: "A magazine page from the Journal of Environmental Management discussing how declining snow cover affects winter tourism and the potential adaptation strategies, including artificial snow-making and alternative winter activities."
+        },
+        {
+          src: "images/portfolio/peer-reviewed/1735909753001.jpeg",
           width: 800, height: 800,
-          title: "Extreme weather events of 2024",
-          client: "Mongabay · Tableau",
-          story: { url: "https://news.mongabay.com/short-article/2025/01/deaths-linked-to-extreme-weather-in-2024/", title: "At least 11,500 deaths linked to extreme weather in 2024", date: "2025-01-09", outlet: "Mongabay" },
-          alt: "Infographic showing extreme weather events of 2024, with icons representing storms, floods, landslides, wildfires, droughts, extreme temperatures, and glacial floods, and data on global and North country impacts."
+          title: "AI applications in African agriculture",
+          client: "Journal article",
+          alt: "Map of Africa highlighting six countries with numbered icons and descriptions of artificial intelligence applications in agriculture: Ghana (yield prediction), Nigeria (smart irrigation), Ethiopia (agricultural extension), Kenya (crop disease detection), Rwanda (AI and IoT integration), South Africa (livestock monitoring)."
+        },
+        {
+          src: "images/portfolio/peer-reviewed/_linkedin-09.jpg",
+          width: 1500, height: 1500,
+          title: "Figures for a research paper",
+          client: "Journal article",
+          alt: "Sample figures from a peer-reviewed paper, laid out as a set."
         }
       ]
     },
@@ -547,59 +716,41 @@ window.SITE = {
       ]
     },
     {
-      id: "storymaps",
-      title: "StoryMaps",
-      blurb: "Scrollytelling stories built with Mapbox, React and GSAP.",
+      id: "dashboards",
+      title: "Dashboards",
+      blurb: "Interactive Tableau dashboards embedded in news coverage.",
       items: [
         {
-          src: "images/portfolio/storymaps/StoryMap_1.png",
-          width: 1500, height: 867,
-          title: "Shifting Sands",
-          client: "Mongabay India",
-          story: { url: "https://india.mongabay.com/2025/11/quarries-devour-buffer-forests-of-western-ghats-after-sand-mining-ban/", title: "Shifting Sands", date: null, outlet: "Mongabay India" },
-          alt: "Opening screen of the Mongabay India story “Shifting Sands”, on quarries eating into the buffer forests of the Western Ghats."
+          src: "images/portfolio/dashboards/1739517558747.gif",
+          width: 800, height: 800,
+          title: "Moves to curtail bottom trawling in European MPAs",
+          client: "Mongabay · Tableau",
+          story: { url: "https://news.mongabay.com/2025/02/lawsuit-is-latest-push-to-curb-bottom-trawling-in-protected-european-waters/", title: "Lawsuit is latest push to curb bottom trawling in protected European waters", date: "2025-02-13", outlet: "Mongabay" },
+          alt: "Map illustrating moves to curtail bottom trawling in European Marine Protected Areas from 2023 to 2025, showing MPAs, EEA zones, and policy advocacy points."
         },
         {
-          src: "images/portfolio/storymaps/ScrollyMap_2.png",
-          width: 1500, height: 870,
-          title: "Damming the Arai River",
-          client: "Mongabay",
-          story: { url: "https://news.mongabay.com/2025/09/cambodian-irrigation-dam-construction-threatens-riverine-communities-in-the-cardamoms/", title: "Damming the Arai River", date: null, outlet: "Mongabay" },
-          alt: "Opening screen of the Mongabay story “Damming the Arai River”, on an irrigation dam in Cambodia’s Cardamom Mountains."
-        },
-        {
-          src: "images/portfolio/storymaps/ScrollyMap_1.png",
-          width: 1500, height: 868,
-          title: "Clearing the Way",
-          client: "Mongabay",
-          story: { url: "https://news.mongabay.com/custom-story/2025/09/satellite-images-reveal-oil-project-surge-in-ugandan-park-and-wetland/", title: "Clearing the Way", date: null, outlet: "Mongabay" },
-          alt: "Opening screen of the Mongabay story “Clearing the Way”, on satellite images of an oil project in a Ugandan park and wetland."
-        },
-        {
-          src: "images/portfolio/storymaps/Scrolly_Dual.jpg",
-          width: 1500, height: 867,
-          title: "Dual-purpose?",
-          client: "Mongabay",
+          src: "images/portfolio/dashboards/1734085544489.jpeg",
+          width: 800, height: 800,
+          title: "Global methane emissions dashboard",
+          client: "Mongabay India · Tableau",
           featured: true,
-          story: { url: "https://news.mongabay.com/custom-story/2026/03/chinas-deep-sea-mining-fleet-may-also-track-us-submarines/", title: "Dual-purpose?", date: null, outlet: "Mongabay" },
-          alt: "Opening screen of the Mongabay story \"Dual-purpose?\", on a Chinese research vessel that may serve civilian and military roles, over a photograph of the seabed."
+          story: { url: "https://india.mongabay.com/2024/12/the-methane-puzzle-of-ambition-and-action-unfolds-at-cop29/", title: "The methane puzzle of ambition and action unfolds at COP29", date: "2024-12-13", outlet: "Mongabay India" },
+          alt: "Line charts showing global methane emission projections from 1990 to 2050, and main human sources of methane by sector (agriculture, energy, industrial, waste) with filters for country, region, and subregion."
         },
         {
-          src: "images/portfolio/storymaps/Scrolly.png",
-          width: 1500, height: 874,
-          title: "What does a map miss?",
-          client: "Mongabay India",
-          story: { url: "https://india.mongabay.com/2026/05/what-a-coastal-zoning-map-leaves-out-explained-through-maps/", title: "What does a map miss?", date: null, outlet: "Mongabay India" },
-          alt: "Opening screen of the Mongabay India story “What does a map miss?”, on a coastal zoning map and the details it leaves out."
+          src: "images/portfolio/dashboards/1734626854137.gif",
+          width: 800, height: 800,
+          title: "Protected areas in Africa",
+          client: "Tableau Public",
+          alt: "Map of Africa showing protected areas, with filters by country, governance, and designation status, and a legend indicating extent in square kilometers for terrestrial and marine/costal areas."
         },
         {
-          src: "images/portfolio/storymaps/Scrolly_Collision.jpg",
-          width: 1500, height: 867,
-          title: "Collision course",
-          client: "Mongabay",
-          featured: true,
-          story: { url: "https://news.mongabay.com/custom-story/2026/09/can-we-stop-ships-from-killing-the-mediterraneans-last-great-whales/", title: "Collision course", date: null, outlet: "Mongabay" },
-          alt: "Opening screen of the Mongabay story \"Collision course\", showing a ship and a whale on converging tracks in the Mediterranean."
+          src: "images/portfolio/dashboards/1736430176113.gif",
+          width: 800, height: 800,
+          title: "Extreme weather events of 2024",
+          client: "Mongabay · Tableau",
+          story: { url: "https://news.mongabay.com/short-article/2025/01/deaths-linked-to-extreme-weather-in-2024/", title: "At least 11,500 deaths linked to extreme weather in 2024", date: "2025-01-09", outlet: "Mongabay" },
+          alt: "Infographic showing extreme weather events of 2024, with icons representing storms, floods, landslides, wildfires, droughts, extreme temperatures, and glacial floods, and data on global and North country impacts."
         }
       ]
     },
@@ -711,155 +862,6 @@ window.SITE = {
           title: "Hammerhead shark conservation tri-fold",
           client: "Publication design",
           alt: "A tri-fold brochure about hammerhead sharks, highlighting conservation efforts, identification guides, and regional regulations. The front features an image of a hammerhead shark swimming underwater."
-        }
-      ]
-    },
-    {
-      id: "peer-reviewed",
-      title: "Peer-reviewed",
-      blurb: "Figures for papers in peer-reviewed journals.",
-      items: [
-        {
-          src: "images/portfolio/peer-reviewed/1733307062760.jpeg",
-          width: 1500, height: 1501,
-          title: "Progress and gaps in climate change adaptation in coastal cities",
-          client: "Journal article",
-          alt: "Open magazine or journal page titled \"Progress and gaps in climate change adaptation in coastal cities across the globe\" with charts and graphs about climate risks and vulnerabilities."
-        },
-        {
-          src: "images/portfolio/peer-reviewed/1733306697481.jpeg",
-          width: 1500, height: 1501,
-          title: "The tragedy of climate change science",
-          client: "Nature Climate Change",
-          alt: "Page from academic journal titled 'The tragedy of climate change science' with a graph showing responses by science to climate change since 1970, and indicators of adverse change."
-        },
-        {
-          src: "images/portfolio/peer-reviewed/1733307273965.jpeg",
-          width: 1500, height: 1501,
-          title: "A global assessment of actors and their roles in climate change adaptation",
-          client: "Nature Climate Change",
-          alt: "Open publication of a scientific article titled 'A global assessment of factors and their roles in climate change adaptation' with colorful pie charts and data visualizations on climate adaptation by region and actor type."
-        },
-        {
-          src: "images/portfolio/peer-reviewed/1733396318491.jpeg",
-          width: 1500, height: 1501,
-          title: "Towards an IPCC Atlas for comprehensive climate change risk assessments",
-          client: "Journal article",
-          alt: "Scientific article titled 'Towards an IPCC Atlas for comprehensive climate change risk assessments' with maps and diagrams about climate risk, exposure, and response, and authors listed below the title."
-        },
-        {
-          src: "images/portfolio/peer-reviewed/1733475367753.jpeg",
-          width: 1500, height: 1501,
-          title: "Declining snow cover and winter tourism",
-          client: "Journal of Environmental Management",
-          alt: "A magazine page from the Journal of Environmental Management discussing how declining snow cover affects winter tourism and the potential adaptation strategies, including artificial snow-making and alternative winter activities."
-        },
-        {
-          src: "images/portfolio/peer-reviewed/1735909753001.jpeg",
-          width: 800, height: 800,
-          title: "AI applications in African agriculture",
-          client: "Journal article",
-          alt: "Map of Africa highlighting six countries with numbered icons and descriptions of artificial intelligence applications in agriculture: Ghana (yield prediction), Nigeria (smart irrigation), Ethiopia (agricultural extension), Kenya (crop disease detection), Rwanda (AI and IoT integration), South Africa (livestock monitoring)."
-        },
-        {
-          src: "images/portfolio/peer-reviewed/_linkedin-09.jpg",
-          width: 1500, height: 1500,
-          title: "Figures for a research paper",
-          client: "Journal article",
-          alt: "Sample figures from a peer-reviewed paper, laid out as a set."
-        }
-      ]
-    },
-    {
-      id: "ipcc",
-      title: "IPCC report figures",
-      blurb: "Figures from the IPCC Sixth Assessment Report, Working Group II.",
-      items: [
-        {
-          src: "images/portfolio/ipcc/ipcc-06.jpg",
-          width: 1500, height: 1620,
-          title: "Reindeer herding under climate pressure, Sweden",
-          client: "IPCC AR6 WGII",
-          alt: "Map of Sweden showing reindeer herding areas with a list of factors affecting indigenous reindeer livelihood, weather condition impacts, effects on people and animals, and land pressure effects, with icons indicating impacts and their severity."
-        },
-        {
-          src: "images/portfolio/ipcc/ipcc-08.jpg",
-          width: 1500, height: 1620,
-          title: "Projected risks for 65 European cities",
-          client: "IPCC AR6 WGII",
-          alt: "A chart showing projected changes in risk levels of pluvial flooding, extreme heat, and meteorological drought across 65 European cities over mid and far future periods. The chart uses colored dots and shaded areas to indicate risk levels, population size, and European regions."
-        },
-        {
-          src: "images/portfolio/ipcc/ipcc-05.jpg",
-          width: 1500, height: 1620,
-          title: "Sea level rise and flooding in Venice, 1900–2020",
-          client: "IPCC AR6 WGII",
-          featured: true,
-          alt: "A detailed infographic showing the relationship between sea level rise and flooding in Venice from 1900 to 2020. The upper section illustrates rising relative sea levels, flood events, and significant water management milestones. The middle section projects future sea level rises with confidence ranges and milestones for lagoon closures. The lower section visualizes projected sea level rises in Venice with confidence intervals. The right side features a satellite map of Venice highlighting key features like the city center, lagoon, barrier islands, and inlets connecting to the sea, with annotations explaining flood prevention infrastructure."
-        },
-        {
-          src: "images/portfolio/ipcc/ipcc-07.jpg",
-          width: 1500, height: 1620,
-          title: "Relative risk by sector and hazard, North America",
-          client: "IPCC AR6 WGII",
-          alt: "A detailed chart titled 'Rapid assessment of relative risk by sector and climate hazard for North America,' showing levels of risk for various sectors and hazards using colored squares to indicate risk levels, with legend indicating purple for very high, red for high, yellow for moderate, and white for not applicable or not assessed."
-        },
-        {
-          src: "images/portfolio/ipcc/ipcc-04.jpg",
-          width: 1500, height: 1620,
-          title: "Climate risks to hydropower and irrigation in Africa",
-          client: "IPCC AR6 WGII",
-          alt: "Map and charts illustrating climate risks to hydropower and irrigation in Africa, including distribution of hydropower plants, correlation of river flows, capacity, forecast revenues, and irrigation data for major river basins like Congo, Nile, Zambezi, Niger, and Senegal."
-        },
-        {
-          src: "images/portfolio/ipcc/ipcc-03.jpg",
-          width: 1500, height: 1620,
-          title: "How climate change affects food security through water",
-          client: "IPCC AR6 WGII",
-          alt: "A detailed infographic explaining how climate change impacts food security through water issues, divided into three sections. The first section shows a timeline of food production loss events from 1970 to 2013, highlighting an increase in drought-related and other climate-related events. The second section projects the rise of land and population affected by droughts from 2006 to 2099. The third section compares impacts across regions and water systems on crop yield and water quality, with various symbols indicating positive or negative influences and confidence levels."
-        },
-        {
-          src: "images/portfolio/ipcc/ipcc-02.jpg",
-          width: 1500, height: 1620,
-          title: "Observed impacts on ecosystems and human systems",
-          client: "IPCC AR6 WGII",
-          featured: true,
-          alt: "A detailed infographic showing the impacts of climate change on ecosystems and human systems worldwide, divided into sections for impacts on ecosystems and human systems, with various geographic regions and categories."
-        },
-        {
-          src: "images/portfolio/ipcc/ipcc-09.jpg",
-          width: 1500, height: 1620,
-          title: "Risk management options across sectors",
-          client: "IPCC AR6 WGII",
-          alt: "Chart illustrating risk management options in society, categorized by risk type such as coastal systems, ecosystems, infrastructure, health, food security, water security, peace, and migration, with color-coded confidence levels and governance responsibilities."
-        },
-        {
-          src: "images/portfolio/ipcc/ipcc-13.jpg",
-          width: 1500, height: 1620,
-          title: "Global economic impact estimates by warming level",
-          client: "IPCC AR6 WGII",
-          alt: "Graph titled 'Global aggregate economic impact estimates by global warming level' showing multiple charts. The first four show estimated percentage loss in global GDP relative to global temperature increase, using different modeling methods: statistical, structural, meta-analyses, and AR5 methods. The fifth chart shows global average temperature change over time at different warming levels, with projections for near 2000s, mid-2050s, and long 2090s, color-coded by warming levels from 1.9°C to 5.8°C."
-        },
-        {
-          src: "images/portfolio/ipcc/ipcc-10.jpg",
-          width: 1500, height: 1620,
-          title: "The urban adaptation gap by region",
-          client: "IPCC AR6 WGII",
-          alt: "A chart displaying the urban adaptation gap to current climate risks across different regions and adaptation actions, with categories including Africa, Asia, Australasia, the Americas, Europe, North America, and Small Islands. The chart compares high and lower income exposure populations and shows adaptation measures for flood, storm, heatwaves, water, and food security."
-        },
-        {
-          src: "images/portfolio/ipcc/ipcc-11.jpg",
-          width: 1500, height: 1620,
-          title: "Financial linkages spreading flood costs from Europe",
-          client: "IPCC AR6 WGII",
-          alt: "Diagram illustrating how European regions are connected through financial linkages that distribute flood damage costs to other parts of the world. The diagram shows arcs from Europe to regions worldwide, with bubbles representing costs in millions of USD, highlighting the impact of flood risks and adaptation levels."
-        },
-        {
-          src: "images/portfolio/ipcc/ipcc-12.jpg",
-          width: 1500, height: 1620,
-          title: "Projected warming and reasons for concern",
-          client: "IPCC AR6 WGII",
-          alt: "A scientific chart showing projected global temperature change from 1950 to 2100 under different scenarios, with risk levels for climate concerns indicated by color-coded bars representing very high, high, moderate, and undetectable risks. The chart also lists reasons for concern related to climate impacts, such as systems threatened and impacts magnitude."
         }
       ]
     }
