@@ -1,46 +1,63 @@
 /*
   Page rendering and interactions.
-  Content comes from js/site-data.js (window.SITE); visual styling lives in css/style.css.
+  Content comes from js/site-data.js (window.SITE); js/motion.js adds the animation; css/style.css the look.
 */
 (function () {
   "use strict";
 
   const SITE = window.SITE;
-  const page = document.body.dataset.page || "portfolio";
+  const page = document.body.dataset.page || "home";
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const YEAR = String(new Date().getFullYear());
 
   // ---------- Helpers ----------
 
   const escapeHtml = (value) =>
-    String(value).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]);
+    String(value ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]);
 
-  const createSection = (classes, attrs = {}) => {
-    const section = document.createElement("section");
-    section.className = `section ${classes}`;
-    Object.entries(attrs).forEach(([key, value]) => section.setAttribute(key, value));
-    return section;
+  const html = (strings, ...values) => strings.reduce((out, s, i) => out + s + (values[i] ?? ""), "");
+
+  const section = (classes, inner, attrs = {}) => {
+    const el = document.createElement("section");
+    el.className = classes;
+    Object.entries(attrs).forEach(([k, v]) => el.setAttribute(k, v));
+    el.innerHTML = inner;
+    return el;
   };
 
-  const setDivider = (section, divider) => {
-    if (divider) section.dataset.divider = JSON.stringify(divider);
+  const formatDate = (iso) => {
+    if (!iso) return "";
+    const d = new Date(iso + "T00:00:00");
+    return isNaN(d) ? iso : d.toLocaleDateString("en-GB", { year: "numeric", month: "short", day: "numeric" });
   };
 
-  const navLabel = (pageKey) => (SITE.nav.find((item) => item.page === pageKey) || {}).label || "";
+  const allItems = () => SITE.portfolio.flatMap((sec) => sec.items.map((item) => ({ ...item, category: sec.id, categoryTitle: sec.title })));
 
-  // ---------- Header ----------
+  // Media markup shared by the wall, the work grid and the lightbox
+  const mediaHtml = (item, { lazy = true, sizes = "" } = {}) =>
+    item.video
+      ? html`<video src="${item.video}" poster="${item.poster}" width="${item.width}" height="${item.height}" ${reduceMotion ? "controls" : "autoplay"} muted loop playsinline preload="metadata" aria-label="${escapeHtml(item.alt)}"></video>`
+      : html`<img src="${item.src}" width="${item.width}" height="${item.height}" alt="${escapeHtml(item.alt)}" ${lazy ? 'loading="lazy"' : ""} decoding="async">`;
+
+  const metaLine = (item) => {
+    const bits = [item.client];
+    if (item.story && item.story.date) bits.push(item.story.date.slice(0, 4));
+    return bits.filter(Boolean).join(" · ");
+  };
+
+  // ---------- Header & footer ----------
 
   function renderHeader() {
     const header = document.getElementById("site-header");
-    const links = SITE.nav
-      .map((item) => `<a href="${item.href}"${item.page === page ? ' aria-current="page"' : ""}>${escapeHtml(item.label)}</a>`)
-      .join("");
+    const current = (item) => (item.page === page ? ' aria-current="page"' : "");
+    const links = SITE.nav.map((item) => html`<a href="${item.href}"${current(item)}>${escapeHtml(item.label)}</a>`).join("");
     const social = SITE.social
-      .map((item) => `<a class="social-link" href="${item.href}" target="_blank" rel="noopener" aria-label="${escapeHtml(item.label)}"><span aria-hidden="true">${escapeHtml(item.text)}</span></a>`)
+      .map((item) => html`<a class="social-link" href="${item.href}" target="_blank" rel="noopener" aria-label="${escapeHtml(item.label)}"><span aria-hidden="true">${escapeHtml(item.text)}</span></a>`)
       .join("");
 
-    header.innerHTML = `
-      <div class="header-inner">
-        <a class="site-title" href="index.html">${escapeHtml(SITE.title)}</a>
+    header.innerHTML = html`
+      <div class="header-inner wrap">
+        <a class="site-title" href="index.html">${escapeHtml(SITE.name)}<small>${escapeHtml(SITE.tagline)}</small></a>
         <nav class="site-nav" aria-label="Main">${links}</nav>
         <div class="header-social">${social}</div>
         <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-menu" aria-label="Open menu">
@@ -62,50 +79,53 @@
       document.body.classList.toggle("menu-open", open);
     };
     toggle.addEventListener("click", () => setOpen(toggle.getAttribute("aria-expanded") !== "true"));
-    document.addEventListener("keydown", (event) => {
-      if (event.key === "Escape" && !menu.hidden) setOpen(false);
-    });
+    menu.addEventListener("click", (e) => { if (e.target.closest("a")) setOpen(false); });
+    document.addEventListener("keydown", (e) => { if (e.key === "Escape" && !menu.hidden) setOpen(false); });
   }
-
-  // ---------- Footer ----------
 
   function renderFooter() {
     const footer = document.getElementById("site-footer");
-    footer.className = "section section--fx site-footer";
-    footer.innerHTML = `<p class="footer-title">${escapeHtml(SITE.footer.title)}</p>`;
+    footer.className = "site-footer";
+    footer.innerHTML = html`
+      <div class="footer__inner wrap">
+        <div>
+          <p class="footer__title">${escapeHtml(SITE.footer.title)}</p>
+          <p class="footer__tagline">${escapeHtml(SITE.footer.tagline)}</p>
+        </div>
+        <nav class="footer__nav" aria-label="Footer">${SITE.nav.map((i) => html`<a href="${i.href}">${escapeHtml(i.label)}</a>`).join("")}</nav>
+        <div class="footer__social">${SITE.social.map((i) => html`<a href="${i.href}" target="_blank" rel="noopener">${escapeHtml(i.label)} ↗</a>`).join("")}</div>
+        <p class="footer__note">${escapeHtml(SITE.footer.note.replace("{year}", YEAR))}</p>
+      </div>`;
   }
 
   // ---------- Shared blocks ----------
 
+  const sectionHead = (label, title, aside = "") => html`
+    <div class="section-head">
+      <div>${label ? html`<p class="label">${escapeHtml(label)}</p>` : ""}<h2>${escapeHtml(title)}</h2></div>
+      ${aside ? html`<p class="section-head__aside">${aside}</p>` : ""}
+    </div>`;
+
   function marqueeHtml(words) {
-    const group = words
-      .map((word) => `<span class="marquee__item">${escapeHtml(word)}</span><span class="marquee__sep">•</span>`)
-      .join("");
-    // Each group repeats the words so the loop stays seamless on wide screens
-    return `
+    const group = words.map((w) => html`<span class="marquee__item">${escapeHtml(w)}</span><span class="marquee__sep">•</span>`).join("");
+    return html`
       <p class="visually-hidden">${escapeHtml(words.join(", "))}</p>
-      <div class="marquee" aria-hidden="true">
-        <div class="marquee__track">
-          <div class="marquee__group">${group}${group}</div>
-          <div class="marquee__group">${group}${group}</div>
-        </div>
-      </div>`;
+      <div class="marquee" aria-hidden="true"><div class="marquee__track"><div class="marquee__group">${group}${group}</div><div class="marquee__group">${group}${group}</div></div></div>`;
   }
 
   function contactFormHtml(idPrefix) {
     const f = SITE.contactForm;
-    return `
+    return html`
       <form class="contact-form">
-        <p class="contact-form__heading"><strong>${escapeHtml(f.heading)}</strong></p>
         <div class="field">
           <label for="${idPrefix}-email">${escapeHtml(f.emailLabel)} <span class="field__required">(required)</span></label>
           <input id="${idPrefix}-email" name="email" type="email" autocomplete="email" required>
         </div>
         <div class="field">
           <label for="${idPrefix}-message">${escapeHtml(f.messageLabel)} <span class="field__required">(required)</span></label>
-          <textarea id="${idPrefix}-message" name="message" rows="4" required></textarea>
+          <textarea id="${idPrefix}-message" name="message" rows="5" required></textarea>
         </div>
-        <button class="button" type="submit">${escapeHtml(f.submitLabel)}</button>
+        <div><button class="button" type="submit">${escapeHtml(f.submitLabel)}</button></div>
         <p class="form-status" role="status" aria-live="polite"></p>
         <input class="spam-trap" type="checkbox" name="botcheck" tabindex="-1" aria-hidden="true">
       </form>`;
@@ -115,13 +135,11 @@
     const f = SITE.contactForm;
     const status = form.querySelector(".form-status");
     const button = form.querySelector("button[type=submit]");
-
     form.addEventListener("submit", async (event) => {
       event.preventDefault();
       const data = new FormData(form);
-
       if (f.endpoint) {
-        Object.entries(f.hiddenFields || {}).forEach(([key, value]) => data.append(key, value));
+        Object.entries(f.hiddenFields || {}).forEach(([k, v]) => data.append(k, v));
         button.disabled = true;
         status.textContent = "";
         try {
@@ -135,229 +153,389 @@
           button.disabled = false;
         }
       } else if (f.email) {
-        const subject = encodeURIComponent(f.mailSubject);
-        const body = encodeURIComponent(`${data.get("message")}\n\n${data.get("email")}`);
-        window.location.href = `mailto:${f.email}?subject=${subject}&body=${body}`;
+        window.location.href = `mailto:${f.email}?subject=${encodeURIComponent(f.mailSubject)}&body=${encodeURIComponent(`${data.get("message")}\n\n${data.get("email")}`)}`;
       } else {
         status.textContent = f.notConnectedMessage;
       }
     });
   }
 
-  function carouselHtml(section) {
-    // Short lists repeat so the carousel still looks full, as on the original site
-    const slides = section.items.map((item) => ({ item, clone: false }));
-    while (slides.length < 4) {
-      section.items.forEach((item) => slides.push({ item, clone: true }));
-    }
+  const storyCard = (story) => html`
+    <a class="story-card reveal" href="${story.url}" target="_blank" rel="noopener">
+      <img src="${story.image.src}" width="${story.image.width}" height="${story.image.height}" alt="${escapeHtml(story.image.alt)}" loading="lazy" decoding="async">
+      <div class="story-card__body">
+        <h3>${escapeHtml(story.title)}</h3>
+        <p>${escapeHtml(story.deck)}</p>
+        <span class="story-card__meta">${escapeHtml(story.outlet)} · ${formatDate(story.date)}</span>
+      </div>
+    </a>`;
 
-    // Screen recordings are served as muted looping video instead of a heavy GIF
-    const mediaHtml = (item, clone) =>
-      item.video
-        ? `<video src="${item.video}" poster="${item.poster}" width="${item.width}" height="${item.height}"
-            ${reduceMotion ? "controls" : "autoplay"} muted loop playsinline preload="metadata"
-            ${clone ? 'aria-hidden="true"' : `aria-label="${escapeHtml(item.alt)}"`}></video>`
-        : `<img src="${item.src}" width="${item.width}" height="${item.height}" alt="${clone ? "" : escapeHtml(item.alt)}" loading="lazy" decoding="async">`;
+  // ---------- Lightbox ----------
 
-    const slideHtml = slides
-      .map(({ item, clone }) => `
-        <li class="carousel__slide"${clone ? ' aria-hidden="true"' : ""}>
-          <figure>
-            ${mediaHtml(item, clone)}
-            ${item.caption ? `<figcaption class="carousel__caption">${item.caption}</figcaption>` : ""}
-          </figure>
-        </li>`)
-      .join("");
+  const lightbox = (() => {
+    let items = [];
+    let index = 0;
+    let lastFocus = null;
+    const root = document.createElement("div");
+    root.className = "lightbox";
+    root.hidden = true;
+    root.setAttribute("role", "dialog");
+    root.setAttribute("aria-modal", "true");
+    root.setAttribute("aria-label", "Image viewer");
+    root.innerHTML = html`
+      <div class="lightbox__stage">
+        <button class="lightbox__close" type="button" aria-label="Close">×</button>
+        <button class="lightbox__nav lightbox__nav--prev" type="button" aria-label="Previous">←</button>
+        <div class="lightbox__media-wrap"></div>
+        <button class="lightbox__nav lightbox__nav--next" type="button" aria-label="Next">→</button>
+      </div>
+      <aside class="lightbox__info">
+        <p class="lightbox__counter"></p>
+        <h2></h2>
+        <p class="lightbox__meta"></p>
+        <p class="lightbox__desc"></p>
+        <div class="lightbox__story"></div>
+      </aside>`;
+    document.body.appendChild(root);
 
-    const arrow = (direction) => `
-      <button class="carousel__arrow carousel__arrow--${direction}" type="button" aria-label="${direction === "prev" ? "Previous" : "Next"} image">
-        <svg viewBox="0 0 44 18" aria-hidden="true" focusable="false">
-          ${direction === "prev"
-            ? '<path d="M9.9 16.96 2.12 9.18 9.9 1.39M42.86 9.18H3.38"/>'
-            : '<path d="M34.1 1.04l7.78 7.78-7.78 7.79M1.14 8.82h39.48"/>'}
-        </svg>
-      </button>`;
-
-    return `
-      <div class="carousel" role="region" aria-roledescription="carousel" aria-label="${escapeHtml(section.title)}">
-        <div class="carousel__viewport" tabindex="0">
-          <ul class="carousel__track">${slideHtml}</ul>
-        </div>
-        ${arrow("prev")}
-        ${arrow("next")}
-      </div>`;
-  }
-
-  function initCarousel(root) {
-    const viewport = root.querySelector(".carousel__viewport");
-    const slides = [...root.querySelectorAll(".carousel__slide")];
-    const behavior = reduceMotion ? "auto" : "smooth";
-
-    const maxScroll = () => viewport.scrollWidth - viewport.clientWidth;
-    const step = () => (slides[1] ? slides[1].offsetLeft - slides[0].offsetLeft : viewport.clientWidth);
-
-    // Arrows wrap around at either end
-    const go = (direction) => {
-      const x = viewport.scrollLeft;
-      if (direction > 0 && x >= maxScroll() - 2) viewport.scrollTo({ left: 0, behavior });
-      else if (direction < 0 && x <= 2) viewport.scrollTo({ left: maxScroll(), behavior });
-      else viewport.scrollBy({ left: direction * step(), behavior });
+    const wrap = root.querySelector(".lightbox__media-wrap");
+    const parts = {
+      counter: root.querySelector(".lightbox__counter"),
+      title: root.querySelector("h2"),
+      meta: root.querySelector(".lightbox__meta"),
+      desc: root.querySelector(".lightbox__desc"),
+      story: root.querySelector(".lightbox__story")
     };
 
-    root.querySelector(".carousel__arrow--prev").addEventListener("click", () => go(-1));
-    root.querySelector(".carousel__arrow--next").addEventListener("click", () => go(1));
-    viewport.addEventListener("keydown", (event) => {
-      if (event.key === "ArrowRight" || event.key === "ArrowLeft") {
-        event.preventDefault();
-        go(event.key === "ArrowRight" ? 1 : -1);
+    const show = () => {
+      const item = items[index];
+      wrap.innerHTML = item.video
+        ? html`<video class="lightbox__media" src="${item.video}" poster="${item.poster}" ${reduceMotion ? "" : "autoplay"} controls muted loop playsinline aria-label="${escapeHtml(item.alt)}"></video>`
+        : html`<img class="lightbox__media" src="${item.src}" width="${item.width}" height="${item.height}" alt="${escapeHtml(item.alt)}" decoding="async">`;
+      parts.counter.textContent = `${index + 1} / ${items.length}${item.categoryTitle ? " · " + item.categoryTitle : ""}`;
+      parts.title.textContent = item.title;
+      parts.meta.textContent = metaLine(item);
+      parts.desc.textContent = item.alt;
+      parts.story.innerHTML = item.story && item.story.url
+        ? html`<a class="button arrow arrow--ext" href="${item.story.url}" target="_blank" rel="noopener">Read the story</a>`
+        : "";
+      if (window.gsap && !reduceMotion) {
+        window.gsap.fromTo(wrap.firstElementChild, { opacity: 0, scale: 0.96 }, { opacity: 1, scale: 1, duration: 0.45, ease: "power3.out" });
       }
-    });
-
-    // Centre the arrows on the tallest image
-    const layout = () => {
-      const tallest = Math.max(...slides.map((slide) => slide.querySelector("img, video").offsetHeight));
-      root.style.setProperty("--arrow-top", `${tallest / 2}px`);
-      root.classList.toggle("is-static", maxScroll() < 4);
     };
-    layout();
-    window.addEventListener("resize", layout);
-  }
 
-  // ---------- Section edges ----------
+    const open = (list, i) => {
+      items = list;
+      index = i;
+      lastFocus = document.activeElement;
+      root.hidden = false;
+      document.body.classList.add("lightbox-open");
+      show();
+      root.querySelector(".lightbox__close").focus();
+    };
+    const close = () => {
+      root.hidden = true;
+      wrap.innerHTML = "";
+      document.body.classList.remove("lightbox-open");
+      if (lastFocus) lastFocus.focus();
+    };
+    const step = (dir) => { index = (index + dir + items.length) % items.length; show(); };
 
-  // Cuts each section's bottom edge along its divider line and lets the next section show underneath
-  function applyDividers() {
-    const sections = [...document.querySelectorAll("#main > .section, #site-footer")];
-    sections.forEach((section, i) => {
-      section.style.zIndex = String(sections.length - i);
+    root.querySelector(".lightbox__close").addEventListener("click", close);
+    root.querySelector(".lightbox__nav--prev").addEventListener("click", () => step(-1));
+    root.querySelector(".lightbox__nav--next").addEventListener("click", () => step(1));
+    root.querySelector(".lightbox__stage").addEventListener("click", (e) => { if (e.target === e.currentTarget) close(); });
+    document.addEventListener("keydown", (e) => {
+      if (root.hidden) return;
+      if (e.key === "Escape") close();
+      if (e.key === "ArrowRight") step(1);
+      if (e.key === "ArrowLeft") step(-1);
     });
+    return { open };
+  })();
 
-    sections.forEach((section, i) => {
-      if (!section.dataset.divider) return;
-      const { height, points } = JSON.parse(section.dataset.divider);
-      const sorted = [...points].sort((a, b) => a[0] - b[0]);
+  // ---------- Home ----------
 
-      const edge = [...sorted]
-        .reverse()
-        .map(([x, y]) => `${x}% calc(100% - ${height} * ${(1 - y).toFixed(3)} + 1px)`);
-      section.style.clipPath = `polygon(0 0, 100% 0, ${edge.join(", ")})`;
-      section.style.setProperty("--divider-h", height);
-
-      section.insertAdjacentHTML(
-        "beforeend",
-        `<svg class="divider-stroke" style="height:${height}" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true" focusable="false">
-          <polyline points="${sorted.map(([x, y]) => `${x},${(y * 100).toFixed(1)}`).join(" ")}"/>
-        </svg>`
-      );
-
-      const next = sections[i + 1];
-      if (next) next.style.setProperty("--divider-above", height);
-    });
-  }
-
-  // ---------- Pages ----------
-
-  function renderPortfolio(main) {
-    const home = SITE.home;
-
-    const intro = createSection("section--fx section--intro");
-    intro.innerHTML = `
-      <h1 class="visually-hidden">${escapeHtml(SITE.title)}</h1>
-      ${marqueeHtml(home.marquee)}
-      <div class="intro-text">${home.intro.map((html) => `<div class="intro-text__col">${html}</div>`).join("")}</div>`;
-    setDivider(intro, home.introDivider);
-    main.appendChild(intro);
-
-    SITE.portfolio.forEach((item, i) => {
-      const section = createSection(`section--${item.theme} section--carousel`, {
-        id: `section-${item.id}`,
-        "aria-labelledby": `title-${item.id}`
-      });
-      section.innerHTML = `<h2 class="section-title" id="title-${item.id}">${escapeHtml(item.title)}</h2>${carouselHtml(item)}`;
-      setDivider(section, item.divider);
-      main.appendChild(section);
-    });
-
-    const contact = createSection("section--white section--home-contact");
-    contact.innerHTML = contactFormHtml("home");
-    setDivider(contact, home.contactDivider);
-    main.appendChild(contact);
-    initContactForm(contact.querySelector("form"));
-  }
-
-  function renderFaqs(main) {
-    const faqs = SITE.faqs;
-    const section = createSection("section--white section--grid section--faqs");
-    section.innerHTML = `
-      <div class="grid">
-        <h1 class="page-title faqs__title">${escapeHtml(faqs.title)}</h1>
-        <div class="faqs__list prose">
-          ${faqs.items
-            .map((item) => `<h2 class="faq__question">${escapeHtml(item.question)}</h2>${item.answer.map((p) => `<p>${p}</p>`).join("")}`)
-            .join("")}
+  function renderHero(main) {
+    const h = SITE.hero;
+    const actions = h.actions.map((a) => html`<a class="button ${a.style === "ghost" ? "button--ghost" : ""} arrow" href="${a.href}">${escapeHtml(a.label)}</a>`).join("");
+    main.appendChild(section("hero", html`
+      <div class="hero__inner wrap">
+        <div>
+          <p class="label">${escapeHtml(h.label)}</p>
+          <h1 class="hero__title">${h.title}</h1>
+          <p class="hero__lead">${escapeHtml(h.lead)}</p>
+          <div class="hero__actions">${actions}</div>
         </div>
-      </div>`;
-    main.appendChild(section);
+        <div class="hero__side">
+          <ul class="hero__facts">${h.facts.map(([k, v]) => html`<li><b>${escapeHtml(k)}</b><span>${escapeHtml(v)}</span></li>`).join("")}</ul>
+        </div>
+      </div>`));
   }
 
-  function renderContact(main) {
-    const contact = SITE.contact;
-    const section = createSection("section--white section--grid section--contact");
-    section.innerHTML = `
-      <h1 class="visually-hidden">${escapeHtml(navLabel("contact"))}</h1>
-      <div class="grid">
-        <div class="contact__intro prose">${contact.intro.join("")}</div>
-        <div class="contact__form">${contactFormHtml("contact")}</div>
-      </div>`;
-    setDivider(section, contact.divider);
-    main.appendChild(section);
-    initContactForm(section.querySelector("form"));
+  function renderWall(main) {
+    const featured = allItems().filter((i) => i.featured);
+    const cols = [[], [], []];
+    featured.forEach((item, i) => cols[i % 3].push(item));
+    const colHtml = cols.map((col) => html`
+      <div class="wall__col">${col.map((item) => html`
+        <figure class="wall__item">
+          <button class="wall__btn" type="button" data-src="${item.src || item.video}" aria-label="Open ${escapeHtml(item.title)}">${mediaHtml(item, { lazy: false })}</button>
+          <figcaption class="wall__caption"><b>${escapeHtml(item.title)}</b>${escapeHtml(metaLine(item))}</figcaption>
+        </figure>`).join("")}</div>`).join("");
+    const el = section("wall", html`
+      <div class="wrap">
+        <div class="wall__head"><p class="label">${escapeHtml(SITE.wall.label)}</p><p>${escapeHtml(SITE.wall.note)}</p></div>
+        <div class="wall__cols">${colHtml}</div>
+      </div>`);
+    el.addEventListener("click", (e) => {
+      const btn = e.target.closest(".wall__btn");
+      if (!btn) return;
+      lightbox.open(featured, featured.findIndex((i) => (i.src || i.video) === btn.dataset.src));
+    });
+    main.appendChild(el);
+  }
+
+  function renderMarquee(main) {
+    const el = document.createElement("div");
+    el.className = "marquee-band";
+    el.innerHTML = marqueeHtml(SITE.marquee);
+    main.appendChild(el);
+  }
+
+  function renderWork(main) {
+    const items = allItems();
+    const cats = SITE.portfolio.map((s) => ({ id: s.id, title: s.title, count: s.items.length }));
+    const chips = [{ id: "all", title: "All", count: items.length }, ...cats]
+      .map((c) => html`<button class="chip" type="button" data-cat="${c.id}" aria-pressed="${c.id === "all"}">${escapeHtml(c.title)}<span class="chip__count">${c.count}</span></button>`)
+      .join("");
+    const cards = items.map((item, i) => html`
+      <article class="card reveal" data-cat="${item.category}" data-index="${i}">
+        <button class="card__media" type="button" aria-label="Open ${escapeHtml(item.title)}">${mediaHtml(item)}</button>
+        <div class="card__body">
+          <h3 class="card__title">${escapeHtml(item.title)}</h3>
+          <p class="card__meta">${escapeHtml(metaLine(item))}${item.story && item.story.url ? html` · <a href="${item.story.url}" target="_blank" rel="noopener">Story ↗</a>` : ""}</p>
+        </div>
+      </article>`).join("");
+
+    const el = section("section work", html`
+      <div class="wrap">
+        ${sectionHead(SITE.work.label, SITE.work.title, escapeHtml(SITE.work.intro))}
+        <div class="chips" role="group" aria-label="Filter by type">${chips}</div>
+        <p class="label work__blurb" aria-live="polite"></p>
+        <div class="work-grid">${cards}</div>
+      </div>`, { id: "work" });
+    main.appendChild(el);
+
+    const grid = el.querySelector(".work-grid");
+    const blurb = el.querySelector(".work__blurb");
+    const cardEls = [...grid.querySelectorAll(".card")];
+    const visibleItems = () => cardEls.filter((c) => !c.hidden).map((c) => items[+c.dataset.index]);
+
+    grid.addEventListener("click", (e) => {
+      const btn = e.target.closest(".card__media");
+      if (!btn) return;
+      const list = visibleItems();
+      const item = items[+btn.closest(".card").dataset.index];
+      lightbox.open(list, list.indexOf(item));
+    });
+
+    const applyFilter = (cat) => {
+      const Flip = window.Flip;
+      const state = Flip && !reduceMotion ? Flip.getState(cardEls) : null;
+      cardEls.forEach((c) => { c.hidden = cat !== "all" && c.dataset.cat !== cat; });
+      const sec = SITE.portfolio.find((s) => s.id === cat);
+      blurb.textContent = sec ? sec.blurb : "";
+      el.querySelectorAll(".chip").forEach((chip) => chip.setAttribute("aria-pressed", String(chip.dataset.cat === cat)));
+      if (state) {
+        const shown = cardEls.filter((c) => !c.hidden);
+        Flip.from(state, {
+          duration: 0.55, ease: "power2.inOut", stagger: 0.012, absolute: false,
+          onEnter: (els) => window.gsap.fromTo(els, { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.45, ease: "power2.out" }),
+          onLeave: (els) => window.gsap.to(els, { opacity: 0, duration: 0.25 }),
+          onComplete: () => {
+            // cards that had not scrolled into view yet would otherwise keep their hidden reveal state
+            window.gsap.set(shown, { opacity: 1, y: 0 });
+            if (window.ScrollTrigger) window.ScrollTrigger.refresh();
+          }
+        });
+      }
+    };
+    el.querySelector(".chips").addEventListener("click", (e) => {
+      const chip = e.target.closest(".chip");
+      if (chip) applyFilter(chip.dataset.cat);
+    });
+  }
+
+  function renderStoriesTeaser(main) {
+    const t = SITE.storiesTeaser;
+    const latest = SITE.stories.items.slice(0, 3);
+    main.appendChild(section("section section--forest stories-teaser", html`
+      <div class="wrap">
+        ${sectionHead(t.label, t.title, escapeHtml(t.intro))}
+        <div class="story-cards">${latest.map(storyCard).join("")}</div>
+        <p style="margin:2rem 0 0"><a class="button button--ghost arrow" href="${t.link.href}">${escapeHtml(t.link.label)}</a></p>
+      </div>`));
+  }
+
+  function renderClients(main) {
+    const c = SITE.clients;
+    main.appendChild(section("clients", html`
+      <div class="clients__inner wrap">
+        <p class="label">${escapeHtml(c.label)}</p>
+        <ul class="clients__list">${c.list.map((n) => html`<li>${escapeHtml(n)}</li>`).join("")}</ul>
+      </div>`));
   }
 
   function renderAbout(main) {
-    const about = SITE.about;
-    const section = createSection("section--white section--grid section--about");
-    section.innerHTML = `
-      <h1 class="visually-hidden">${escapeHtml(about.title)}</h1>
-      <div class="grid about">
-        <div class="about__text prose">${about.text.join("")}</div>
-        <figure class="about__photo">
-          <img src="${about.photo.src}" width="${about.photo.width}" height="${about.photo.height}" alt="${escapeHtml(about.photo.alt)}">
-        </figure>
-      </div>`;
-    main.appendChild(section);
+    const a = SITE.about;
+    main.appendChild(section("section section--bone about", html`
+      <div class="about__grid wrap">
+        <figure class="about__photo reveal"><img src="${a.photo.src}" width="${a.photo.width}" height="${a.photo.height}" alt="${escapeHtml(a.photo.alt)}" loading="lazy"></figure>
+        <div class="about__text">
+          <p class="label">${escapeHtml(a.label)}</p>
+          <h2>${escapeHtml(a.title)}</h2>
+          <div class="prose">${a.text.join("")}</div>
+          <ul class="about__facts">${a.facts.map(([k, v]) => html`<li><b>${escapeHtml(k)}</b><span>${escapeHtml(v)}</span></li>`).join("")}</ul>
+          <p style="margin:1.6rem 0 0"><a class="arrow" href="${a.link.href}">${escapeHtml(a.link.label)}</a></p>
+        </div>
+      </div>`, { id: "about" }));
   }
 
+  const accordionHtml = (items) => html`
+    <div class="accordion">${items.map((f, i) => html`
+      <details class="accordion__item"${i === 0 ? " open" : ""}>
+        <summary>${escapeHtml(f.question)}</summary>
+        <div class="accordion__body prose">${f.answer.map((p) => html`<p>${p}</p>`).join("")}</div>
+      </details>`).join("")}</div>`;
+
+  function renderFaqTeaser(main) {
+    const t = SITE.faqTeaser;
+    main.appendChild(section("section faq-teaser", html`
+      <div class="wrap">
+        ${sectionHead(t.label, t.title, html`<a class="arrow" href="${t.link.href}">${escapeHtml(t.link.label)}</a>`)}
+        ${accordionHtml(SITE.faqs.items)}
+      </div>`));
+  }
+
+  function renderContact(main, id = "contact") {
+    const c = SITE.contact;
+    const el = section("section contact", html`
+      <div class="contact__grid wrap">
+        <div class="contact__intro">
+          <p class="label">${escapeHtml(c.label)}</p>
+          <h2>${escapeHtml(c.title)}</h2>
+          <div class="prose">${c.intro.join("")}</div>
+        </div>
+        <div>${contactFormHtml(id)}</div>
+      </div>`, { id });
+    main.appendChild(el);
+    initContactForm(el.querySelector("form"));
+  }
+
+  function renderHome(main) {
+    renderHero(main);
+    renderWall(main);
+    renderMarquee(main);
+    renderWork(main);
+    renderStoriesTeaser(main);
+    renderClients(main);
+    renderAbout(main);
+    renderFaqTeaser(main);
+    renderContact(main);
+  }
+
+  // ---------- Stories page ----------
+
+  function renderStories(main) {
+    const s = SITE.stories;
+    main.appendChild(section("stories-hero", html`
+      <div class="wrap">
+        <p class="label">${escapeHtml(s.label)}</p>
+        <h1>${escapeHtml(s.title)}</h1>
+        <p class="lead prose">${escapeHtml(s.lead)}</p>
+      </div>`));
+
+    const rows = s.items.map((story, i) => html`
+      <li class="story-row reveal" data-image="${story.image.src}">
+        <a class="story-row__link" href="${story.url}" target="_blank" rel="noopener">
+          <span class="story-row__index">${String(i + 1).padStart(2, "0")}</span>
+          <div>
+            <h2 class="story-row__title">${escapeHtml(story.title)}</h2>
+            <p class="story-row__deck">${escapeHtml(story.deck)}</p>
+            <p class="story-row__meta">${escapeHtml(story.outlet)} · ${formatDate(story.date)} · ${escapeHtml(story.tools)}</p>
+          </div>
+          <span class="story-row__cta arrow arrow--ext">Read the story</span>
+          <img class="story-row__thumb" src="${story.image.src}" width="${story.image.width}" height="${story.image.height}" alt="${escapeHtml(story.image.alt)}" loading="lazy">
+        </a>
+        ${story.extra ? html`<p class="story-row__extra"><a href="${story.extra.url}" target="_blank" rel="noopener">${escapeHtml(story.extra.label)} ↗</a></p>` : ""}
+      </li>`).join("");
+    main.appendChild(section("section stories", html`
+      <div class="wrap">
+        <ol class="story-list">${rows}</ol>
+      </div>
+      <div class="story-preview" aria-hidden="true"><img alt="" width="1500" height="867"></div>`));
+
+    const threeD = allItems().filter((i) => i.category === "3d-maps");
+    const cards = threeD.map((item) => html`
+      <a class="story-card reveal" href="${item.story ? item.story.url : "#"}" target="_blank" rel="noopener">
+        ${mediaHtml(item)}
+        <div class="story-card__body">
+          <h3>${escapeHtml(item.title)}</h3>
+          <p>${escapeHtml(item.alt)}</p>
+          <span class="story-card__meta">${escapeHtml(item.client)}</span>
+        </div>
+      </a>`).join("");
+    main.appendChild(section("section section--forest interactive", html`
+      <div class="wrap">
+        ${sectionHead(s.interactive.label, s.interactive.title, escapeHtml(s.interactive.intro))}
+        <div class="story-cards">${cards}</div>
+      </div>`));
+  }
+
+  // ---------- Inner pages ----------
+
   function renderServices(main) {
-    const services = SITE.services;
-    const section = createSection("section--white section--grid section--services");
-    section.innerHTML = `
-      <div class="grid">
-        <h1 class="page-title services__title">${escapeHtml(services.title)}</h1>
-        <div class="services__text prose">${services.html}</div>
-      </div>`;
-    main.appendChild(section);
+    const s = SITE.services;
+    main.appendChild(section("page-section", html`
+      <div class="page-grid wrap">
+        <h1 class="page-title">${escapeHtml(s.label)}<small>${escapeHtml(s.intro)}</small></h1>
+        <div>
+          <p class="lead prose">${escapeHtml(s.title)}</p>
+          <ul class="services__list">${s.groups.map((g) => html`<li><h3>${escapeHtml(g.title)}</h3><ul>${g.items.map((i) => html`<li>${escapeHtml(i)}</li>`).join("")}</ul></li>`).join("")}</ul>
+          <h2 class="faq__question">${escapeHtml(s.howTitle)}</h2>
+          <div class="prose">${s.how.map((p) => html`<p>${escapeHtml(p)}</p>`).join("")}</div>
+          <p class="page-cta"><a class="button arrow" href="${s.cta.href}">${escapeHtml(s.cta.label)}</a></p>
+        </div>
+      </div>`));
+  }
+
+  function renderFaqs(main) {
+    const f = SITE.faqs;
+    main.appendChild(section("page-section", html`
+      <div class="page-grid wrap">
+        <h1 class="page-title">${escapeHtml(f.label)}<small>${escapeHtml(f.title)}</small></h1>
+        <div class="prose">${f.items.map((q) => html`<h2 class="faq__question">${escapeHtml(q.question)}</h2>${q.answer.map((p) => html`<p>${p}</p>`).join("")}`).join("")}</div>
+      </div>`));
+  }
+
+  function renderContactPage(main) {
+    renderContact(main, "contact");
+    main.firstElementChild.classList.add("page-section");
   }
 
   // ---------- Init ----------
 
-  const renderers = {
-    portfolio: renderPortfolio,
-    faqs: renderFaqs,
-    contact: renderContact,
-    about: renderAbout,
-    services: renderServices
-  };
-
+  const renderers = { home: renderHome, stories: renderStories, services: renderServices, faqs: renderFaqs, contact: renderContactPage };
   renderHeader();
-  (renderers[page] || renderPortfolio)(document.getElementById("main"));
+  (renderers[page] || renderHome)(document.getElementById("main"));
   renderFooter();
-  applyDividers();
-  document.querySelectorAll(".carousel").forEach(initCarousel);
 
-  // Honour links to a section (e.g. index.html#portfolio) after rendering
+  // Links to a section (index.html#work) land after rendering, below the sticky header
   if (location.hash) {
     const target = document.getElementById(decodeURIComponent(location.hash.slice(1)));
-    if (target) target.scrollIntoView();
+    if (target) requestAnimationFrame(() => target.scrollIntoView());
   }
+
+  document.dispatchEvent(new CustomEvent("site:rendered"));
 })();
