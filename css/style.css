@@ -1803,3 +1803,161 @@ a:hover .arrow::after,
     padding: 1.2rem 1.2rem 1.4rem;
   }
 }
+
+/* ==========================================================================
+   Round 3 additions
+   ========================================================================== */
+
+/* wall: more contrast between big and small pictures */
+.wall__item:nth-child(3n + 1) {
+  width: 100%;
+}
+
+.wall__item:nth-child(3n + 2) {
+  width: 62%;
+}
+
+.wall__item:nth-child(3n + 3) {
+  width: 82%;
+}
+
+/* stacking story cards (home) */
+.stack {
+  display: grid;
+}
+
+.stack__card {
+  position: sticky;
+  top: calc(var(--header-h) + 1.5rem);
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
+  min-height: min(64vh, 560px);
+  margin-bottom: 14vh;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  background: var(--bone);
+  color: var(--forest);
+  box-shadow: 0 30px 60px -30px rgb(0 0 0 / 0.6);
+  will-change: transform;
+}
+
+.stack__card:last-child {
+  margin-bottom: 0;
+}
+
+.stack__card:hover {
+  color: var(--forest);
+}
+
+.stack__card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.stack__body {
+  display: grid;
+  gap: 0.8rem;
+  align-content: center;
+  padding: clamp(1.5rem, 3vw, 2.8rem);
+}
+
+.stack__card .label {
+  color: var(--brown);
+}
+
+.stack__title {
+  font-size: var(--fs-h2);
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  color: var(--forest);
+}
+
+.stack__deck {
+  color: var(--black);
+}
+
+.stack__card .story-row__cta {
+  color: var(--forest); /* teal does not pass on bone */
+}
+
+.stack__card:hover .story-row__cta {
+  color: var(--wine);
+}
+
+.stack__more {
+  margin: clamp(2rem, 4vw, 3rem) 0 0;
+}
+
+/* filter chips move up when the header has slid away */
+html.header-hidden .chips--sticky {
+  top: 0;
+}
+
+/* back to top */
+.to-top {
+  position: fixed;
+  right: 1rem;
+  bottom: 1rem;
+  z-index: 80;
+  width: 44px;
+  height: 44px;
+  border: 1px solid var(--line-strong);
+  border-radius: 50%;
+  background: var(--white);
+  color: var(--forest);
+  font-size: 1.1rem;
+  cursor: pointer;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(8px);
+  transition: opacity 0.3s ease, transform 0.3s var(--ease), background-color 0.2s ease, color 0.2s ease;
+}
+
+.to-top.is-visible {
+  opacity: 1;
+  pointer-events: auto;
+  transform: none;
+}
+
+.to-top:hover {
+  background: var(--teal);
+  border-color: var(--teal);
+  color: var(--white);
+}
+
+.lightbox__full {
+  display: inline-block;
+  margin-top: 0.7rem;
+  font-size: var(--fs-small);
+  color: var(--bone);
+}
+
+.lightbox__full:hover {
+  color: var(--white);
+}
+
+@media (max-width: 1023px) {
+  .stack {
+    gap: 1.25rem;
+  }
+
+  .stack__card {
+    position: static;
+    grid-template-columns: 1fr;
+    min-height: 0;
+    margin-bottom: 0;
+  }
+
+  .stack__card img {
+    height: auto;
+    aspect-ratio: 16 / 9;
+  }
+}
+
+@media (max-width: 767px) {
+  .wall__item:nth-child(n) {
+    width: 100%;
+  }
+}

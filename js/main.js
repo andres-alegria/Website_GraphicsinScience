@@ -161,16 +161,6 @@
     });
   }
 
-  const storyCard = (story) => html`
-    <a class="story-card reveal" href="${story.url}" target="_blank" rel="noopener">
-      <img src="${story.image.src}" width="${story.image.width}" height="${story.image.height}" alt="${escapeHtml(story.image.alt)}" loading="lazy" decoding="async">
-      <div class="story-card__body">
-        <h3>${escapeHtml(story.title)}</h3>
-        <p>${escapeHtml(story.deck)}</p>
-        <span class="story-card__meta">${escapeHtml(story.outlet)} · ${formatDate(story.date)}</span>
-      </div>
-    </a>`;
-
   // ---------- Lightbox ----------
 
   const lightbox = (() => {
@@ -218,9 +208,9 @@
       parts.title.textContent = item.title;
       parts.meta.textContent = metaLine(item);
       parts.desc.textContent = item.alt;
-      parts.story.innerHTML = item.story && item.story.url
+      parts.story.innerHTML = (item.story && item.story.url
         ? html`<a class="button arrow arrow--ext" href="${item.story.url}" target="_blank" rel="noopener">Read the story</a>`
-        : "";
+        : "") + (item.src ? html`<a class="lightbox__full arrow arrow--ext" href="${item.src}" target="_blank" rel="noopener">Open the image at full size</a>` : "");
       if (window.gsap && !reduceMotion) {
         window.gsap.fromTo(wrap.firstElementChild, { opacity: 0, scale: 0.96 }, { opacity: 1, scale: 1, duration: 0.45, ease: "power3.out" });
       }
@@ -392,11 +382,22 @@
   function renderStoriesTeaser(main) {
     const t = SITE.storiesTeaser;
     const latest = SITE.stories.items.slice(0, 3);
+    // on wide screens the cards stick and stack as the page scrolls (see js/motion.js)
+    const cards = latest.map((story) => html`
+      <a class="stack__card" href="${story.url}" target="_blank" rel="noopener">
+        <img src="${story.image.src}" width="${story.image.width}" height="${story.image.height}" alt="${escapeHtml(story.image.alt)}" loading="lazy" decoding="async">
+        <span class="stack__body">
+          <span class="label">${escapeHtml(story.outlet)} · ${formatDate(story.date)}</span>
+          <span class="stack__title">${escapeHtml(story.title)}</span>
+          <span class="stack__deck">${escapeHtml(story.deck)}</span>
+          <span class="story-row__cta arrow arrow--ext">Read the story</span>
+        </span>
+      </a>`).join("");
     main.appendChild(section("section section--forest stories-teaser", html`
       <div class="wrap">
         ${sectionHead(t.label, t.title, escapeHtml(t.intro))}
-        <div class="story-cards">${latest.map(storyCard).join("")}</div>
-        <p style="margin:2rem 0 0"><a class="button button--ghost arrow" href="${t.link.href}">${escapeHtml(t.link.label)}</a></p>
+        <div class="stack">${cards}</div>
+        <p class="stack__more"><a class="button button--ghost arrow" href="${t.link.href}">${escapeHtml(t.link.label)}</a></p>
       </div>`));
   }
 
@@ -562,6 +563,16 @@
   renderHeader();
   (renderers[page] || renderHome)(document.getElementById("main"));
   renderFooter();
+
+  // back-to-top button, shown once the page has scrolled a screen and a half
+  const toTop = document.createElement("button");
+  toTop.className = "to-top";
+  toTop.type = "button";
+  toTop.setAttribute("aria-label", "Back to top");
+  toTop.textContent = "↑";
+  toTop.addEventListener("click", () => window.scrollTo({ top: 0, behavior: reduceMotion ? "auto" : "smooth" }));
+  document.body.appendChild(toTop);
+  window.addEventListener("scroll", () => toTop.classList.toggle("is-visible", window.scrollY > window.innerHeight * 1.5), { passive: true });
 
   // Links to a section (index.html#work) land after rendering, below the sticky header
   if (location.hash) {

@@ -64,6 +64,25 @@
       document.fonts?.ready.then(() => ST.refresh());
     }
 
+    // ---- Header slides away while scrolling down and returns on the way up ----
+    const header = document.getElementById("site-header");
+    if (header && window.Observer) {
+      window.Observer.create({
+        type: "scroll",
+        tolerance: 12,
+        onDown: () => {
+          if (window.scrollY > 200 && !document.body.classList.contains("menu-open")) {
+            header.classList.add("is-hidden");
+            document.documentElement.classList.add("header-hidden");
+          }
+        },
+        onUp: () => {
+          header.classList.remove("is-hidden");
+          document.documentElement.classList.remove("header-hidden");
+        }
+      });
+    }
+
     // ---- Stories page: a preview image follows the cursor across the list ----
     const preview = document.querySelector(".story-preview");
     const rows = document.querySelectorAll(".story-row");
@@ -90,5 +109,18 @@
     }
 
     return () => document.documentElement.classList.remove("js-motion");
+  });
+
+  // ---- Home: story cards stack; each one shrinks back as the next slides over it ----
+  mm.add("(min-width: 1024px) and (prefers-reduced-motion: no-preference)", () => {
+    const cards = gsap.utils.toArray(".stack__card");
+    cards.forEach((card, i) => {
+      const next = cards[i + 1];
+      if (!next) return;
+      gsap.to(card, {
+        scale: 0.92, opacity: 0.5, transformOrigin: "center top", ease: "none",
+        scrollTrigger: { trigger: next, start: "top bottom", end: "top 30%", scrub: true }
+      });
+    });
   });
 })();
