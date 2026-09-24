@@ -30,7 +30,8 @@ window.SITE = {
     facts: [
       ["Based in", "Germany (CET), working remotely worldwide"],
       ["Working with", "Researchers, NGOs and newsrooms"],
-      ["Tools", "QGIS · Illustrator · Mapbox · R · Tableau"]
+      ["Tools", "QGIS · Illustrator · Mapbox · R · Tableau"],
+      ["Languages", "English · Spanish"]
     ],
     actions: [
       { label: "See the work", href: "#work", style: "primary" },
@@ -69,8 +70,8 @@ window.SITE = {
     label: "About",
     title: "Ecology first, design second, both in every figure.",
     text: [
-      "<p>I’m a graphic designer specialising in visual science communication, with an academic background in ecology. I started out applying research data to nature conservation policy and stakeholder engagement across Central America, and that habit of starting from the evidence still shapes every map and chart I make.</p>",
-      "<p>Whether you need a data-driven map, a clear infographic or a full interactive visualization, I offer design services tailored to researchers, NGOs and media organisations. I work remotely with teams across time zones, and I send drafts at every key stage so the graphic stays scientifically right while it becomes visually clear.</p>"
+      "<p>I’m a graphic designer specializing in visual science communication, with an academic background in ecology. I started out applying research data to nature conservation policy and stakeholder engagement across Central America, and that habit of starting from the evidence still shapes every map and chart I make.</p>",
+      "<p>Whether you need a data-driven map, a clear infographic or a full interactive visualization, I offer design services tailored to researchers, NGOs and media organizations. I work remotely with teams across time zones, and I send drafts at every key stage so the graphic stays scientifically right while it becomes visually clear.</p>"
     ],
     photo: {
       src: "images/about/AndresAlegria_photo.png",
@@ -247,7 +248,7 @@ window.SITE = {
   },
 
   // ---------- Portfolio ----------
-  // Each item: src (or video + poster), width, height, title, client, alt,
+  // Each item: src (or video + poster), thumb (800 px copy used in the grid), width, height, title, client, alt,
   // story { url, title, date, outlet } when it ran in an article, featured: true for the selected-work wall.
   portfolio: [
     {
@@ -257,6 +258,7 @@ window.SITE = {
       items: [
         {
           src: "images/portfolio/maps/2026_014_AA_Brazil_Jaguar_v3_With_IT.jpg",
+          thumb: "images/thumbs/maps/2026_014_AA_Brazil_Jaguar_v3_With_IT.jpg",
           width: 1500, height: 1200,
           title: "Jaguar range and Indigenous territories, Brazil",
           client: "Mongabay",
@@ -266,6 +268,7 @@ window.SITE = {
         },
         {
           src: "images/portfolio/maps/2025_83_AA_Brazil_RockFormation_v3.jpg",
+          thumb: "images/thumbs/maps/2025_83_AA_Brazil_RockFormation_v3.jpg",
           width: 1500, height: 1200,
           title: "Blasting the Pedral do Lourenço, Tocantins River",
           client: "Mongabay",
@@ -282,6 +285,7 @@ window.SITE = {
         },
         {
           src: "images/portfolio/maps/2025_95_AA_Panama_Darien_v3.jpg",
+          thumb: "images/thumbs/maps/2025_95_AA_Panama_Darien_v3.jpg",
           width: 1500, height: 1200,
           title: "The Darién Gap and its protected areas",
           client: "Mongabay",
@@ -291,6 +295,7 @@ window.SITE = {
         },
         {
           src: "images/portfolio/maps/2025_104_AA_Brazil_Karipuna_v3_Map.jpg",
+          thumb: "images/thumbs/maps/2025_104_AA_Brazil_Karipuna_v3_Map.jpg",
           width: 1500, height: 1200,
           title: "Forest loss on Karipuna Indigenous land, 2019–2025",
           client: "Mongabay",
@@ -299,6 +304,7 @@ window.SITE = {
         },
         {
           src: "images/portfolio/maps/2025_61_AA_Chimpanzee_v1.jpg",
+          thumb: "images/thumbs/maps/2025_61_AA_Chimpanzee_v1.jpg",
           width: 1500, height: 1200,
           title: "Ranges of the four chimpanzee subspecies",
           client: "Mongabay",
@@ -307,6 +313,7 @@ window.SITE = {
         },
         {
           src: "images/portfolio/maps/2025_70_AA_Ecuador_v5.jpg",
+          thumb: "images/thumbs/maps/2025_70_AA_Ecuador_v5.jpg",
           width: 1500, height: 1200,
           title: "Overlapping Indigenous claims in Cuyabeno, Ecuador",
           client: "Mongabay",
@@ -315,6 +322,7 @@ window.SITE = {
         },
         {
           src: "images/portfolio/maps/2025_85_AA_Thailand_MaeLaLuang_v3.jpg",
+          thumb: "images/thumbs/maps/2025_85_AA_Thailand_MaeLaLuang_v3.jpg",
           width: 1500, height: 1200,
           title: "A fluorite mine and the Mae La Luang River, Thailand",
           client: "Mongabay",
@@ -323,6 +331,7 @@ window.SITE = {
         },
         {
           src: "images/portfolio/maps/2025_75_AA_Brazil_Bioceanic_Railway_v7.jpg",
+          thumb: "images/thumbs/maps/2025_75_AA_Brazil_Bioceanic_Railway_v7.jpg",
           width: 1500, height: 1200,
           title: "The Bioceanic Corridor: Chancay to Ilhéus",
           client: "Mongabay",
@@ -331,6 +340,7 @@ window.SITE = {
         },
         {
           src: "images/portfolio/maps/2025_92_AA_CITES_Leopards_Map_v2.jpg",
+          thumb: "images/thumbs/maps/2025_92_AA_CITES_Leopards_Map_v2.jpg",
           width: 1500, height: 1200,
           title: "Global leopard trade flows, 2000–2024",
           client: "Mongabay",
@@ -339,6 +349,7 @@ window.SITE = {
         },
         {
           src: "images/portfolio/maps/2025_76_AA_DRC_New_Oil_Blocks_v3.jpg",
+          thumb: "images/thumbs/maps/2025_76_AA_DRC_New_Oil_Blocks_v3.jpg",
           width: 1500, height: 1200,
           title: "New oil blocks in the DRC",
           client: "Mongabay Afrique",
@@ -347,6 +358,7 @@ window.SITE = {
         },
         {
           src: "images/portfolio/maps/2025_113_AA_Nashulai_v2.jpg",
+          thumb: "images/thumbs/maps/2025_113_AA_Nashulai_v2.jpg",
           width: 1500, height: 1200,
           title: "Nashulai Maasai Conservancy, Kenya",
           client: "Mongabay",
@@ -356,6 +368,7 @@ window.SITE = {
         },
         {
           src: "images/portfolio/maps/2025_65_AA_DRC_v1_EN.jpg",
+          thumb: "images/thumbs/maps/2025_65_AA_DRC_v1_EN.jpg",
           width: 1500, height: 1200,
           title: "Virunga, Kahuzi-Biega and Upemba national parks",
           client: "Mongabay",
@@ -364,6 +377,7 @@ window.SITE = {
         },
         {
           src: "images/portfolio/maps/2026_003_AA_ChinaVessels_v10_Viz_8.jpg",
+          thumb: "images/thumbs/maps/2026_003_AA_ChinaVessels_v10_Viz_8.jpg",
           width: 1500, height: 1200,
           title: "Xiang Yang Hong 06 nears US territories",
           client: "Mongabay",
@@ -372,6 +386,7 @@ window.SITE = {
         },
         {
           src: "images/portfolio/maps/2025_19_Nepal_Elephants_v2.jpg",
+          thumb: "images/thumbs/maps/2025_19_Nepal_Elephants_v2.jpg",
           width: 1500, height: 1000,
           title: "Elephant migration routes on the Nepal border",
           client: "Mongabay",
@@ -380,6 +395,7 @@ window.SITE = {
         },
         {
           src: "images/portfolio/maps/2025_60_AA_Monkeyfarms_v4.jpg",
+          thumb: "images/thumbs/maps/2025_60_AA_Monkeyfarms_v4.jpg",
           width: 1500, height: 1200,
           title: "Suspected macaque farms in Southeast Asia",
           client: "Mongabay",
@@ -388,6 +404,7 @@ window.SITE = {
         },
         {
           src: "images/portfolio/maps/2025_59_AA_Thailand_Dugongs_v4.jpg",
+          thumb: "images/thumbs/maps/2025_59_AA_Thailand_Dugongs_v4.jpg",
           width: 1500, height: 1200,
           title: "Dugong migrations along Thailand’s Andaman coast",
           client: "Mongabay",
@@ -411,6 +428,7 @@ window.SITE = {
       items: [
         {
           src: "images/portfolio/charts/2025_91_AA_CITES_Leopards_Chart_v3.jpg",
+          thumb: "images/thumbs/charts/2025_91_AA_CITES_Leopards_Chart_v3.jpg",
           width: 1500, height: 1200,
           title: "CITES permits for leopard parts over 25 years",
           client: "Mongabay",
@@ -420,6 +438,7 @@ window.SITE = {
         },
         {
           src: "images/portfolio/charts/2025_96_AA_ClimateBancking_v5-02.jpg",
+          thumb: "images/thumbs/charts/2025_96_AA_ClimateBancking_v5-02.jpg",
           width: 1500, height: 1200,
           title: "Top 10 banks financing fossil fuels, 2023–2024",
           client: "Mongabay",
@@ -428,6 +447,7 @@ window.SITE = {
         },
         {
           src: "images/portfolio/charts/2025_160_AA_CBD_Finance_v3_CopyEdited.jpg",
+          thumb: "images/thumbs/charts/2025_160_AA_CBD_Finance_v3_CopyEdited.jpg",
           width: 1500, height: 1200,
           title: "Biodiversity funding: gaps and growth",
           client: "Mongabay",
@@ -436,6 +456,7 @@ window.SITE = {
         },
         {
           src: "images/portfolio/charts/2025_96_AA_ClimateBancking_v5-03.jpg",
+          thumb: "images/thumbs/charts/2025_96_AA_ClimateBancking_v5-03.jpg",
           width: 1500, height: 1200,
           title: "Cumulative fossil fuel financing, 2016–2024",
           client: "Mongabay",
@@ -444,6 +465,7 @@ window.SITE = {
         },
         {
           src: "images/portfolio/charts/2025_104_AA_Brazil_Karipuna_v3_PT_Chart.jpg",
+          thumb: "images/thumbs/charts/2025_104_AA_Brazil_Karipuna_v3_PT_Chart.jpg",
           width: 1500, height: 1200,
           title: "Desmatamento na Terra Indígena Karipuna, 2014–2024",
           client: "Mongabay Brasil",
@@ -459,6 +481,7 @@ window.SITE = {
       items: [
         {
           src: "images/portfolio/storymaps/StoryMap_1.png",
+          thumb: "images/thumbs/storymaps/StoryMap_1.jpg",
           width: 1500, height: 867,
           title: "Shifting Sands",
           client: "Mongabay India",
@@ -467,6 +490,7 @@ window.SITE = {
         },
         {
           src: "images/portfolio/storymaps/ScrollyMap_2.png",
+          thumb: "images/thumbs/storymaps/ScrollyMap_2.jpg",
           width: 1500, height: 870,
           title: "Damming the Arai River",
           client: "Mongabay",
@@ -475,6 +499,7 @@ window.SITE = {
         },
         {
           src: "images/portfolio/storymaps/ScrollyMap_1.png",
+          thumb: "images/thumbs/storymaps/ScrollyMap_1.jpg",
           width: 1500, height: 868,
           title: "Clearing the Way",
           client: "Mongabay",
@@ -483,6 +508,7 @@ window.SITE = {
         },
         {
           src: "images/portfolio/storymaps/Scrolly_Dual.jpg",
+          thumb: "images/thumbs/storymaps/Scrolly_Dual.jpg",
           width: 1500, height: 867,
           title: "Dual-purpose?",
           client: "Mongabay",
@@ -492,6 +518,7 @@ window.SITE = {
         },
         {
           src: "images/portfolio/storymaps/Scrolly.png",
+          thumb: "images/thumbs/storymaps/Scrolly.jpg",
           width: 1500, height: 874,
           title: "What does a map miss?",
           client: "Mongabay India",
@@ -500,6 +527,7 @@ window.SITE = {
         },
         {
           src: "images/portfolio/storymaps/Scrolly_Collision.jpg",
+          thumb: "images/thumbs/storymaps/Scrolly_Collision.jpg",
           width: 1500, height: 867,
           title: "Collision course",
           client: "Mongabay",
@@ -516,6 +544,7 @@ window.SITE = {
       items: [
         {
           src: "images/portfolio/ipcc/ipcc-06.jpg",
+          thumb: "images/thumbs/ipcc/ipcc-06.jpg",
           width: 1500, height: 1620,
           title: "Reindeer herding under climate pressure, Sweden",
           client: "IPCC AR6 WGII",
@@ -523,6 +552,7 @@ window.SITE = {
         },
         {
           src: "images/portfolio/ipcc/ipcc-08.jpg",
+          thumb: "images/thumbs/ipcc/ipcc-08.jpg",
           width: 1500, height: 1620,
           title: "Projected risks for 65 European cities",
           client: "IPCC AR6 WGII",
@@ -530,6 +560,7 @@ window.SITE = {
         },
         {
           src: "images/portfolio/ipcc/ipcc-05.jpg",
+          thumb: "images/thumbs/ipcc/ipcc-05.jpg",
           width: 1500, height: 1620,
           title: "Sea level rise and flooding in Venice, 1900–2020",
           client: "IPCC AR6 WGII",
@@ -538,6 +569,7 @@ window.SITE = {
         },
         {
           src: "images/portfolio/ipcc/ipcc-07.jpg",
+          thumb: "images/thumbs/ipcc/ipcc-07.jpg",
           width: 1500, height: 1620,
           title: "Relative risk by sector and hazard, North America",
           client: "IPCC AR6 WGII",
@@ -545,6 +577,7 @@ window.SITE = {
         },
         {
           src: "images/portfolio/ipcc/ipcc-04.jpg",
+          thumb: "images/thumbs/ipcc/ipcc-04.jpg",
           width: 1500, height: 1620,
           title: "Climate risks to hydropower and irrigation in Africa",
           client: "IPCC AR6 WGII",
@@ -552,6 +585,7 @@ window.SITE = {
         },
         {
           src: "images/portfolio/ipcc/ipcc-03.jpg",
+          thumb: "images/thumbs/ipcc/ipcc-03.jpg",
           width: 1500, height: 1620,
           title: "How climate change affects food security through water",
           client: "IPCC AR6 WGII",
@@ -559,6 +593,7 @@ window.SITE = {
         },
         {
           src: "images/portfolio/ipcc/ipcc-02.jpg",
+          thumb: "images/thumbs/ipcc/ipcc-02.jpg",
           width: 1500, height: 1620,
           title: "Observed impacts on ecosystems and human systems",
           client: "IPCC AR6 WGII",
@@ -567,6 +602,7 @@ window.SITE = {
         },
         {
           src: "images/portfolio/ipcc/ipcc-09.jpg",
+          thumb: "images/thumbs/ipcc/ipcc-09.jpg",
           width: 1500, height: 1620,
           title: "Risk management options across sectors",
           client: "IPCC AR6 WGII",
@@ -574,6 +610,7 @@ window.SITE = {
         },
         {
           src: "images/portfolio/ipcc/ipcc-13.jpg",
+          thumb: "images/thumbs/ipcc/ipcc-13.jpg",
           width: 1500, height: 1620,
           title: "Global economic impact estimates by warming level",
           client: "IPCC AR6 WGII",
@@ -581,6 +618,7 @@ window.SITE = {
         },
         {
           src: "images/portfolio/ipcc/ipcc-10.jpg",
+          thumb: "images/thumbs/ipcc/ipcc-10.jpg",
           width: 1500, height: 1620,
           title: "The urban adaptation gap by region",
           client: "IPCC AR6 WGII",
@@ -588,6 +626,7 @@ window.SITE = {
         },
         {
           src: "images/portfolio/ipcc/ipcc-11.jpg",
+          thumb: "images/thumbs/ipcc/ipcc-11.jpg",
           width: 1500, height: 1620,
           title: "Financial linkages spreading flood costs from Europe",
           client: "IPCC AR6 WGII",
@@ -595,6 +634,7 @@ window.SITE = {
         },
         {
           src: "images/portfolio/ipcc/ipcc-12.jpg",
+          thumb: "images/thumbs/ipcc/ipcc-12.jpg",
           width: 1500, height: 1620,
           title: "Projected warming and reasons for concern",
           client: "IPCC AR6 WGII",
@@ -609,6 +649,7 @@ window.SITE = {
       items: [
         {
           src: "images/portfolio/peer-reviewed/1733307062760.jpeg",
+          thumb: "images/thumbs/peer-reviewed/1733307062760.jpg",
           width: 1500, height: 1501,
           title: "Progress and gaps in climate change adaptation in coastal cities",
           client: "Journal article",
@@ -616,6 +657,7 @@ window.SITE = {
         },
         {
           src: "images/portfolio/peer-reviewed/1733306697481.jpeg",
+          thumb: "images/thumbs/peer-reviewed/1733306697481.jpg",
           width: 1500, height: 1501,
           title: "The tragedy of climate change science",
           client: "Nature Climate Change",
@@ -623,6 +665,7 @@ window.SITE = {
         },
         {
           src: "images/portfolio/peer-reviewed/1733307273965.jpeg",
+          thumb: "images/thumbs/peer-reviewed/1733307273965.jpg",
           width: 1500, height: 1501,
           title: "A global assessment of actors and their roles in climate change adaptation",
           client: "Nature Climate Change",
@@ -630,6 +673,7 @@ window.SITE = {
         },
         {
           src: "images/portfolio/peer-reviewed/1733396318491.jpeg",
+          thumb: "images/thumbs/peer-reviewed/1733396318491.jpg",
           width: 1500, height: 1501,
           title: "Towards an IPCC Atlas for comprehensive climate change risk assessments",
           client: "Journal article",
@@ -637,6 +681,7 @@ window.SITE = {
         },
         {
           src: "images/portfolio/peer-reviewed/1733475367753.jpeg",
+          thumb: "images/thumbs/peer-reviewed/1733475367753.jpg",
           width: 1500, height: 1501,
           title: "Declining snow cover and winter tourism",
           client: "Journal of Environmental Management",
@@ -644,6 +689,7 @@ window.SITE = {
         },
         {
           src: "images/portfolio/peer-reviewed/1735909753001.jpeg",
+          thumb: "images/thumbs/peer-reviewed/1735909753001.jpg",
           width: 800, height: 800,
           title: "AI applications in African agriculture",
           client: "Journal article",
@@ -651,6 +697,7 @@ window.SITE = {
         },
         {
           src: "images/portfolio/peer-reviewed/_linkedin-09.jpg",
+          thumb: "images/thumbs/peer-reviewed/_linkedin-09.jpg",
           width: 1500, height: 1500,
           title: "Figures for a research paper",
           client: "Journal article",
@@ -665,6 +712,7 @@ window.SITE = {
       items: [
         {
           src: "images/portfolio/schematics/schematics-05.jpg",
+          thumb: "images/thumbs/schematics/schematics-05.jpg",
           width: 1500, height: 1200,
           title: "Co-production of knowledge systems",
           client: "Report figure",
@@ -672,6 +720,7 @@ window.SITE = {
         },
         {
           src: "images/portfolio/schematics/schematics-04.jpg",
+          thumb: "images/thumbs/schematics/schematics-04.jpg",
           width: 1500, height: 1200,
           title: "Governance of the ocean, coasts and cryosphere",
           client: "Report figure",
@@ -680,6 +729,7 @@ window.SITE = {
         },
         {
           src: "images/portfolio/schematics/schematics-03.jpg",
+          thumb: "images/thumbs/schematics/schematics-03.jpg",
           width: 1500, height: 1200,
           title: "Ocean processes, in cross-section",
           client: "Report figure",
@@ -687,6 +737,7 @@ window.SITE = {
         },
         {
           src: "images/portfolio/schematics/schematics-07.jpg",
+          thumb: "images/thumbs/schematics/schematics-07.jpg",
           width: 1500, height: 1200,
           title: "Climate change effects on deep-ocean ecosystems",
           client: "Report figure",
@@ -694,6 +745,7 @@ window.SITE = {
         },
         {
           src: "images/portfolio/schematics/schematics-06.jpg",
+          thumb: "images/thumbs/schematics/schematics-06.jpg",
           width: 1500, height: 1200,
           title: "Glacier and ice sheet processes",
           client: "Report figure",
@@ -701,6 +753,7 @@ window.SITE = {
         },
         {
           src: "images/portfolio/schematics/schematics-02.jpg",
+          thumb: "images/thumbs/schematics/schematics-02.jpg",
           width: 1500, height: 1200,
           title: "Human impacts and knowledge gaps in the deep sea",
           client: "Report figure",
@@ -708,6 +761,7 @@ window.SITE = {
         },
         {
           src: "images/portfolio/schematics/schematic-1.jpg",
+          thumb: "images/thumbs/schematics/schematic-1.jpg",
           width: 1500, height: 1200,
           title: "From deforestation to climate impacts",
           client: "Report figure",
@@ -730,6 +784,7 @@ window.SITE = {
         },
         {
           src: "images/portfolio/dashboards/1734085544489.jpeg",
+          thumb: "images/thumbs/dashboards/1734085544489.jpg",
           width: 800, height: 800,
           title: "Global methane emissions dashboard",
           client: "Mongabay India · Tableau",
@@ -787,6 +842,7 @@ window.SITE = {
       items: [
         {
           src: "images/portfolio/layouts/Portfolio_-01.jpg",
+          thumb: "images/thumbs/layouts/Portfolio_-01.jpg",
           width: 1500, height: 1200,
           title: "La Ola magazine: fisheries issue",
           client: "Publication design",
@@ -794,6 +850,7 @@ window.SITE = {
         },
         {
           src: "images/portfolio/layouts/Portfolio_-02.jpg",
+          thumb: "images/thumbs/layouts/Portfolio_-02.jpg",
           width: 1500, height: 1200,
           title: "La Ola magazine: the northern coast of Honduras",
           client: "Publication design",
@@ -802,6 +859,7 @@ window.SITE = {
         },
         {
           src: "images/portfolio/layouts/Portfolio_-06.jpg",
+          thumb: "images/thumbs/layouts/Portfolio_-06.jpg",
           width: 1500, height: 1200,
           title: "Newspaper series on Honduran fisheries",
           client: "Publication design",
@@ -809,6 +867,7 @@ window.SITE = {
         },
         {
           src: "images/portfolio/layouts/Portfolio_-08.jpg",
+          thumb: "images/thumbs/layouts/Portfolio_-08.jpg",
           width: 1500, height: 1200,
           title: "Handbook for Authors",
           client: "IPCC",
@@ -816,6 +875,7 @@ window.SITE = {
         },
         {
           src: "images/portfolio/layouts/Portfolio_-07.jpg",
+          thumb: "images/thumbs/layouts/Portfolio_-07.jpg",
           width: 1500, height: 1200,
           title: "Guía metodológica: zonas de recuperación pesquera",
           client: "Publication design",
@@ -823,6 +883,7 @@ window.SITE = {
         },
         {
           src: "images/portfolio/layouts/Portfolio_-14.jpg",
+          thumb: "images/thumbs/layouts/Portfolio_-14.jpg",
           width: 1500, height: 1200,
           title: "How to Adapt to a Changing Climate: Summary for All",
           client: "IPCC",
@@ -830,6 +891,7 @@ window.SITE = {
         },
         {
           src: "images/portfolio/layouts/Portfolio_-10.jpg",
+          thumb: "images/thumbs/layouts/Portfolio_-10.jpg",
           width: 1500, height: 1200,
           title: "Artisanal fisheries brochure, Guanaja",
           client: "Publication design",
@@ -837,6 +899,7 @@ window.SITE = {
         },
         {
           src: "images/portfolio/layouts/Portfolio_-03.jpg",
+          thumb: "images/thumbs/layouts/Portfolio_-03.jpg",
           width: 1500, height: 1200,
           title: "Fishing licences brochure",
           client: "Publication design",
@@ -844,6 +907,7 @@ window.SITE = {
         },
         {
           src: "images/portfolio/layouts/Portfolio_-04.jpg",
+          thumb: "images/thumbs/layouts/Portfolio_-04.jpg",
           width: 1500, height: 1200,
           title: "Municipal strategic development plan",
           client: "Publication design",
@@ -851,6 +915,7 @@ window.SITE = {
         },
         {
           src: "images/portfolio/layouts/Portfolio_-05.jpg",
+          thumb: "images/thumbs/layouts/Portfolio_-05.jpg",
           width: 1500, height: 1200,
           title: "Fisheries law pamphlets",
           client: "Publication design",
@@ -858,6 +923,7 @@ window.SITE = {
         },
         {
           src: "images/portfolio/layouts/Portfolio_-09.jpg",
+          thumb: "images/thumbs/layouts/Portfolio_-09.jpg",
           width: 1500, height: 1200,
           title: "Hammerhead shark conservation tri-fold",
           client: "Publication design",
