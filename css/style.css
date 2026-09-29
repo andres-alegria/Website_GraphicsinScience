@@ -163,6 +163,20 @@ button {
   outline-offset: 2px;
 }
 
+/* focus rings on the ink bands use the lighter green; inside the pale cards they go back to emerald */
+.hero :focus-visible,
+.wall__head :focus-visible,
+.section--ink :focus-visible,
+.site-footer :focus-visible,
+.mobile-menu :focus-visible,
+.lightbox :focus-visible {
+  outline-color: var(--emerald-light);
+}
+
+.section--ink .story-feature__body :focus-visible {
+  outline-color: var(--emerald);
+}
+
 .visually-hidden {
   position: absolute !important;
   width: 1px;
@@ -1060,8 +1074,22 @@ a:hover .arrow::after,
 
 .lightbox__close:hover,
 .lightbox__nav:hover {
-  background: var(--emerald);
-  border-color: var(--emerald);
+  background: var(--emerald-light);
+  border-color: var(--emerald-light);
+  color: var(--ink);
+}
+
+/* on ink the accent is the lighter green, with ink text */
+.lightbox .button {
+  background: var(--emerald-light);
+  border-color: var(--emerald-light);
+  color: var(--ink);
+}
+
+.lightbox .button:hover {
+  background: var(--paper);
+  border-color: var(--paper);
+  color: var(--ink);
 }
 
 .lightbox__close {
@@ -1421,7 +1449,7 @@ a:hover .arrow::after,
 }
 
 .compare:has(.compare__range:focus-visible) .compare__handle::after {
-  outline: 2px solid var(--emerald);
+  outline: 2px solid var(--emerald-light); /* the slider takes keyboard focus only in the dark lightbox */
   outline-offset: 2px;
 }
 
@@ -1520,8 +1548,9 @@ a:hover .arrow::after,
 
 .story-feature__start:hover,
 .story-feature__close:hover {
-  background: var(--emerald);
-  color: var(--paper);
+  background: var(--emerald-light);
+  border-color: var(--emerald-light);
+  color: var(--ink);
 }
 
 .story-feature__body {
