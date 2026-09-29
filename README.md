@@ -16,8 +16,9 @@
 | `js/vendor/` | GSAP 3.15 and its plugins (ScrollTrigger, SplitText, Observer), free under the GSAP standard license |
 | `css/style.css` | The look: palette, type, layout. Tokens sit at the top of the file |
 | `fonts/` | Public Sans (variable weight), self-hosted |
-| `images/portfolio/<category>/` | Full-size pieces (JPEG/PNG at 1500 px wide, small GIFs, the 3D recordings as MP4) |
-| `images/thumbs/<category>/` | 800 px JPEG copies used on the wall; the lightbox opens the full file |
+| `images/portfolio/<category>/` | Full-size pieces (JPEG/PNG at 1500 px wide; animations and the 3D recordings as MP4) |
+| `images/thumbs/<category>/` | 800 px JPEG copies (and 800 px videos) used on the wall; the lightbox opens the full file |
+| `images/stories/` | The story card pictures, 1100 px JPEG |
 | `images/about/`, `images/share/` | Portrait (not on the pages at the moment); link-preview image |
 
 ## Editing content
@@ -26,7 +27,7 @@ Everything editorial lives in `js/site-data.js`.
 
 - **Add a piece**: put the full-size file in `images/portfolio/<category>/`, make an 800 px copy in `images/thumbs/<category>/` (same name, `.jpg`), and add an entry to that category's `items`:
   `{ src, thumb, width, height, title, client, alt, story: { url, title, date, outlet } }`. Leave `story` out when there is no article. The wall lays the pieces out in rows of three (two on phones), left to right, in the order of the file.
-- **Add a video**: use `video` and `poster` instead of `src`; it plays muted on a loop.
+- **Add a video or animation**: use `video` and `poster` instead of `src`; it plays muted on a loop. Turn GIFs into MP4 first (a tenth of the size), e.g. `ffmpeg -i in.gif -movflags +faststart -pix_fmt yuv420p -vf "scale=800:-2" -c:v libx264 -crf 26 out.mp4`, and give the wall that 800 px copy as `videoThumb`. Videos and their stills load only when scrolled near.
 - **Add a 3D map**: add `{ video, poster, width, height, title, client, url, alt }` to `stories.interactive.items`; it shows on the stories page and on the home page after the scrollies, not on the wall. Videos load only when scrolled near.
 - **Add a before/after slider**: use `compare: [left, right]` instead of `src`, each side `{ src, thumb, alt }`, both images the same size. The wall shows them split down the middle; in the lightbox the handle can be dragged.
 - **Add a story**: add an object to `stories.items` (newest first); the three newest also stack on the home page. `embed` is the address of the scrolly itself (the Vercel app the article embeds), which plays inside the card on both pages; leave it out and the card only links to the article. While the pointer is over a playing scrolly the page stays still, so the wheel drives the story.

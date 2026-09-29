@@ -51,7 +51,7 @@
     item.compare
       ? compareHtml(item)
       : item.video
-      ? html`<video data-src="${item.video}" poster="${item.poster}" width="${item.width}" height="${item.height}" ${reduceMotion ? "controls" : ""} muted loop playsinline preload="none" aria-label="${escapeHtml(item.alt)}"></video>`
+      ? html`<video data-src="${item.videoThumb || item.video}" data-poster="${item.poster}" width="${item.width}" height="${item.height}" muted loop playsinline preload="none" aria-label="${escapeHtml(item.alt)}"></video>`
       : html`<img src="${item.thumb || item.src}" width="${item.width}" height="${item.height}" alt="${escapeHtml(item.alt)}" loading="lazy" decoding="async">`;
 
   const metaLine = (item) => {
@@ -533,22 +533,27 @@
 
   // ---------- Init ----------
 
-  // Looping videos load only when they come near the screen, play while in view and pause when they leave it
+  // Looping videos: the still preview loads when the video comes within a screen or so, the video itself only
+  // once it is near, and it plays while in view. With reduced motion only the still is shown (the lightbox has controls).
   function lazyVideos(root) {
     const videos = root.querySelectorAll("video[data-src]");
-    if (!videos.length || !("IntersectionObserver" in window)) {
-      videos.forEach((v) => { v.src = v.dataset.src; });
+    const showPoster = (v) => { if (!v.getAttribute("poster")) v.poster = v.dataset.poster; };
+    if (!("IntersectionObserver" in window)) {
+      videos.forEach((v) => { showPoster(v); if (!reduceMotion) { v.src = v.dataset.src; v.play().catch(() => {}); } });
       return;
     }
-    const io = new IntersectionObserver((entries) => entries.forEach(({ target: v, isIntersecting }) => {
+    const near = new IntersectionObserver((entries) => entries.forEach(({ target, isIntersecting }) => {
+      if (isIntersecting) { showPoster(target); near.unobserve(target); }
+    }), { rootMargin: "800px 0px" });
+    const playing = new IntersectionObserver((entries) => entries.forEach(({ target: v, isIntersecting }) => {
       if (isIntersecting) {
         if (!v.getAttribute("src")) v.src = v.dataset.src;
-        if (!reduceMotion) v.play().catch(() => {});
+        v.play().catch(() => {});
       } else if (!v.paused) {
         v.pause();
       }
     }), { rootMargin: "200px 0px" });
-    videos.forEach((v) => io.observe(v));
+    videos.forEach((v) => { near.observe(v); if (!reduceMotion) playing.observe(v); });
   }
 
   const renderers = { home: renderHome, stories: renderStories, services: renderServices, faqs: renderFaqs, contact: renderContactPage };

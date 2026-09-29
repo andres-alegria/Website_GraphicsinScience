@@ -98,7 +98,7 @@ window.SITE = {
         url: "https://news.mongabay.com/custom-story/2026/09/can-we-stop-ships-from-killing-the-mediterraneans-last-great-whales/",
         embed: "https://scrollymap2026whalecollisions.vercel.app/", // the scrolly itself, played inside the card
         tools: "Mapbox GL · React · GSAP · Global Fishing Watch data",
-        image: { src: "images/portfolio/storymaps/Scrolly_Collision.jpg", width: 1500, height: 867, alt: "Opening screen of “Collision course”: a ship and a whale on converging tracks in the Mediterranean." }
+        image: { src: "images/stories/Scrolly_Collision.jpg", width: 1100, height: 635, alt: "Opening screen of “Collision course”: a ship and a whale on converging tracks in the Mediterranean." }
       },
       {
         title: "What does a map miss?",
@@ -108,7 +108,7 @@ window.SITE = {
         url: "https://india.mongabay.com/2026/05/what-a-coastal-zoning-map-leaves-out-explained-through-maps/",
         embed: "https://scrolly-map-2026-map-scale.vercel.app/", // the scrolly itself, played inside the card
         tools: "Mapbox GL · React · GSAP",
-        image: { src: "images/portfolio/storymaps/Scrolly.png", width: 1500, height: 874, alt: "Opening screen of “What does a map miss?”, over a coastal zoning map." }
+        image: { src: "images/stories/Scrolly.jpg", width: 1100, height: 641, alt: "Opening screen of “What does a map miss?”, over a coastal zoning map." }
       },
       {
         title: "Dual-purpose?",
@@ -118,7 +118,7 @@ window.SITE = {
         url: "https://news.mongabay.com/custom-story/2026/03/chinas-deep-sea-mining-fleet-may-also-track-us-submarines/",
         embed: "https://scrolly-map-2026-china-vessels-v2.vercel.app/", // the scrolly itself, played inside the card
         tools: "Mapbox GL · React · GSAP · AIS vessel tracks",
-        image: { src: "images/portfolio/storymaps/Scrolly_Dual.jpg", width: 1500, height: 867, alt: "Opening screen of “Dual-purpose?”, over a photograph of the seabed." }
+        image: { src: "images/stories/Scrolly_Dual.jpg", width: 1100, height: 635, alt: "Opening screen of “Dual-purpose?”, over a photograph of the seabed." }
       },
       {
         title: "Shifting Sands",
@@ -128,7 +128,7 @@ window.SITE = {
         url: "https://india.mongabay.com/2025/11/quarries-devour-buffer-forests-of-western-ghats-after-sand-mining-ban/",
         embed: "https://mongabay-scrolly-map-2025-m-sand.vercel.app/", // the scrolly itself, played inside the card
         tools: "Mapbox GL · React",
-        image: { src: "images/portfolio/storymaps/StoryMap_1.png", width: 1500, height: 867, alt: "Opening screen of “Shifting Sands”, over an aerial view of a quarry." }
+        image: { src: "images/stories/StoryMap_1.jpg", width: 1100, height: 635, alt: "Opening screen of “Shifting Sands”, over an aerial view of a quarry." }
       },
       {
         title: "Clearing the Way",
@@ -139,7 +139,7 @@ window.SITE = {
         embed: "https://mongabay-scrolly-map-2025-pipelines-three.vercel.app/", // the scrolly itself, played inside the card
         tools: "Mapbox GL · React · satellite imagery",
         extra: { label: "Also published in French", url: "https://fr.mongabay.com/custom-story/2025/10/ouganda-des-images-satellites-revelent-lexpansion-dun-projet-petrolier-dans-un-parc-et-une-zone-humide/" },
-        image: { src: "images/portfolio/storymaps/ScrollyMap_1.png", width: 1500, height: 868, alt: "Opening screen of “Clearing the Way”, over a forest photograph." }
+        image: { src: "images/stories/ScrollyMap_1.jpg", width: 1100, height: 636, alt: "Opening screen of “Clearing the Way”, over a forest photograph." }
       },
       {
         title: "Damming the Arai River",
@@ -149,7 +149,7 @@ window.SITE = {
         url: "https://news.mongabay.com/2025/09/cambodian-irrigation-dam-construction-threatens-riverine-communities-in-the-cardamoms/",
         embed: "https://mongabay-scrolly-map-2025-cambodia.vercel.app/", // the scrolly itself, played inside the card
         tools: "Mapbox GL · React",
-        image: { src: "images/portfolio/storymaps/ScrollyMap_2.png", width: 1500, height: 870, alt: "Opening screen of “Damming the Arai River”, over a river landscape." }
+        image: { src: "images/stories/ScrollyMap_2.jpg", width: 1100, height: 638, alt: "Opening screen of “Damming the Arai River”, over a river landscape." }
       }
     ],
     // the recordings play muted on a loop; each card links to where the 3D map lives
@@ -306,7 +306,10 @@ window.SITE = {
           alt: "Map of the western Pacific showing the track of the Chinese research vessel Xiang Yang Hong 06 as it nears US territories, including Guam."
         },
         {
-          src: "images/portfolio/maps/2025_128_AA_Thailand_NitrogenDioxide_v2_Compressed.gif",
+          // an animation: a small looping video on the wall, the full-size one in the lightbox
+          video: "images/portfolio/maps/2025_128_AA_Thailand_NitrogenDioxide_v2.mp4",
+          videoThumb: "images/thumbs/maps/2025_128_AA_Thailand_NitrogenDioxide_v2.mp4",
+          poster: "images/thumbs/maps/2025_128_AA_Thailand_NitrogenDioxide_v2-poster.jpg",
           width: 1350, height: 1080,
           title: "Nitrogen dioxide over northern Thailand",
           client: "Mongabay",
