@@ -233,7 +233,7 @@ window.SITE = {
 
   // ---------- Portfolio ----------
   // Each item: src (or video + poster), thumb (800 px copy used in the grid), width, height, title, client, alt,
-  // story { url, title, date, outlet } when it ran in an article; paper { url, year } for a journal paper (the DOI link).
+  // story { url, title, date, outlet } when it ran in an article; paper { url, year } for a journal paper (the DOI link); year alone when there is no link.
   portfolio: [
     {
       id: "maps",
@@ -430,6 +430,31 @@ window.SITE = {
           client: "Nature Climate Change",
           paper: { url: "https://doi.org/10.1038/s41558-026-02575-3", year: "2026" },
           alt: "Nature Climate Change article 'Climate change on television reaches the engaged but misses distant audiences', open to its charts of climate coverage across German television programme categories and of how the topic ranked on the news agenda from September to November 2022."
+        }
+      ]
+    },
+    {
+      id: "ipcc",
+      title: "IPCC report figures",
+      blurb: "Figures for IPCC assessment reports.",
+      items: [
+        {
+          src: "images/portfolio/ipcc/IPCC_AR6_WGII_BurningEmbers.jpg",
+          thumb: "images/thumbs/ipcc/IPCC_AR6_WGII_BurningEmbers.jpg",
+          width: 1500, height: 878,
+          title: "Global and regional risks for increasing levels of global warming",
+          client: "IPCC AR6 WGII",
+          year: "2022",
+          alt: "IPCC figure: projected global surface temperature change to 2100 under five emissions scenarios, beside burning-ember bars showing how the risk for five Reasons for Concern rises from undetectable to very high as the world warms."
+        },
+        {
+          src: "images/portfolio/ipcc/IPCC_SROCC_ExtremeSeaLevelEvents.jpg",
+          thumb: "images/thumbs/ipcc/IPCC_SROCC_ExtremeSeaLevelEvents.jpg",
+          width: 1500, height: 1425,
+          title: "Extreme sea level events",
+          client: "IPCC SROCC",
+          year: "2019",
+          alt: "IPCC figure: a schematic of how sea level rise turns once-a-century extreme sea levels into yearly events, world maps of the year this happens at coastal locations under RCP8.5 and RCP2.6, and a map of where it comes at least ten years later under RCP2.6."
         }
       ]
     }

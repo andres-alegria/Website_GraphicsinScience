@@ -56,7 +56,7 @@
 
   const metaLine = (item) => {
     const bits = [item.client];
-    const date = (item.story && item.story.date) || (item.paper && item.paper.year);
+    const date = (item.story && item.story.date) || (item.paper && item.paper.year) || item.year;
     if (date) bits.push(String(date).slice(0, 4));
     return bits.filter(Boolean).join(" · ");
   };
