@@ -5,7 +5,7 @@
 window.SITE = {
   name: "Andrés Alegría",
   tagline: "Visual science communicator", // shown in lowercase in the header
-  siteTitle: "Andrés Alegría | Data Graphics",
+  siteTitle: "Andrés Alegría | Visual Science Communicator",
 
   nav: [
     { label: "Work", href: "index.html#work", page: "work" },
@@ -81,7 +81,7 @@ window.SITE = {
   },
 
   footer: {
-    title: "Andrés Alegría | Data Graphics",
+    title: "Andrés Alegría | Visual Science Communicator",
     tagline: "Maps, charts and stories for science that needs to be understood.",
     note: "© {year} Andrés Alegría · graphicsinscience.com"
   },
