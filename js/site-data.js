@@ -378,14 +378,6 @@ window.SITE = {
           alt: "Scientific article titled 'Towards an IPCC Atlas for comprehensive climate change risk assessments' with maps and diagrams about climate risk, exposure, and response, and authors listed below the title."
         },
         {
-          src: "images/portfolio/peer-reviewed/1735909753001.jpeg",
-          thumb: "images/thumbs/peer-reviewed/1735909753001.jpg",
-          width: 800, height: 800,
-          title: "AI applications in African agriculture",
-          client: "Journal article",
-          alt: "Map of Africa highlighting six countries with numbered icons and descriptions of artificial intelligence applications in agriculture: Ghana (yield prediction), Nigeria (smart irrigation), Ethiopia (agricultural extension), Kenya (crop disease detection), Rwanda (AI and IoT integration), South Africa (livestock monitoring)."
-        },
-        {
           src: "images/portfolio/peer-reviewed/_linkedin-09.jpg",
           thumb: "images/thumbs/peer-reviewed/_linkedin-09.jpg",
           width: 1500, height: 1500,
