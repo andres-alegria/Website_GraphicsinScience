@@ -482,9 +482,8 @@
     main.appendChild(list);
     initScrollies(list);
 
-    const threeD = allItems().filter((i) => i.category === "3d-maps");
-    const threeDCards = threeD.map((item) => html`
-      <a class="story-card reveal" href="${item.story ? item.story.url : "#"}" target="_blank" rel="noopener">
+    const threeDCards = s.interactive.items.map((item) => html`
+      <a class="story-card reveal" href="${item.url}" target="_blank" rel="noopener">
         ${mediaHtml(item)}
         <div class="story-card__body">
           <h3>${escapeHtml(item.title)}</h3>

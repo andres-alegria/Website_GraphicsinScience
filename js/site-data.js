@@ -32,7 +32,7 @@ window.SITE = {
 
   // every portfolio piece below, shown on the scattered wall in the order of the file
   work: {
-    label: "Example",
+    label: "Examples",
     intro: "Open any of them to read it at full size."
   },
 
@@ -152,10 +152,31 @@ window.SITE = {
         image: { src: "images/portfolio/storymaps/ScrollyMap_2.png", width: 1500, height: 870, alt: "Opening screen of “Damming the Arai River”, over a river landscape." }
       }
     ],
+    // the recordings play muted on a loop; each card links to where the 3D map lives
     interactive: {
-      label: "Interactive 3D map",
-      title: "A seafloor you can turn around",
-      intro: "Bathymetry built from open elevation data, rendered in the browser."
+      label: "Interactive 3D maps",
+      title: "Seafloors you can turn around",
+      intro: "Bathymetry built from open elevation data, rendered in the browser.",
+      items: [
+        {
+          video: "images/portfolio/3d-maps/Marianas.mp4",
+          poster: "images/portfolio/3d-maps/Marianas-poster.jpg",
+          width: 800, height: 620,
+          title: "The Mariana Trench in 3D",
+          client: "Mongabay",
+          url: "https://news.mongabay.com/2025/12/deep-sea-mining-interests-raise-alarms-among-mariana-trench-communities/",
+          alt: "Animated 3D map of the Mariana Trench seafloor, turning to show the deep-sea mining areas under discussion."
+        },
+        {
+          video: "images/portfolio/3d-maps/Honduras.mp4",
+          poster: "images/portfolio/3d-maps/Honduras-poster.jpg",
+          width: 640, height: 576,
+          title: "The Honduran Caribbean seafloor in 3D",
+          client: "Independent",
+          url: "https://honduras.pubpub.org",
+          alt: "Animated 3D map of the seafloor off Honduras’ Caribbean coast, with Roatán, Utila and Guanaja rising from the shelf."
+        }
+      ]
     }
   },
 
@@ -294,15 +315,6 @@ window.SITE = {
           alt: "Map of the western Pacific showing the track of the Chinese research vessel Xiang Yang Hong 06 as it nears US territories, including Guam."
         },
         {
-          src: "images/portfolio/maps/2025_59_AA_Thailand_Dugongs_v4.jpg",
-          thumb: "images/thumbs/maps/2025_59_AA_Thailand_Dugongs_v4.jpg",
-          width: 1500, height: 1200,
-          title: "Dugong migrations along Thailand’s Andaman coast",
-          client: "Mongabay",
-          story: { url: "https://news.mongabay.com/2025/04/dugong-numbers-plummet-amid-seagrass-decline-in-thailands-andaman-sea/", title: "Dugong numbers plummet amid seagrass decline in Thailand’s Andaman Sea", date: "2025-04-10", outlet: "Mongabay" },
-          alt: "Map showing dugong migration paths along Thailand's west coast, from Myanmar to Malaysia, passing through Phang Nga Bay, Phuket, Krabi, Trang, Koh Libong, and oil spill marked areas, highlighting Hat Chao Mai Marine National Park in yellow. Small icons of dugongs are present along the paths."
-        },
-        {
           src: "images/portfolio/maps/2025_128_AA_Thailand_NitrogenDioxide_v2_Compressed.gif",
           width: 1350, height: 1080,
           title: "Nitrogen dioxide over northern Thailand",
@@ -366,14 +378,6 @@ window.SITE = {
           alt: "Scientific article titled 'Towards an IPCC Atlas for comprehensive climate change risk assessments' with maps and diagrams about climate risk, exposure, and response, and authors listed below the title."
         },
         {
-          src: "images/portfolio/peer-reviewed/1733475367753.jpeg",
-          thumb: "images/thumbs/peer-reviewed/1733475367753.jpg",
-          width: 1500, height: 1501,
-          title: "Declining snow cover and winter tourism",
-          client: "Journal of Environmental Management",
-          alt: "A magazine page from the Journal of Environmental Management discussing how declining snow cover affects winter tourism and the potential adaptation strategies, including artificial snow-making and alternative winter activities."
-        },
-        {
           src: "images/portfolio/peer-reviewed/1735909753001.jpeg",
           thumb: "images/thumbs/peer-reviewed/1735909753001.jpg",
           width: 800, height: 800,
@@ -388,61 +392,6 @@ window.SITE = {
           title: "Figures for a research paper",
           client: "Journal article",
           alt: "Sample figures from a peer-reviewed paper, laid out as a set."
-        }
-      ]
-    },
-    {
-      id: "dashboards",
-      title: "Dashboards",
-      blurb: "Interactive Tableau dashboards embedded in news coverage.",
-      items: [
-        {
-          src: "images/portfolio/dashboards/1739517558747.gif",
-          width: 800, height: 800,
-          title: "Moves to curtail bottom trawling in European MPAs",
-          client: "Mongabay · Tableau",
-          story: { url: "https://news.mongabay.com/2025/02/lawsuit-is-latest-push-to-curb-bottom-trawling-in-protected-european-waters/", title: "Lawsuit is latest push to curb bottom trawling in protected European waters", date: "2025-02-13", outlet: "Mongabay" },
-          alt: "Map illustrating moves to curtail bottom trawling in European Marine Protected Areas from 2023 to 2025, showing MPAs, EEA zones, and policy advocacy points."
-        },
-        {
-          src: "images/portfolio/dashboards/1734085544489.jpeg",
-          thumb: "images/thumbs/dashboards/1734085544489.jpg",
-          width: 800, height: 800,
-          title: "Global methane emissions dashboard",
-          client: "Mongabay India · Tableau",
-          story: { url: "https://india.mongabay.com/2024/12/the-methane-puzzle-of-ambition-and-action-unfolds-at-cop29/", title: "The methane puzzle of ambition and action unfolds at COP29", date: "2024-12-13", outlet: "Mongabay India" },
-          alt: "Line charts showing global methane emission projections from 1990 to 2050, and main human sources of methane by sector (agriculture, energy, industrial, waste) with filters for country, region, and subregion."
-        },
-        {
-          src: "images/portfolio/dashboards/1734626854137.gif",
-          width: 800, height: 800,
-          title: "Protected areas in Africa",
-          client: "Tableau Public",
-          alt: "Map of Africa showing protected areas, with filters by country, governance, and designation status, and a legend indicating extent in square kilometers for terrestrial and marine/costal areas."
-        },
-        {
-          src: "images/portfolio/dashboards/1736430176113.gif",
-          width: 800, height: 800,
-          title: "Extreme weather events of 2024",
-          client: "Mongabay · Tableau",
-          story: { url: "https://news.mongabay.com/short-article/2025/01/deaths-linked-to-extreme-weather-in-2024/", title: "At least 11,500 deaths linked to extreme weather in 2024", date: "2025-01-09", outlet: "Mongabay" },
-          alt: "Infographic showing extreme weather events of 2024, with icons representing storms, floods, landslides, wildfires, droughts, extreme temperatures, and glacial floods, and data on global and North country impacts."
-        }
-      ]
-    },
-    {
-      id: "3d-maps",
-      title: "3D Interactive Maps",
-      blurb: "Interactive 3D bathymetry built from open elevation data.",
-      items: [
-        {
-          video: "images/portfolio/3d-maps/Marianas.mp4",
-          poster: "images/portfolio/3d-maps/Marianas-poster.jpg",
-          width: 800, height: 620,
-          title: "The Mariana Trench in 3D",
-          client: "Mongabay",
-          story: { url: "https://news.mongabay.com/2025/12/deep-sea-mining-interests-raise-alarms-among-mariana-trench-communities/", title: "The Mariana Trench in 3D", date: null, outlet: "Mongabay" },
-          alt: "Animated 3D map of the Mariana Trench seafloor, turning to show the deep-sea mining areas under discussion."
         }
       ]
     },
@@ -468,14 +417,6 @@ window.SITE = {
           alt: "An open magazine , with a person in a white coat and wide-brimmed hat on the cover, another page featuring a colorful topographic map of the northern coast of Honduras. "
         },
         {
-          src: "images/portfolio/layouts/Portfolio_-06.jpg",
-          thumb: "images/thumbs/layouts/Portfolio_-06.jpg",
-          width: 1500, height: 1200,
-          title: "Newspaper series on Honduran fisheries",
-          client: "Publication design",
-          alt: "Stack of newspapers on an orange background, with headlines about Honduras, artificial reefs, and fishing, featuring images of a beach, a fish, and people at the beach."
-        },
-        {
           src: "images/portfolio/layouts/Portfolio_-08.jpg",
           thumb: "images/thumbs/layouts/Portfolio_-08.jpg",
           width: 1500, height: 1200,
@@ -498,46 +439,6 @@ window.SITE = {
           title: "How to Adapt to a Changing Climate: Summary for All",
           client: "IPCC",
           alt: "Three pink booklets titled \"How to Adapt to a Changing Climate: Summary for All\" with icons related to climate change on the cover."
-        },
-        {
-          src: "images/portfolio/layouts/Portfolio_-10.jpg",
-          thumb: "images/thumbs/layouts/Portfolio_-10.jpg",
-          width: 1500, height: 1200,
-          title: "Artisanal fisheries brochure, Guanaja",
-          client: "Publication design",
-          alt: "Brochure for artisanal fisheries in Guanjá, displaying text and diagrams about the area's marine resources and management policies."
-        },
-        {
-          src: "images/portfolio/layouts/Portfolio_-03.jpg",
-          thumb: "images/thumbs/layouts/Portfolio_-03.jpg",
-          width: 1500, height: 1200,
-          title: "Fishing licences brochure",
-          client: "Publication design",
-          alt: "Brochure about fishing licenses, showing various ID cards, fish images, and information on artisanal and industrial fishing licenses in Spanish."
-        },
-        {
-          src: "images/portfolio/layouts/Portfolio_-04.jpg",
-          thumb: "images/thumbs/layouts/Portfolio_-04.jpg",
-          width: 1500, height: 1200,
-          title: "Municipal strategic development plan",
-          client: "Publication design",
-          alt: "Open brochure with blue background, yellow and white text, and images of people and a landscape. The brochure discusses a municipal strategic development plan."
-        },
-        {
-          src: "images/portfolio/layouts/Portfolio_-05.jpg",
-          thumb: "images/thumbs/layouts/Portfolio_-05.jpg",
-          width: 1500, height: 1200,
-          title: "Fisheries law pamphlets",
-          client: "Publication design",
-          alt: "Two folded pamphlets on pink background, one titled \"Ley de la PESA\" in Spanish, with a picture of a man holding a spear, and the other with visible text in Spanish."
-        },
-        {
-          src: "images/portfolio/layouts/Portfolio_-09.jpg",
-          thumb: "images/thumbs/layouts/Portfolio_-09.jpg",
-          width: 1500, height: 1200,
-          title: "Hammerhead shark conservation tri-fold",
-          client: "Publication design",
-          alt: "A tri-fold brochure about hammerhead sharks, highlighting conservation efforts, identification guides, and regional regulations. The front features an image of a hammerhead shark swimming underwater."
         }
       ]
     }
