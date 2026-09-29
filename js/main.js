@@ -305,22 +305,21 @@
       </div>`));
   }
 
-  // Every piece on a scattered wall: three columns that drift at different speeds as the page scrolls
-  // (js/motion.js); on phones they merge into two (css). A click opens the piece in the lightbox.
+  // Every piece on a scattered wall that reads in rows, left to right: three to a row (two on phones).
+  // Each piece floats a little as the page scrolls (js/motion.js). A click opens it in the lightbox.
   function renderWork(main) {
     const items = allItems();
-    const cols = [[], [], []];
-    items.forEach((item, i) => cols[i % 3].push(i));
-    const colHtml = cols.map((col) => html`
-      <div class="wall__col">${col.map((i) => html`
-        <figure class="wall__item reveal">
-          <button class="wall__btn" type="button" data-index="${i}" aria-label="Open ${escapeHtml(items[i].title)}">${mediaHtml(items[i])}</button>
-          <figcaption class="wall__caption"><b>${escapeHtml(items[i].title)}</b>${escapeHtml(metaLine(items[i]))}</figcaption>
-        </figure>`).join("")}</div>`).join("");
+    const pieces = items.map((item, i) => html`
+      <div class="wall__item">
+        <figure class="wall__figure reveal">
+          <button class="wall__btn" type="button" data-index="${i}" aria-label="Open ${escapeHtml(item.title)}">${mediaHtml(item)}</button>
+          <figcaption class="wall__caption"><b>${escapeHtml(item.title)}</b>${escapeHtml(metaLine(item))}</figcaption>
+        </figure>
+      </div>`).join("");
     const el = section("wall", html`
       <div class="wrap">
         <div class="wall__head"><p class="label">${escapeHtml(SITE.work.label)}</p><p>${escapeHtml(SITE.work.intro)}</p></div>
-        <div class="wall__cols">${colHtml}</div>
+        <div class="wall__grid">${pieces}</div>
       </div>`, { id: "work" });
     main.appendChild(el);
 

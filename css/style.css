@@ -612,46 +612,66 @@ a:hover .arrow::after,
   font-size: var(--fs-small);
 }
 
-.wall__cols {
+.wall__grid {
   position: relative;
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: clamp(14px, 2.5vw, 40px); /* adjust space between columns here */
+  grid-template-columns: repeat(3, minmax(0, 1fr)); /* adjust pieces per row here */
+  gap: clamp(28px, 4vw, 64px) clamp(14px, 2.5vw, 40px); /* adjust space between rows / between pieces here */
   align-items: start;
 }
 
-.wall__col {
-  display: grid;
-  gap: clamp(16px, 3vw, 48px); /* adjust space between pieces here */
+.wall__item {
   will-change: transform;
 }
 
-/* stagger the columns so the wall doesn't start on one line */
-.wall__col:nth-child(2) {
-  padding-top: clamp(40px, 8vw, 140px);
+/* the middle piece of each row sits a little lower, so the rows don't look ruled */
+.wall__item:nth-child(3n + 2) {
+  margin-top: clamp(20px, 4vw, 64px);
 }
 
-.wall__col:nth-child(3) {
-  padding-top: clamp(20px, 4vw, 70px);
-}
-
-.wall__item {
-  margin: 0;
-}
-
-/* varied sizes: every piece gets a width from this cycle (adjust the percentages here) */
-.wall__item:nth-child(3n + 1) {
+/* varied sizes: a nine-piece cycle keeps the wall scattered while it still reads row by row (adjust widths here) */
+.wall__item:nth-child(9n + 1) {
   width: 100%;
 }
 
-.wall__item:nth-child(3n + 2) {
-  width: 62%;
-  margin-left: auto;
+.wall__item:nth-child(9n + 2) {
+  width: 74%;
+  justify-self: center;
 }
 
-.wall__item:nth-child(3n + 3) {
+.wall__item:nth-child(9n + 3) {
+  width: 86%;
+  justify-self: end;
+}
+
+.wall__item:nth-child(9n + 4) {
   width: 82%;
-  margin-inline: auto;
+  justify-self: end;
+}
+
+.wall__item:nth-child(9n + 5) {
+  width: 100%;
+}
+
+.wall__item:nth-child(9n + 6) {
+  width: 70%;
+}
+
+.wall__item:nth-child(9n + 7) {
+  width: 76%;
+  justify-self: center;
+}
+
+.wall__item:nth-child(9n + 8) {
+  width: 92%;
+}
+
+.wall__item:nth-child(9n + 9) {
+  width: 100%;
+}
+
+.wall__figure {
+  margin: 0;
 }
 
 .wall__btn {
@@ -705,23 +725,16 @@ a:hover .arrow::after,
   }
 }
 
-/* phones: the three columns merge into two plain ones */
+/* phones: two pieces to a row, all the same width, no floating */
 @media (max-width: 767px) {
-  .wall__cols {
-    display: block;
-    columns: 2;
-    column-gap: 14px;
+  .wall__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.2rem 14px;
   }
 
-  .wall__col {
-    display: contents;
-  }
-
-  .wall__item,
   .wall__item:nth-child(n) {
     width: 100%;
-    margin: 0 0 1.2rem;
-    break-inside: avoid;
+    margin-top: 0;
   }
 }
 

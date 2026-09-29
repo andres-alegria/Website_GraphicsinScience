@@ -25,7 +25,7 @@
 Everything editorial lives in `js/site-data.js`.
 
 - **Add a piece**: put the full-size file in `images/portfolio/<category>/`, make an 800 px copy in `images/thumbs/<category>/` (same name, `.jpg`), and add an entry to that category's `items`:
-  `{ src, thumb, width, height, title, client, alt, story: { url, title, date, outlet } }`. Leave `story` out when there is no article. The wall deals the pieces into its three columns in the order of the file.
+  `{ src, thumb, width, height, title, client, alt, story: { url, title, date, outlet } }`. Leave `story` out when there is no article. The wall lays the pieces out in rows of three (two on phones), left to right, in the order of the file.
 - **Add a video**: use `video` and `poster` instead of `src`; it plays muted on a loop.
 - **Add a 3D map**: add `{ video, poster, width, height, title, client, url, alt }` to `stories.interactive.items`; it shows on the stories page and on the home page after the scrollies, not on the wall. Videos load only when scrolled near.
 - **Add a before/after slider**: use `compare: [left, right]` instead of `src`, each side `{ src, thumb, alt }`, both images the same size. The wall shows them split down the middle; in the lightbox the handle can be dragged.
@@ -36,7 +36,7 @@ Everything editorial lives in `js/site-data.js`.
 
 - **Colours**: the seven palette tokens at the top of `css/style.css`, plus the role tokens under them. Approved text/background pairings: forest on bone, bone on forest, wine on white, white on teal, teal on white, black on white, bone on black, brown on white. Teal and brown do not pass contrast on bone, which is why links on bone sections are forest.
 - **Type**: `--font` and the `--fs-*` sizes.
-- **Motion**: the durations and the wall's parallax strengths are marked in `js/motion.js`.
+- **Motion**: the durations and how far the wall's pieces float are marked in `js/motion.js`.
 
 ## Preview locally
 
