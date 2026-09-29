@@ -33,9 +33,24 @@
 
   const allItems = () => SITE.portfolio.flatMap((sec) => sec.items.map((item) => ({ ...item, category: sec.id, categoryTitle: sec.title })));
 
+  // Before/after slider: compare[0] shows left of the handle, compare[1] right of it.
+  // The card shows the 800 px thumbs split down the middle; the lightbox version (full = true) can be dragged.
+  const compareHtml = (item, full = false) => {
+    const [left, right] = item.compare;
+    const tag = full ? "div" : "span"; // cards are buttons, so only inline elements inside
+    const img = (side, cls = "") => html`<img${cls} src="${full ? side.src : side.thumb || side.src}" width="${item.width}" height="${item.height}" alt="${escapeHtml(side.alt)}" ${full ? "" : 'loading="lazy"'} decoding="async">`;
+    return html`<${tag} class="compare${full ? " lightbox__media lightbox__compare" : ""}" style="--pos: 50%; --ratio: ${item.width / item.height}">
+      ${img(right)}${img(left, ' class="compare__top"')}
+      <span class="compare__handle" aria-hidden="true"></span>
+      ${full ? html`<input class="compare__range" type="range" min="0" max="100" step="1" value="50" aria-label="Slide between the two maps">` : ""}
+    </${tag}>`;
+  };
+
   // Media markup for the work grid and story cards: the 800 px thumb when there is one, the full file in the lightbox
   const mediaHtml = (item) =>
-    item.video
+    item.compare
+      ? compareHtml(item)
+      : item.video
       ? html`<video src="${item.video}" poster="${item.poster}" width="${item.width}" height="${item.height}" ${reduceMotion ? "controls" : "autoplay"} muted loop playsinline preload="metadata" aria-label="${escapeHtml(item.alt)}"></video>`
       : html`<img src="${item.thumb || item.src}" width="${item.width}" height="${item.height}" alt="${escapeHtml(item.alt)}" loading="lazy" decoding="async">`;
 
@@ -179,7 +194,7 @@
         <p class="lightbox__meta"></p>
         <p class="lightbox__desc"></p>
         <div class="lightbox__story"></div>
-        <p class="lightbox__hint">← → to move between pieces · Esc to close</p>
+        <p class="lightbox__hint"></p>
       </aside>`;
     document.body.appendChild(root);
 
@@ -189,18 +204,48 @@
       title: root.querySelector("h2"),
       meta: root.querySelector(".lightbox__meta"),
       desc: root.querySelector(".lightbox__desc"),
-      story: root.querySelector(".lightbox__story")
+      story: root.querySelector(".lightbox__story"),
+      hint: root.querySelector(".lightbox__hint")
+    };
+    let hintTween = null;
+
+    // Drag, click or use the arrow keys to move a slider's handle
+    const initCompare = (el) => {
+      const range = el.querySelector(".compare__range");
+      const set = (pct) => {
+        const v = Math.min(100, Math.max(0, pct));
+        el.style.setProperty("--pos", v + "%");
+        range.value = v;
+      };
+      const fromPointer = (e) => {
+        const r = el.getBoundingClientRect();
+        set(((e.clientX - r.left) / r.width) * 100);
+      };
+      const stopHint = () => { if (hintTween) hintTween.kill(); };
+      el.addEventListener("pointerdown", (e) => { stopHint(); el.setPointerCapture(e.pointerId); fromPointer(e); range.focus({ preventScroll: true }); });
+      el.addEventListener("pointermove", (e) => { if (el.hasPointerCapture(e.pointerId)) fromPointer(e); });
+      range.addEventListener("input", () => { stopHint(); set(+range.value); });
+      // a short sweep shows that the handle moves
+      if (window.gsap && !reduceMotion) {
+        const proxy = { v: 50 };
+        hintTween = window.gsap.to(proxy, { v: 35, duration: 0.6, delay: 0.5, repeat: 1, yoyo: true, ease: "power2.inOut", onUpdate: () => set(proxy.v) });
+      }
     };
 
     const show = () => {
       const item = items[index];
-      wrap.innerHTML = item.video
+      if (hintTween) hintTween.kill();
+      wrap.innerHTML = item.compare
+        ? compareHtml(item, true)
+        : item.video
         ? html`<video class="lightbox__media" src="${item.video}" poster="${item.poster}" ${reduceMotion ? "" : "autoplay"} controls muted loop playsinline aria-label="${escapeHtml(item.alt)}"></video>`
         : html`<img class="lightbox__media" src="${item.src}" width="${item.width}" height="${item.height}" alt="${escapeHtml(item.alt)}" decoding="async">`;
       parts.counter.textContent = `${index + 1} / ${items.length}${item.categoryTitle ? " · " + item.categoryTitle : ""}`;
       parts.title.textContent = item.title;
       parts.meta.textContent = metaLine(item);
       parts.desc.textContent = item.alt;
+      parts.hint.textContent = (item.compare ? "Drag across the maps to compare · " : "") + "← → to move between pieces · Esc to close";
+      if (item.compare) initCompare(wrap.firstElementChild);
       parts.story.innerHTML = (item.story && item.story.url
         ? html`<a class="button arrow arrow--ext" href="${item.story.url}" target="_blank" rel="noopener">Read the story</a>`
         : "") + (item.src ? html`<a class="lightbox__full arrow arrow--ext" href="${item.src}" target="_blank" rel="noopener">Open the image at full size</a>` : "");
@@ -233,11 +278,12 @@
     // swipe between pieces on touch screens
     if (window.gsap && window.Observer) {
       window.gsap.registerPlugin(window.Observer);
-      window.Observer.create({ target: root.querySelector(".lightbox__stage"), type: "touch", tolerance: 40, onLeft: () => step(1), onRight: () => step(-1) });
+      window.Observer.create({ target: root.querySelector(".lightbox__stage"), type: "touch", tolerance: 40, ignore: ".compare", onLeft: () => step(1), onRight: () => step(-1) });
     }
     document.addEventListener("keydown", (e) => {
       if (root.hidden) return;
       if (e.key === "Escape") close();
+      if (e.target.classList && e.target.classList.contains("compare__range")) return; // the slider uses the arrow keys itself
       if (e.key === "ArrowRight") step(1);
       if (e.key === "ArrowLeft") step(-1);
     });
@@ -292,6 +338,18 @@
     const initial = SITE.work.initial || items.length;
     let expanded = initial >= items.length;
     let current = "all";
+
+    // slider cards: the split follows the mouse across the picture
+    grid.addEventListener("pointermove", (e) => {
+      const cmp = e.target.closest(".compare");
+      if (!cmp || e.pointerType !== "mouse") return;
+      const r = cmp.getBoundingClientRect();
+      cmp.style.setProperty("--pos", ((e.clientX - r.left) / r.width) * 100 + "%");
+    });
+    grid.addEventListener("pointerout", (e) => {
+      const cmp = e.target.closest(".compare");
+      if (cmp && !cmp.contains(e.relatedTarget)) cmp.style.setProperty("--pos", "50%");
+    });
 
     grid.addEventListener("click", (e) => {
       const btn = e.target.closest(".card__media");

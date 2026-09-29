@@ -1641,3 +1641,100 @@ html.header-hidden .chips--sticky {
     aspect-ratio: 16 / 9;
   }
 }
+
+/* ==========================================================================
+   Before/after slider (two maps of the same place)
+   ========================================================================== */
+
+.compare {
+  --handle-line: var(--forest); /* adjust slider line colour here */
+  --handle-grip: var(--forest); /* adjust slider grip colour here */
+  position: relative;
+  display: block;
+  overflow: hidden;
+}
+
+.compare img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* the left map, cut off at the handle */
+.compare .compare__top {
+  position: absolute;
+  inset: 0;
+  height: 100%;
+  clip-path: inset(0 calc(100% - var(--pos)) 0 0);
+}
+
+.compare__handle {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: var(--pos);
+  width: 2px; /* adjust slider line width here */
+  margin-left: -1px;
+  background: var(--handle-line);
+  box-shadow: 0 0 0 1px rgb(228 229 225 / 0.8);
+  pointer-events: none;
+}
+
+.compare__handle::after {
+  content: "↔";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 2.6rem; /* adjust grip size here */
+  height: 2.6rem;
+  display: grid;
+  place-items: center;
+  transform: translate(-50%, -50%);
+  border: 2px solid var(--white);
+  border-radius: 50%;
+  background: var(--handle-grip);
+  color: var(--bone);
+  font-size: 1.05rem;
+  line-height: 1;
+}
+
+.card__media .compare__handle::after {
+  width: 2rem;
+  height: 2rem;
+  font-size: 0.85rem;
+}
+
+/* keyboard control: the range input is invisible, its focus ring shows on the grip */
+.compare__range {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.compare:has(.compare__range:focus-visible) .compare__handle::after {
+  outline: 2px solid var(--teal);
+  outline-offset: 2px;
+}
+
+/* in the lightbox the slider fills the stage like an image would */
+.lightbox__compare {
+  --max-h: calc(100vh - 2 * clamp(1rem, 4vw, 3rem));
+  width: min(100%, calc(var(--max-h) * var(--ratio)));
+  max-height: none;
+  cursor: ew-resize;
+  touch-action: pan-y;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.lightbox__compare img {
+  -webkit-user-drag: none;
+}
+
+@media (max-width: 1023px) {
+  .lightbox__compare {
+    --max-h: 55vh;
+  }
+}

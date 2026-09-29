@@ -27,6 +27,7 @@ Everything editorial lives in `js/site-data.js`.
 - **Add a piece**: put the full-size file in `images/portfolio/<category>/`, make an 800 px copy in `images/thumbs/<category>/` (same name, `.jpg`), and add an entry to that category's `items`:
   `{ src, thumb, width, height, title, client, alt, story: { url, title, date, outlet } }`. Leave `story` out when there is no article.
 - **Add a video**: use `video` and `poster` instead of `src`; it plays muted on a loop.
+- **Add a before/after slider**: use `compare: [left, right]` instead of `src`, each side `{ src, thumb, alt }`, both images the same size. The card shows them split down the middle; in the lightbox the handle can be dragged.
 - **Add a story**: add an object to `stories.items` (newest first); the first one becomes the featured card on the stories page and the three newest stack on the home page.
 - **Change text**: hero, services, FAQs, contact and footer are all named blocks at the top of the file.
 - **How many pieces show before "Show all"**: `work.initial`.

@@ -216,6 +216,26 @@ window.SITE = {
       blurb: "Thematic and locator maps for news stories, built in QGIS and finished in Illustrator.",
       items: [
         {
+          // before/after slider: compare[0] shows left of the handle, compare[1] right of it
+          compare: [
+            {
+              src: "images/portfolio/maps/2026_093_AA_WaterApartheid_v1_Water.jpg",
+              thumb: "images/thumbs/maps/2026_093_AA_WaterApartheid_v1_Water.jpg",
+              alt: "Map of Recife showing how many hours each water supply zone had water in June 2026, from 40–119 hours in the lightest blue to the full 720 hours in the darkest."
+            },
+            {
+              src: "images/portfolio/maps/2026_093_AA_WaterApartheid_v1_Women.jpg",
+              thumb: "images/thumbs/maps/2026_093_AA_WaterApartheid_v1_Women.jpg",
+              alt: "Map of Recife showing Black and brown women as a share of each neighborhood's residents in the 2022 Census, from 11.5–20% in the lightest red to 38–42% in the darkest."
+            }
+          ],
+          width: 1500, height: 1200,
+          title: "Abastecimento de água e mulheres negras no Recife",
+          client: "Mongabay Brasil",
+          story: { url: "https://brasil.mongabay.com/2026/09/mapa-aponta-desigualdade-racial-no-acesso-a-agua-no-recife/", title: "Mapa aponta desigualdade racial no acesso à água no Recife", date: "2026-09-29", outlet: "Mongabay Brasil" },
+          alt: "Slider comparing two maps of Recife, Brazil: hours of water supply per zone in June 2026, and where Black women live. Only 73 of 309 supply zones had water all month; the periphery, where proportionally more Black women live, had water for fewer hours."
+        },
+        {
           src: "images/portfolio/maps/2026_014_AA_Brazil_Jaguar_v3_With_IT.jpg",
           thumb: "images/thumbs/maps/2026_014_AA_Brazil_Jaguar_v3_With_IT.jpg",
           width: 1500, height: 1200,
