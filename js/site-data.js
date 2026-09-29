@@ -441,20 +441,20 @@ window.SITE = {
         {
           src: "images/portfolio/ipcc/IPCC_AR6_WGII_BurningEmbers.jpg",
           thumb: "images/thumbs/ipcc/IPCC_AR6_WGII_BurningEmbers.jpg",
-          width: 1500, height: 878,
+          width: 1500, height: 1500,
           title: "Global and regional risks for increasing levels of global warming",
           client: "IPCC AR6 WGII",
           year: "2022",
-          alt: "IPCC figure: projected global surface temperature change to 2100 under five emissions scenarios, beside burning-ember bars showing how the risk for five Reasons for Concern rises from undetectable to very high as the world warms."
+          alt: "Printed page from the Summary for Policymakers of the IPCC Working Group II report, Climate Change 2022, showing the figure 'Global and regional risks for increasing levels of global warming': projected warming to 2100 under five emissions scenarios beside burning-ember bars of rising risk for the Reasons for Concern, ecosystems and health."
         },
         {
           src: "images/portfolio/ipcc/IPCC_SROCC_ExtremeSeaLevelEvents.jpg",
           thumb: "images/thumbs/ipcc/IPCC_SROCC_ExtremeSeaLevelEvents.jpg",
-          width: 1500, height: 1425,
+          width: 1500, height: 1500,
           title: "Extreme sea level events",
           client: "IPCC SROCC",
           year: "2019",
-          alt: "IPCC figure: a schematic of how sea level rise turns once-a-century extreme sea levels into yearly events, world maps of the year this happens at coastal locations under RCP8.5 and RCP2.6, and a map of where it comes at least ten years later under RCP2.6."
+          alt: "Printed page from the Summary for Policymakers of the IPCC Special Report on the Ocean and Cryosphere, showing Figure SPM.4, 'Extreme sea level events': a schematic of how sea level rise turns once-a-century extreme sea levels into yearly events, and world maps of when this happens at coastal locations under RCP8.5 and RCP2.6."
         }
       ]
     }
