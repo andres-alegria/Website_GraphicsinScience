@@ -6,18 +6,18 @@
 
 | Path | What it holds |
 | --- | --- |
-| `index.html` | Home: intro, the filterable work grid with a lightbox, stacking story cards, FAQ accordion, contact |
+| `index.html` | Home: intro, every piece on a scattered, drifting wall with a lightbox, stacking story cards, FAQ accordion, contact |
 | `stories.html` | The scrollytelling stories as cards; "Click to start this scrolly" plays the live story inside its card. Plus the interactive 3D maps |
 | `services.html`, `faqs.html`, `contact.html` | Inner pages |
 | `about.html` | Redirects to the home page (kept so old links work) |
 | `js/site-data.js` | **All content**: text, links, the portfolio pieces (title, client, story link, alt text), the stories |
-| `js/main.js` | Renders the pages from that data: header, sections, work grid and filters, lightbox, forms |
-| `js/motion.js` | The animation layer (GSAP): hero reveal, scroll reveals, stacking cards, hiding header. Everything works without it, and it switches itself off for people who prefer reduced motion |
-| `js/vendor/` | GSAP 3.15 and its plugins (ScrollTrigger, Flip, SplitText, Observer), free under the GSAP standard license |
+| `js/main.js` | Renders the pages from that data: header, sections, work wall, lightbox, forms |
+| `js/motion.js` | The animation layer (GSAP): hero reveal, wall parallax, scroll reveals, stacking cards, hiding header. Everything works without it, and it switches itself off for people who prefer reduced motion |
+| `js/vendor/` | GSAP 3.15 and its plugins (ScrollTrigger, SplitText, Observer), free under the GSAP standard license |
 | `css/style.css` | The look: palette, type, layout. Tokens sit at the top of the file |
 | `fonts/` | Public Sans (variable weight), self-hosted |
 | `images/portfolio/<category>/` | Full-size pieces (JPEG/PNG at 1500 px wide, small GIFs, the 3D recordings as MP4) |
-| `images/thumbs/<category>/` | 800 px JPEG copies used in the grid; the lightbox opens the full file |
+| `images/thumbs/<category>/` | 800 px JPEG copies used on the wall; the lightbox opens the full file |
 | `images/about/`, `images/share/` | Portrait (not on the pages at the moment); link-preview image |
 
 ## Editing content
@@ -25,18 +25,17 @@
 Everything editorial lives in `js/site-data.js`.
 
 - **Add a piece**: put the full-size file in `images/portfolio/<category>/`, make an 800 px copy in `images/thumbs/<category>/` (same name, `.jpg`), and add an entry to that category's `items`:
-  `{ src, thumb, width, height, title, client, alt, story: { url, title, date, outlet } }`. Leave `story` out when there is no article.
+  `{ src, thumb, width, height, title, client, alt, story: { url, title, date, outlet } }`. Leave `story` out when there is no article. The wall deals the pieces into its three columns in the order of the file.
 - **Add a video**: use `video` and `poster` instead of `src`; it plays muted on a loop.
-- **Add a before/after slider**: use `compare: [left, right]` instead of `src`, each side `{ src, thumb, alt }`, both images the same size. The card shows them split down the middle; in the lightbox the handle can be dragged.
+- **Add a before/after slider**: use `compare: [left, right]` instead of `src`, each side `{ src, thumb, alt }`, both images the same size. The wall shows them split down the middle; in the lightbox the handle can be dragged.
 - **Add a story**: add an object to `stories.items` (newest first); the three newest also stack on the home page. `embed` is the address of the scrolly itself (the Vercel app the article embeds), which plays inside the card on both pages; leave it out and the card only links to the article. While the pointer is over a playing scrolly the page stays still, so the wheel drives the story.
 - **Change text**: hero, services, FAQs, contact and footer are all named blocks at the top of the file.
-- **How many pieces show before "Show all"**: `work.initial`.
 
 ## Changing the look
 
 - **Colours**: the seven palette tokens at the top of `css/style.css`, plus the role tokens under them. Approved text/background pairings: forest on bone, bone on forest, wine on white, white on teal, teal on white, black on white, bone on black, brown on white. Teal and brown do not pass contrast on bone, which is why links on bone sections are forest.
 - **Type**: `--font` and the `--fs-*` sizes.
-- **Motion**: the durations are marked in `js/motion.js`.
+- **Motion**: the durations and the wall's parallax strengths are marked in `js/motion.js`.
 
 ## Preview locally
 

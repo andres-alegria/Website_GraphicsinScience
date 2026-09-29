@@ -573,114 +573,156 @@ a:hover .arrow::after,
 }
 
 /* ==========================================================================
-   Work grid
+   Work: every piece on a scattered wall (the parallax lives in js/motion.js)
    ========================================================================== */
 
-.chips {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-  margin-bottom: clamp(1.5rem, 3vw, 2.5rem);
+.wall {
+  position: relative;
+  margin-top: -1px; /* overlaps the hero by a pixel so no seam shows between the two dark bands */
+  padding: 0 0 var(--section-y);
+  overflow: clip;
 }
 
-.chip {
-  padding: 0.5em 1em;
-  border: 1px solid var(--line-strong);
-  border-radius: 999px;
-  background: transparent;
-  color: var(--forest);
-  font-size: var(--fs-small);
-  font-weight: 500;
-  cursor: pointer;
-  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
-}
-
-.chip:hover {
-  border-color: var(--teal);
-  color: var(--teal);
-}
-
-.chip[aria-pressed="true"] {
+/* the wall starts inside the hero band and spills out of it */
+.wall::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto;
+  height: clamp(120px, 18vw, 260px); /* adjust how far the dark band reaches into the wall here */
   background: var(--forest);
-  border-color: var(--forest);
-  color: var(--white);
 }
 
-.chip__count {
-  margin-left: 0.4em;
-  opacity: 0.6;
-  font-variant-numeric: tabular-nums;
+.wall__head {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 1rem;
+  color: var(--bone);
+  padding-bottom: clamp(1.2rem, 3vw, 2.4rem);
 }
 
-.work-grid {
-  columns: 3;
-  column-gap: clamp(16px, 2.5vw, 36px);
+.wall__head .label {
+  color: rgb(216 205 185 / 0.75);
 }
 
-.card {
-  break-inside: avoid;
-  margin: 0 0 clamp(20px, 3vw, 40px);
+.wall__head p {
+  margin: 0;
+  font-size: var(--fs-small);
 }
 
-.card[hidden] {
-  display: none;
+.wall__cols {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(14px, 2.5vw, 40px); /* adjust space between columns here */
+  align-items: start;
 }
 
-.card__media {
+.wall__col {
+  display: grid;
+  gap: clamp(16px, 3vw, 48px); /* adjust space between pieces here */
+  will-change: transform;
+}
+
+/* stagger the columns so the wall doesn't start on one line */
+.wall__col:nth-child(2) {
+  padding-top: clamp(40px, 8vw, 140px);
+}
+
+.wall__col:nth-child(3) {
+  padding-top: clamp(20px, 4vw, 70px);
+}
+
+.wall__item {
+  margin: 0;
+}
+
+/* varied sizes: every piece gets a width from this cycle (adjust the percentages here) */
+.wall__item:nth-child(3n + 1) {
+  width: 100%;
+}
+
+.wall__item:nth-child(3n + 2) {
+  width: 62%;
+  margin-left: auto;
+}
+
+.wall__item:nth-child(3n + 3) {
+  width: 82%;
+  margin-inline: auto;
+}
+
+.wall__btn {
   display: block;
   width: 100%;
   padding: 0;
-  border: 1px solid var(--line);
+  border: 0;
   border-radius: var(--radius);
   background: var(--white);
+  box-shadow: var(--shadow);
   overflow: hidden;
   cursor: zoom-in;
-  transition: transform 0.35s var(--ease), box-shadow 0.35s var(--ease), border-color 0.2s ease;
+  transition: transform 0.35s var(--ease), box-shadow 0.35s var(--ease);
 }
 
-.card__media:hover {
-  transform: translateY(-3px);
-  box-shadow: var(--shadow);
-  border-color: var(--line-strong);
+/* the slight lift and zoom on hover */
+.wall__btn:hover {
+  transform: translateY(-4px) scale(1.01); /* adjust hover zoom here */
 }
 
-.card__media img,
-.card__media video {
+.wall__btn img,
+.wall__btn video {
   width: 100%;
   height: auto;
 }
 
-.card__body {
-  padding: 0.7rem 0.15rem 0;
+.wall__caption {
+  margin-top: 0.6rem;
+  font-size: var(--fs-small);
+  color: var(--text);
 }
 
-.card__title {
-  font-size: 0.98rem;
+.wall__caption b {
+  display: block;
   font-weight: 600;
-  line-height: 1.35;
-  letter-spacing: 0;
+  color: var(--heading);
 }
 
-.card__meta {
-  margin: 0.25rem 0 0;
-  font-size: var(--fs-label);
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--brown);
+/* captions appear on hover, so the scattered pictures stay clean */
+@media (hover: hover) {
+  .wall__caption {
+    opacity: 0;
+    transform: translateY(-4px);
+    transition: opacity 0.3s var(--ease), transform 0.3s var(--ease);
+  }
+
+  .wall__item:hover .wall__caption,
+  .wall__item:focus-within .wall__caption {
+    opacity: 1;
+    transform: none;
+  }
 }
 
-.card__meta a {
-  color: var(--teal);
-}
+/* phones: the three columns merge into two plain ones */
+@media (max-width: 767px) {
+  .wall__cols {
+    display: block;
+    columns: 2;
+    column-gap: 14px;
+  }
 
-.card__meta a:hover {
-  color: var(--wine);
-}
+  .wall__col {
+    display: contents;
+  }
 
-.work-empty {
-  padding: 2rem 0;
-  color: var(--brown);
+  .wall__item,
+  .wall__item:nth-child(n) {
+    width: 100%;
+    margin: 0 0 1.2rem;
+    break-inside: avoid;
+  }
 }
 
 /* ==========================================================================
@@ -1163,10 +1205,6 @@ a:hover .arrow::after,
    ========================================================================== */
 
 @media (max-width: 1023px) {
-  .work-grid {
-    columns: 2;
-  }
-
   .footer__inner {
     grid-template-columns: 1fr 1fr;
   }
@@ -1210,10 +1248,6 @@ a:hover .arrow::after,
     position: static;
   }
 
-  .work-grid {
-    columns: 1;
-  }
-
   .footer__inner {
     grid-template-columns: 1fr;
   }
@@ -1247,44 +1281,6 @@ a:hover .arrow::after,
   letter-spacing: 0.04em;
 }
 
-/* filter chips stay reachable while the grid scrolls */
-.chips--sticky {
-  position: sticky;
-  top: var(--header-h);
-  z-index: 20;
-  margin-inline: calc(-1 * var(--gutter));
-  padding: 0.75rem var(--gutter);
-  background: rgb(228 229 225 / 0.94);
-  border-bottom: 1px solid var(--line);
-}
-
-.chips__row {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-}
-
-.work-more {
-  margin: 0.5rem 0 0;
-  text-align: center;
-}
-
-.work-more[hidden] {
-  display: none;
-}
-
-.work-more .button {
-  color: var(--forest);
-}
-
-/* card meta in sentence case; uppercase stays for section labels only */
-.card__meta {
-  text-transform: none;
-  letter-spacing: 0;
-  font-size: var(--fs-small);
-  font-weight: 500;
-}
-
 .lightbox__hint {
   margin: 0.4rem 0 0;
   font-size: var(--fs-label);
@@ -1302,26 +1298,6 @@ a:hover .arrow::after,
   .nav-cta {
     display: none;
   }
-
-  .chips--sticky {
-    padding-block: 0.6rem;
-  }
-
-  .chips__row {
-    flex-wrap: nowrap;
-    overflow-x: auto;
-    scrollbar-width: none;
-    padding-bottom: 2px;
-  }
-
-  .chips__row::-webkit-scrollbar {
-    display: none;
-  }
-
-  .chip {
-    flex: none;
-  }
-
 }
 
 /* ==========================================================================
@@ -1335,11 +1311,6 @@ a:hover .arrow::after,
 
 .stack__more {
   margin: clamp(2rem, 4vw, 3rem) 0 0;
-}
-
-/* filter chips move up when the header has slid away */
-html.header-hidden .chips--sticky {
-  top: 0;
 }
 
 /* back to top */
@@ -1448,7 +1419,7 @@ html.header-hidden .chips--sticky {
   line-height: 1;
 }
 
-.card__media .compare__handle::after {
+.wall__btn .compare__handle::after {
   width: 2rem;
   height: 2rem;
   font-size: 0.85rem;

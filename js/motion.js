@@ -7,7 +7,7 @@
   if (!window.gsap) return;
 
   const { gsap } = window;
-  const plugins = [window.ScrollTrigger, window.Flip, window.SplitText, window.Observer].filter(Boolean);
+  const plugins = [window.ScrollTrigger, window.SplitText, window.Observer].filter(Boolean);
   gsap.registerPlugin(...plugins);
 
   const mm = gsap.matchMedia();
@@ -70,6 +70,19 @@
     }
 
     return () => document.documentElement.classList.remove("js-motion");
+  });
+
+  // ---- Work wall: the three columns drift at different speeds (wide screens; phones get two still columns) ----
+  mm.add("(min-width: 768px) and (prefers-reduced-motion: no-preference)", () => {
+    const wall = document.querySelector(".wall");
+    if (!wall || !window.ScrollTrigger) return;
+    const speeds = [-90, -260, -170]; // adjust parallax strength per column here (px)
+    wall.querySelectorAll(".wall__col").forEach((col, i) => {
+      gsap.fromTo(col, { y: -speeds[i] * 0.35 }, {
+        y: speeds[i], ease: "none",
+        scrollTrigger: { trigger: wall, start: "top bottom", end: "bottom top", scrub: 0.6 }
+      });
+    });
   });
 
   // ---- Home: story cards stack; each one shrinks back as the next slides over it ----

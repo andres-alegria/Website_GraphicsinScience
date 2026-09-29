@@ -30,12 +30,10 @@ window.SITE = {
     ]
   },
 
+  // every portfolio piece below, shown on the scattered wall in the order of the file
   work: {
     label: "Example",
-    title: "Maps, charts, diagrams and stories",
-    intro: "Open any of them to read it at full size.",
-    showMore: "Show all {count} pieces",
-    initial: 18
+    intro: "Open any of them to read it at full size."
   },
 
   storiesTeaser: {
@@ -155,8 +153,8 @@ window.SITE = {
       }
     ],
     interactive: {
-      label: "Interactive 3D maps",
-      title: "Seafloors you can turn around",
+      label: "Interactive 3D map",
+      title: "A seafloor you can turn around",
       intro: "Bathymetry built from open elevation data, rendered in the browser."
     }
   },
@@ -269,15 +267,6 @@ window.SITE = {
           alt: "Map of the Karipuna Indigenous Territory in Rondônia, Brazil, showing tree cover loss from January 2019 to July 2025 in pink, main road network in yellow, and a house recently built by an invader marked with a dot. The map indicates over 10,000 hectares impacted by illegal activities, with a scale of 20 km. The map source is Google Earth and Global Forest Watch."
         },
         {
-          src: "images/portfolio/maps/2025_61_AA_Chimpanzee_v1.jpg",
-          thumb: "images/thumbs/maps/2025_61_AA_Chimpanzee_v1.jpg",
-          width: 1500, height: 1200,
-          title: "Ranges of the four chimpanzee subspecies",
-          client: "Mongabay",
-          story: { url: "https://news.mongabay.com/2025/05/fighting-back-against-guinea-bissaus-illegal-chimpanzee-trade/", title: "Fighting back against Guinea-Bissau’s illegal chimpanzee trade", date: "2025-05-29", outlet: "Mongabay" },
-          alt: "Map showing the geographic range of four subspecies of common chimpanzee. Red for Pan troglodytes verus across Guinea, Sierra Leone, Liberia, and Côte d'Ivoire. Orange for P. troglodytes ellioti in Cameroon. Yellow for P. troglodytes troglodytes across Gabon, Equatorial Guinea, Cameroon, Sao Tome and Principe, and parts of Congo. Purple for P. troglodytes schweinfurthii covering Uganda, Rwanda, Burundi, Tanzania, and parts of Congo. Gray indicates protected areas."
-        },
-        {
           src: "images/portfolio/maps/2025_92_AA_CITES_Leopards_Map_v2.jpg",
           thumb: "images/thumbs/maps/2025_92_AA_CITES_Leopards_Map_v2.jpg",
           width: 1500, height: 1200,
@@ -285,15 +274,6 @@ window.SITE = {
           client: "Mongabay",
           story: { url: "https://news.mongabay.com/2025/06/forgotten-leopards-being-driven-to-silent-extinction-by-poaching-and-trade/", title: "‘Forgotten’ leopards being driven to silent extinction by poaching and trade", date: "2025-06-26", outlet: "Mongabay" },
           alt: "Map showing global trade flow of leopards based on permits issued between 2000 and 2024, with major hotspots in South Africa, Zimbabwe, and Namibia, and the US as a top importer, sourced from CITES."
-        },
-        {
-          src: "images/portfolio/maps/2025_76_AA_DRC_New_Oil_Blocks_v3.jpg",
-          thumb: "images/thumbs/maps/2025_76_AA_DRC_New_Oil_Blocks_v3.jpg",
-          width: 1500, height: 1200,
-          title: "New oil blocks in the DRC",
-          client: "Mongabay Afrique",
-          story: { url: "https://fr.mongabay.com/2025/05/rdc-la-societe-civile-soppose-a-louverture-de-52-nouveaux-blocs-petroliers/", title: "RDC : La société civile s’oppose à l’ouverture de 52 nouveaux blocs pétroliers", date: "2025-05-22", outlet: "Mongabay Afrique" },
-          alt: "Map of the Democratic Republic of Congo showing new oil exploration blocks, existing protected areas, and the Kinshasa-Kivu Green Corridor project area, with label for Kinsasha and Muanda along the coastline."
         },
         {
           src: "images/portfolio/maps/2025_113_AA_Nashulai_v2.jpg",
@@ -312,15 +292,6 @@ window.SITE = {
           client: "Mongabay",
           story: { url: "https://news.mongabay.com/custom-story/2026/03/chinas-deep-sea-mining-fleet-may-also-track-us-submarines/", title: "China’s deep-sea mining fleet may also track US submarines", date: "2026-03-24", outlet: "Mongabay" },
           alt: "Map of the western Pacific showing the track of the Chinese research vessel Xiang Yang Hong 06 as it nears US territories, including Guam."
-        },
-        {
-          src: "images/portfolio/maps/2025_19_Nepal_Elephants_v2.jpg",
-          thumb: "images/thumbs/maps/2025_19_Nepal_Elephants_v2.jpg",
-          width: 1500, height: 1000,
-          title: "Elephant migration routes on the Nepal border",
-          client: "Mongabay",
-          story: { url: "https://news.mongabay.com/2025/01/how-a-nepali-border-village-learned-to-live-with-migratory-wild-elephants/", title: "How a Nepali border village learned to live with migratory wild elephants", date: "2025-01-30", outlet: "Mongabay" },
-          alt: "Map of Nepal showing protected areas, road network, traditional elephant migration route, and key locations such as Shuklaphanta, Bardia National Park, Chitwan National Park, Kathmandu, Sundar Haricha, and Bahundangi. The map includes a small inset world map highlighting Nepal's location."
         },
         {
           src: "images/portfolio/maps/2025_59_AA_Thailand_Dugongs_v4.jpg",
@@ -354,109 +325,6 @@ window.SITE = {
           client: "Mongabay",
           story: { url: "https://news.mongabay.com/2026/02/big-biodiversity-goals-run-up-against-small-funding-realities/", title: "Big biodiversity goals run up against small funding realities", date: "2026-02-25", outlet: "Mongabay" },
           alt: "Chart of biodiversity conservation funding: progress toward the $30 billion goal of the Kunming-Montreal Global Biodiversity Framework, and the gaps that remain on other targets."
-        }
-      ]
-    },
-    {
-      id: "ipcc",
-      title: "IPCC report figures",
-      blurb: "Figures from the IPCC Sixth Assessment Report, Working Group II.",
-      items: [
-        {
-          src: "images/portfolio/ipcc/ipcc-06.jpg",
-          thumb: "images/thumbs/ipcc/ipcc-06.jpg",
-          width: 1500, height: 1620,
-          title: "Reindeer herding under climate pressure, Sweden",
-          client: "IPCC AR6 WGII",
-          alt: "Map of Sweden showing reindeer herding areas with a list of factors affecting indigenous reindeer livelihood, weather condition impacts, effects on people and animals, and land pressure effects, with icons indicating impacts and their severity."
-        },
-        {
-          src: "images/portfolio/ipcc/ipcc-08.jpg",
-          thumb: "images/thumbs/ipcc/ipcc-08.jpg",
-          width: 1500, height: 1620,
-          title: "Projected risks for 65 European cities",
-          client: "IPCC AR6 WGII",
-          alt: "A chart showing projected changes in risk levels of pluvial flooding, extreme heat, and meteorological drought across 65 European cities over mid and far future periods. The chart uses colored dots and shaded areas to indicate risk levels, population size, and European regions."
-        },
-        {
-          src: "images/portfolio/ipcc/ipcc-05.jpg",
-          thumb: "images/thumbs/ipcc/ipcc-05.jpg",
-          width: 1500, height: 1620,
-          title: "Sea level rise and flooding in Venice, 1900–2020",
-          client: "IPCC AR6 WGII",
-          alt: "A detailed infographic showing the relationship between sea level rise and flooding in Venice from 1900 to 2020. The upper section illustrates rising relative sea levels, flood events, and significant water management milestones. The middle section projects future sea level rises with confidence ranges and milestones for lagoon closures. The lower section visualizes projected sea level rises in Venice with confidence intervals. The right side features a satellite map of Venice highlighting key features like the city center, lagoon, barrier islands, and inlets connecting to the sea, with annotations explaining flood prevention infrastructure."
-        },
-        {
-          src: "images/portfolio/ipcc/ipcc-07.jpg",
-          thumb: "images/thumbs/ipcc/ipcc-07.jpg",
-          width: 1500, height: 1620,
-          title: "Relative risk by sector and hazard, North America",
-          client: "IPCC AR6 WGII",
-          alt: "A detailed chart titled 'Rapid assessment of relative risk by sector and climate hazard for North America,' showing levels of risk for various sectors and hazards using colored squares to indicate risk levels, with legend indicating purple for very high, red for high, yellow for moderate, and white for not applicable or not assessed."
-        },
-        {
-          src: "images/portfolio/ipcc/ipcc-04.jpg",
-          thumb: "images/thumbs/ipcc/ipcc-04.jpg",
-          width: 1500, height: 1620,
-          title: "Climate risks to hydropower and irrigation in Africa",
-          client: "IPCC AR6 WGII",
-          alt: "Map and charts illustrating climate risks to hydropower and irrigation in Africa, including distribution of hydropower plants, correlation of river flows, capacity, forecast revenues, and irrigation data for major river basins like Congo, Nile, Zambezi, Niger, and Senegal."
-        },
-        {
-          src: "images/portfolio/ipcc/ipcc-03.jpg",
-          thumb: "images/thumbs/ipcc/ipcc-03.jpg",
-          width: 1500, height: 1620,
-          title: "How climate change affects food security through water",
-          client: "IPCC AR6 WGII",
-          alt: "A detailed infographic explaining how climate change impacts food security through water issues, divided into three sections. The first section shows a timeline of food production loss events from 1970 to 2013, highlighting an increase in drought-related and other climate-related events. The second section projects the rise of land and population affected by droughts from 2006 to 2099. The third section compares impacts across regions and water systems on crop yield and water quality, with various symbols indicating positive or negative influences and confidence levels."
-        },
-        {
-          src: "images/portfolio/ipcc/ipcc-02.jpg",
-          thumb: "images/thumbs/ipcc/ipcc-02.jpg",
-          width: 1500, height: 1620,
-          title: "Observed impacts on ecosystems and human systems",
-          client: "IPCC AR6 WGII",
-          alt: "A detailed infographic showing the impacts of climate change on ecosystems and human systems worldwide, divided into sections for impacts on ecosystems and human systems, with various geographic regions and categories."
-        },
-        {
-          src: "images/portfolio/ipcc/ipcc-09.jpg",
-          thumb: "images/thumbs/ipcc/ipcc-09.jpg",
-          width: 1500, height: 1620,
-          title: "Risk management options across sectors",
-          client: "IPCC AR6 WGII",
-          alt: "Chart illustrating risk management options in society, categorized by risk type such as coastal systems, ecosystems, infrastructure, health, food security, water security, peace, and migration, with color-coded confidence levels and governance responsibilities."
-        },
-        {
-          src: "images/portfolio/ipcc/ipcc-13.jpg",
-          thumb: "images/thumbs/ipcc/ipcc-13.jpg",
-          width: 1500, height: 1620,
-          title: "Global economic impact estimates by warming level",
-          client: "IPCC AR6 WGII",
-          alt: "Graph titled 'Global aggregate economic impact estimates by global warming level' showing multiple charts. The first four show estimated percentage loss in global GDP relative to global temperature increase, using different modeling methods: statistical, structural, meta-analyses, and AR5 methods. The fifth chart shows global average temperature change over time at different warming levels, with projections for near 2000s, mid-2050s, and long 2090s, color-coded by warming levels from 1.9°C to 5.8°C."
-        },
-        {
-          src: "images/portfolio/ipcc/ipcc-10.jpg",
-          thumb: "images/thumbs/ipcc/ipcc-10.jpg",
-          width: 1500, height: 1620,
-          title: "The urban adaptation gap by region",
-          client: "IPCC AR6 WGII",
-          alt: "A chart displaying the urban adaptation gap to current climate risks across different regions and adaptation actions, with categories including Africa, Asia, Australasia, the Americas, Europe, North America, and Small Islands. The chart compares high and lower income exposure populations and shows adaptation measures for flood, storm, heatwaves, water, and food security."
-        },
-        {
-          src: "images/portfolio/ipcc/ipcc-11.jpg",
-          thumb: "images/thumbs/ipcc/ipcc-11.jpg",
-          width: 1500, height: 1620,
-          title: "Financial linkages spreading flood costs from Europe",
-          client: "IPCC AR6 WGII",
-          alt: "Diagram illustrating how European regions are connected through financial linkages that distribute flood damage costs to other parts of the world. The diagram shows arcs from Europe to regions worldwide, with bubbles representing costs in millions of USD, highlighting the impact of flood risks and adaptation levels."
-        },
-        {
-          src: "images/portfolio/ipcc/ipcc-12.jpg",
-          thumb: "images/thumbs/ipcc/ipcc-12.jpg",
-          width: 1500, height: 1620,
-          title: "Projected warming and reasons for concern",
-          client: "IPCC AR6 WGII",
-          alt: "A scientific chart showing projected global temperature change from 1950 to 2100 under different scenarios, with risk levels for climate concerns indicated by color-coded bars representing very high, high, moderate, and undetectable risks. The chart also lists reasons for concern related to climate impacts, such as systems threatened and impacts magnitude."
         }
       ]
     },
@@ -524,69 +392,6 @@ window.SITE = {
       ]
     },
     {
-      id: "schematics",
-      title: "Schematics",
-      blurb: "Diagrams that explain processes, systems and governance for scientific reports.",
-      items: [
-        {
-          src: "images/portfolio/schematics/schematics-05.jpg",
-          thumb: "images/thumbs/schematics/schematics-05.jpg",
-          width: 1500, height: 1200,
-          title: "Co-production of knowledge systems",
-          client: "Report figure",
-          alt: "Diagram showing the co-production and evolution of knowledge systems over time, with three stages labeled (a), (b), and (c). Each stage features stylized plant-like structures representing independently available knowledge systems, with an overlay of co-produced knowledge at the top, and an arrow indicating the trajectory of knowledge systems over time."
-        },
-        {
-          src: "images/portfolio/schematics/schematics-04.jpg",
-          thumb: "images/thumbs/schematics/schematics-04.jpg",
-          width: 1500, height: 1200,
-          title: "Governance of the ocean, coasts and cryosphere",
-          client: "Report figure",
-          alt: "Flowchart illustrating governance of the ocean, coasts, and cryosphere under a changing climate, showing levels from local to global, including organizations, governments, indigenous bodies, and global institutions."
-        },
-        {
-          src: "images/portfolio/schematics/schematics-03.jpg",
-          thumb: "images/thumbs/schematics/schematics-03.jpg",
-          width: 1500, height: 1200,
-          title: "Ocean processes, in cross-section",
-          client: "Report figure",
-          alt: "Schematic cross-section of ocean processes and the features they act on, with a colour-coded legend."
-        },
-        {
-          src: "images/portfolio/schematics/schematics-07.jpg",
-          thumb: "images/thumbs/schematics/schematics-07.jpg",
-          width: 1500, height: 1200,
-          title: "Climate change effects on deep-ocean ecosystems",
-          client: "Report figure",
-          alt: "Diagram showing effects of climate change on ocean ecosystems and biogeochemical processes, including impacts on canyon, slope, and seamount ecosystems, with labels for different ocean zones, features, and effects."
-        },
-        {
-          src: "images/portfolio/schematics/schematics-06.jpg",
-          thumb: "images/thumbs/schematics/schematics-06.jpg",
-          width: 1500, height: 1200,
-          title: "Glacier and ice sheet processes",
-          client: "Report figure",
-          alt: "Diagram of glacier and ice sheet processes, showing ice flow, melting, calving, and sea level changes with color-coded elements and symbols."
-        },
-        {
-          src: "images/portfolio/schematics/schematics-02.jpg",
-          thumb: "images/thumbs/schematics/schematics-02.jpg",
-          width: 1500, height: 1200,
-          title: "Human impacts and knowledge gaps in the deep sea",
-          client: "Report figure",
-          alt: "Diagram illustrating human impacts and knowledge gaps in the deep sea, including activities like fishing, oil extraction, pollution, and mining affecting different benthic zones, with sections on environmental stratification, ecosystem services, and governance institutions."
-        },
-        {
-          src: "images/portfolio/schematics/schematic-1.jpg",
-          thumb: "images/thumbs/schematics/schematic-1.jpg",
-          width: 1500, height: 1200,
-          title: "From deforestation to climate impacts",
-          client: "Report figure",
-          alt: "Diagram illustrating the cycle from deforestation to climate impacts, emphasizing how community conservation efforts and sustainable infrastructure can mitigate deforestation, restore ecosystems, and reduce climate change effects."
-        }
-      ]
-    },
-    {
       id: "dashboards",
       title: "Dashboards",
       blurb: "Interactive Tableau dashboards embedded in news coverage.",
@@ -638,15 +443,6 @@ window.SITE = {
           client: "Mongabay",
           story: { url: "https://news.mongabay.com/2025/12/deep-sea-mining-interests-raise-alarms-among-mariana-trench-communities/", title: "The Mariana Trench in 3D", date: null, outlet: "Mongabay" },
           alt: "Animated 3D map of the Mariana Trench seafloor, turning to show the deep-sea mining areas under discussion."
-        },
-        {
-          video: "images/portfolio/3d-maps/Honduras.mp4",
-          poster: "images/portfolio/3d-maps/Honduras-poster.jpg",
-          width: 640, height: 576,
-          title: "The Honduran Caribbean seafloor in 3D",
-          client: "Independent",
-          story: { url: "https://honduras.pubpub.org", title: "The Honduran Caribbean seafloor in 3D", date: null, outlet: "Independent" },
-          alt: "Animated 3D map of the seafloor off Honduras’ Caribbean coast, with Roatán, Utila and Guanaja rising from the shelf."
         }
       ]
     },

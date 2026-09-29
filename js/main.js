@@ -34,10 +34,10 @@
   const allItems = () => SITE.portfolio.flatMap((sec) => sec.items.map((item) => ({ ...item, category: sec.id, categoryTitle: sec.title })));
 
   // Before/after slider: compare[0] shows left of the handle, compare[1] right of it.
-  // The card shows the 800 px thumbs split down the middle; the lightbox version (full = true) can be dragged.
+  // The wall shows the 800 px thumbs split down the middle; the lightbox version (full = true) can be dragged.
   const compareHtml = (item, full = false) => {
     const [left, right] = item.compare;
-    const tag = full ? "div" : "span"; // cards are buttons, so only inline elements inside
+    const tag = full ? "div" : "span"; // wall pieces are buttons, so only inline elements inside
     const img = (side, cls = "") => html`<img${cls} src="${full ? side.src : side.thumb || side.src}" width="${item.width}" height="${item.height}" alt="${escapeHtml(side.alt)}" ${full ? "" : 'loading="lazy"'} decoding="async">`;
     return html`<${tag} class="compare${full ? " lightbox__media lightbox__compare" : ""}" style="--pos: 50%; --ratio: ${item.width / item.height}">
       ${img(right)}${img(left, ' class="compare__top"')}
@@ -46,7 +46,7 @@
     </${tag}>`;
   };
 
-  // Media markup for the work grid and story cards: the 800 px thumb when there is one, the full file in the lightbox
+  // Media markup for the work wall and story cards: the 800 px thumb when there is one, the full file in the lightbox
   const mediaHtml = (item) =>
     item.compare
       ? compareHtml(item)
@@ -305,95 +305,40 @@
       </div>`));
   }
 
+  // Every piece on a scattered wall: three columns that drift at different speeds as the page scrolls
+  // (js/motion.js); on phones they merge into two (css). A click opens the piece in the lightbox.
   function renderWork(main) {
     const items = allItems();
-    const cats = SITE.portfolio.map((s) => ({ id: s.id, title: s.title, count: s.items.length }));
-    const chips = [{ id: "all", title: "All", count: items.length }, ...cats]
-      .map((c) => html`<button class="chip" type="button" data-cat="${c.id}" aria-pressed="${c.id === "all"}">${escapeHtml(c.title)}<span class="chip__count">${c.count}</span></button>`)
-      .join("");
-    const cards = items.map((item, i) => html`
-      <article class="card reveal" data-cat="${item.category}" data-index="${i}">
-        <button class="card__media" type="button" aria-label="Open ${escapeHtml(item.title)}">${mediaHtml(item)}</button>
-        <div class="card__body">
-          <h3 class="card__title">${escapeHtml(item.title)}</h3>
-          <p class="card__meta">${escapeHtml(metaLine(item))}${item.story && item.story.url ? html` · <a href="${item.story.url}" target="_blank" rel="noopener">Story ↗</a>` : ""}</p>
-        </div>
-      </article>`).join("");
-
-    const el = section("section work", html`
+    const cols = [[], [], []];
+    items.forEach((item, i) => cols[i % 3].push(i));
+    const colHtml = cols.map((col) => html`
+      <div class="wall__col">${col.map((i) => html`
+        <figure class="wall__item reveal">
+          <button class="wall__btn" type="button" data-index="${i}" aria-label="Open ${escapeHtml(items[i].title)}">${mediaHtml(items[i])}</button>
+          <figcaption class="wall__caption"><b>${escapeHtml(items[i].title)}</b>${escapeHtml(metaLine(items[i]))}</figcaption>
+        </figure>`).join("")}</div>`).join("");
+    const el = section("wall", html`
       <div class="wrap">
-        ${sectionHead(SITE.work.label, SITE.work.title, escapeHtml(SITE.work.intro))}
-        <div class="chips chips--sticky" role="group" aria-label="Filter by type"><div class="chips__row">${chips}</div></div>
-        <p class="label work__blurb" aria-live="polite"></p>
-        <div class="work-grid">${cards}</div>
-        <p class="work-more"><button class="button button--ghost" type="button">${escapeHtml(SITE.work.showMore.replace("{count}", items.length))}</button></p>
+        <div class="wall__head"><p class="label">${escapeHtml(SITE.work.label)}</p><p>${escapeHtml(SITE.work.intro)}</p></div>
+        <div class="wall__cols">${colHtml}</div>
       </div>`, { id: "work" });
     main.appendChild(el);
 
-    const grid = el.querySelector(".work-grid");
-    const blurb = el.querySelector(".work__blurb");
-    const more = el.querySelector(".work-more");
-    const cardEls = [...grid.querySelectorAll(".card")];
-    const visibleItems = () => cardEls.filter((c) => !c.hidden).map((c) => items[+c.dataset.index]);
-    const initial = SITE.work.initial || items.length;
-    let expanded = initial >= items.length;
-    let current = "all";
-
-    // slider cards: the split follows the mouse across the picture
-    grid.addEventListener("pointermove", (e) => {
+    el.addEventListener("click", (e) => {
+      const btn = e.target.closest(".wall__btn");
+      if (btn) lightbox.open(items, +btn.dataset.index);
+    });
+    // slider pieces: the split follows the mouse across the picture
+    el.addEventListener("pointermove", (e) => {
       const cmp = e.target.closest(".compare");
       if (!cmp || e.pointerType !== "mouse") return;
       const r = cmp.getBoundingClientRect();
       cmp.style.setProperty("--pos", ((e.clientX - r.left) / r.width) * 100 + "%");
     });
-    grid.addEventListener("pointerout", (e) => {
+    el.addEventListener("pointerout", (e) => {
       const cmp = e.target.closest(".compare");
       if (cmp && !cmp.contains(e.relatedTarget)) cmp.style.setProperty("--pos", "50%");
     });
-
-    grid.addEventListener("click", (e) => {
-      const btn = e.target.closest(".card__media");
-      if (!btn) return;
-      const list = visibleItems();
-      const item = items[+btn.closest(".card").dataset.index];
-      lightbox.open(list, list.indexOf(item));
-    });
-
-    const applyFilter = (cat) => {
-      current = cat;
-      const Flip = window.Flip;
-      const state = Flip && !reduceMotion ? Flip.getState(cardEls) : null;
-      let shownCount = 0;
-      cardEls.forEach((c) => {
-        const inCat = cat === "all" || c.dataset.cat === cat;
-        // "All" starts with a first page of cards; the button below the grid opens the rest
-        c.hidden = !inCat || (cat === "all" && !expanded && shownCount >= initial);
-        if (!c.hidden) shownCount++;
-      });
-      more.hidden = !(cat === "all" && !expanded);
-      const sec = SITE.portfolio.find((s) => s.id === cat);
-      blurb.textContent = sec ? sec.blurb : "";
-      el.querySelectorAll(".chip").forEach((chip) => chip.setAttribute("aria-pressed", String(chip.dataset.cat === cat)));
-      if (state) {
-        const shown = cardEls.filter((c) => !c.hidden);
-        Flip.from(state, {
-          duration: 0.55, ease: "power2.inOut", stagger: 0.012, absolute: false,
-          onEnter: (els) => window.gsap.fromTo(els, { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.45, ease: "power2.out" }),
-          onLeave: (els) => window.gsap.to(els, { opacity: 0, duration: 0.25 }),
-          onComplete: () => {
-            // cards that had not scrolled into view yet would otherwise keep their hidden reveal state
-            window.gsap.set(shown, { opacity: 1, y: 0 });
-            if (window.ScrollTrigger) window.ScrollTrigger.refresh();
-          }
-        });
-      }
-    };
-    el.querySelector(".chips").addEventListener("click", (e) => {
-      const chip = e.target.closest(".chip");
-      if (chip) applyFilter(chip.dataset.cat);
-    });
-    more.querySelector("button").addEventListener("click", () => { expanded = true; applyFilter(current); });
-    applyFilter("all");
   }
 
   function renderStoriesTeaser(main) {
