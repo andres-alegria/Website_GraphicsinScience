@@ -98,6 +98,7 @@ window.SITE = {
         outlet: "Mongabay",
         date: "2026-09-14",
         url: "https://news.mongabay.com/custom-story/2026/09/can-we-stop-ships-from-killing-the-mediterraneans-last-great-whales/",
+        embed: "https://scrollymap2026whalecollisions.vercel.app/", // the scrolly itself, played inside the card
         tools: "Mapbox GL · React · GSAP · Global Fishing Watch data",
         image: { src: "images/portfolio/storymaps/Scrolly_Collision.jpg", width: 1500, height: 867, alt: "Opening screen of “Collision course”: a ship and a whale on converging tracks in the Mediterranean." }
       },
@@ -107,6 +108,7 @@ window.SITE = {
         outlet: "Mongabay India",
         date: "2026-05-19",
         url: "https://india.mongabay.com/2026/05/what-a-coastal-zoning-map-leaves-out-explained-through-maps/",
+        embed: "https://scrolly-map-2026-map-scale.vercel.app/", // the scrolly itself, played inside the card
         tools: "Mapbox GL · React · GSAP",
         image: { src: "images/portfolio/storymaps/Scrolly.png", width: 1500, height: 874, alt: "Opening screen of “What does a map miss?”, over a coastal zoning map." }
       },
@@ -116,6 +118,7 @@ window.SITE = {
         outlet: "Mongabay",
         date: "2026-03-24",
         url: "https://news.mongabay.com/custom-story/2026/03/chinas-deep-sea-mining-fleet-may-also-track-us-submarines/",
+        embed: "https://scrolly-map-2026-china-vessels-v2.vercel.app/", // the scrolly itself, played inside the card
         tools: "Mapbox GL · React · GSAP · AIS vessel tracks",
         image: { src: "images/portfolio/storymaps/Scrolly_Dual.jpg", width: 1500, height: 867, alt: "Opening screen of “Dual-purpose?”, over a photograph of the seabed." }
       },
@@ -125,6 +128,7 @@ window.SITE = {
         outlet: "Mongabay India",
         date: "2025-11-11",
         url: "https://india.mongabay.com/2025/11/quarries-devour-buffer-forests-of-western-ghats-after-sand-mining-ban/",
+        embed: "https://mongabay-scrolly-map-2025-m-sand.vercel.app/", // the scrolly itself, played inside the card
         tools: "Mapbox GL · React",
         image: { src: "images/portfolio/storymaps/StoryMap_1.png", width: 1500, height: 867, alt: "Opening screen of “Shifting Sands”, over an aerial view of a quarry." }
       },
@@ -134,6 +138,7 @@ window.SITE = {
         outlet: "Mongabay",
         date: "2025-09-18",
         url: "https://news.mongabay.com/custom-story/2025/09/satellite-images-reveal-oil-project-surge-in-ugandan-park-and-wetland/",
+        embed: "https://mongabay-scrolly-map-2025-pipelines-three.vercel.app/", // the scrolly itself, played inside the card
         tools: "Mapbox GL · React · satellite imagery",
         extra: { label: "Also published in French", url: "https://fr.mongabay.com/custom-story/2025/10/ouganda-des-images-satellites-revelent-lexpansion-dun-projet-petrolier-dans-un-parc-et-une-zone-humide/" },
         image: { src: "images/portfolio/storymaps/ScrollyMap_1.png", width: 1500, height: 868, alt: "Opening screen of “Clearing the Way”, over a forest photograph." }
@@ -144,6 +149,7 @@ window.SITE = {
         outlet: "Mongabay",
         date: "2025-09-09",
         url: "https://news.mongabay.com/2025/09/cambodian-irrigation-dam-construction-threatens-riverine-communities-in-the-cardamoms/",
+        embed: "https://mongabay-scrolly-map-2025-cambodia.vercel.app/", // the scrolly itself, played inside the card
         tools: "Mapbox GL · React",
         image: { src: "images/portfolio/storymaps/ScrollyMap_2.png", width: 1500, height: 870, alt: "Opening screen of “Damming the Arai River”, over a river landscape." }
       }
@@ -254,23 +260,6 @@ window.SITE = {
           alt: "Map of Brazil showing protected areas and Indigenous Territories in light green, the Tocantins River Basin in pink, and the Tocantins River, Araguaia River, and mouth of the Tocantins River. There is a label indicating a 35 km strip of Pedral do Lourenço to be blasted for a natural rock barrier. Text explains the Brazilian plan to blast 35 km of Pedral do Lourenço on the Tocantins River to enable boats to pass during dry season, with sources listed as WDPA and LandMark 2024. Scale bars for 500 km and 500 miles are at the bottom right."
         },
         {
-          src: "images/portfolio/maps/2025_78_AA_Brazil_Eucalyptus_v2.gif",
-          width: 1350, height: 1080,
-          title: "Eucalyptus expansion in Mato Grosso do Sul, 2010–2023",
-          client: "Mongabay",
-          story: { url: "https://news.mongabay.com/short-article/2025/06/eucalyptus-boom-in-brazils-cerrado-dries-up-springs-forces-out-smallholders/", title: "Eucalyptus boom in Brazil’s Cerrado dries up springs, forces out smallholders", date: "2025-06-06", outlet: "Mongabay" },
-          alt: "Map showing eucalyptus plantation areas in Mato Grosso do Sul, Brazil, with locations labeled as Ribas do Rio Pardo, Água Clara, Selvíria, Três Lagoas, and Brasilândia. The map highlights the increase in plantation area from 2010 to 2023 and shows the Paraná River."
-        },
-        {
-          src: "images/portfolio/maps/2025_95_AA_Panama_Darien_v3.jpg",
-          thumb: "images/thumbs/maps/2025_95_AA_Panama_Darien_v3.jpg",
-          width: 1500, height: 1200,
-          title: "The Darién Gap and its protected areas",
-          client: "Mongabay",
-          story: { url: "https://news.mongabay.com/2025/06/panama-boosts-protections-in-the-darien-gap-but-deforestation-threats-still-loom/", title: "Panama boosts protections in the Darién Gap, but deforestation threats still loom", date: "2025-06-24", outlet: "Mongabay" },
-          alt: "Map of the Darien Gap region highlighting areas in Panama and Colombia, showing the Darien National Park in Panama, parts of the Comarca Emberá Wounaan and Guna Yala regions, and the main road network."
-        },
-        {
           src: "images/portfolio/maps/2025_104_AA_Brazil_Karipuna_v3_Map.jpg",
           thumb: "images/thumbs/maps/2025_104_AA_Brazil_Karipuna_v3_Map.jpg",
           width: 1500, height: 1200,
@@ -287,33 +276,6 @@ window.SITE = {
           client: "Mongabay",
           story: { url: "https://news.mongabay.com/2025/05/fighting-back-against-guinea-bissaus-illegal-chimpanzee-trade/", title: "Fighting back against Guinea-Bissau’s illegal chimpanzee trade", date: "2025-05-29", outlet: "Mongabay" },
           alt: "Map showing the geographic range of four subspecies of common chimpanzee. Red for Pan troglodytes verus across Guinea, Sierra Leone, Liberia, and Côte d'Ivoire. Orange for P. troglodytes ellioti in Cameroon. Yellow for P. troglodytes troglodytes across Gabon, Equatorial Guinea, Cameroon, Sao Tome and Principe, and parts of Congo. Purple for P. troglodytes schweinfurthii covering Uganda, Rwanda, Burundi, Tanzania, and parts of Congo. Gray indicates protected areas."
-        },
-        {
-          src: "images/portfolio/maps/2025_70_AA_Ecuador_v5.jpg",
-          thumb: "images/thumbs/maps/2025_70_AA_Ecuador_v5.jpg",
-          width: 1500, height: 1200,
-          title: "Overlapping Indigenous claims in Cuyabeno, Ecuador",
-          client: "Mongabay",
-          story: { url: "https://news.mongabay.com/2025/07/ecuadors-government-promised-same-land-in-the-amazon-to-two-indigenous-peoples/", title: "Ecuador’s government promised same land in the Amazon to two Indigenous peoples", date: "2025-07-14", outlet: "Mongabay" },
-          alt: "Map of indigenous lands within the Cuyabeno Wildlife Reserve in Ecuador, highlighting disputed indigenous territories in yellow, indigenous territories in grey with diagonal lines, and protected areas in dark green. The map also shows neighboring countries, including Colombia, Peru, and Ecuador, with a small globe icon indicating the Northern Ecuadorian Amazon."
-        },
-        {
-          src: "images/portfolio/maps/2025_85_AA_Thailand_MaeLaLuang_v3.jpg",
-          thumb: "images/thumbs/maps/2025_85_AA_Thailand_MaeLaLuang_v3.jpg",
-          width: 1500, height: 1200,
-          title: "A fluorite mine and the Mae La Luang River, Thailand",
-          client: "Mongabay",
-          story: { url: "https://news.mongabay.com/2025/06/mining-company-returns-to-haunt-thailands-karen-communities-as-resistance-mounts/", title: "Mining company returns to haunt Thailand’s Karen communities as resistance mounts", date: "2025-06-04", outlet: "Mongabay" },
-          alt: "Map highlighting the Mae La Noi district in northern Thailand and the Mae La Luang River, with proposed fluoride mine locations and main road network, warning about contamination risks."
-        },
-        {
-          src: "images/portfolio/maps/2025_75_AA_Brazil_Bioceanic_Railway_v7.jpg",
-          thumb: "images/thumbs/maps/2025_75_AA_Brazil_Bioceanic_Railway_v7.jpg",
-          width: 1500, height: 1200,
-          title: "The Bioceanic Corridor: Chancay to Ilhéus",
-          client: "Mongabay",
-          story: { url: "https://news.mongabay.com/2025/06/brazil-china-megarailway-raises-deforestation-warnings-in-the-amazon/", title: "Brazil & China megarailway raises deforestation warnings in the Amazon", date: "2025-06-16", outlet: "Mongabay" },
-          alt: "Map showing a planned railway corridor connecting Chancay Port in Peru to Ilhéus in Brazil, passing through Cusco, Rio Branco, Porto Velho, Lucas do Rio Verde, and Mara Rosa, with different lines indicating existing and planned railways in South America."
         },
         {
           src: "images/portfolio/maps/2025_92_AA_CITES_Leopards_Map_v2.jpg",
@@ -343,15 +305,6 @@ window.SITE = {
           alt: "Map showing the Nashulai Maasai Conservancy in Kenya, its protected areas, and its boundaries within the Greater Serengeti-Mara Ecosystem, with main roads and the Kenya-Tanzania border indicated."
         },
         {
-          src: "images/portfolio/maps/2025_65_AA_DRC_v1_EN.jpg",
-          thumb: "images/thumbs/maps/2025_65_AA_DRC_v1_EN.jpg",
-          width: 1500, height: 1200,
-          title: "Virunga, Kahuzi-Biega and Upemba national parks",
-          client: "Mongabay",
-          story: { url: "https://news.mongabay.com/2025/04/through-colonization-conflicts-and-conservation-100-years-of-virunga-national-park/", title: "Through colonization, conflicts and conservation: 100 years of Virunga National Park", date: "2025-04-28", outlet: "Mongabay" },
-          alt: "Map of the Democratic Republic of the Congo showing protected areas, national parks, and regions with rebel control, including Virunga, Kahuzi-Biega, Upemba, and other parks, with a legend and inset globe indicating location in Africa."
-        },
-        {
           src: "images/portfolio/maps/2026_003_AA_ChinaVessels_v10_Viz_8.jpg",
           thumb: "images/thumbs/maps/2026_003_AA_ChinaVessels_v10_Viz_8.jpg",
           width: 1500, height: 1200,
@@ -368,15 +321,6 @@ window.SITE = {
           client: "Mongabay",
           story: { url: "https://news.mongabay.com/2025/01/how-a-nepali-border-village-learned-to-live-with-migratory-wild-elephants/", title: "How a Nepali border village learned to live with migratory wild elephants", date: "2025-01-30", outlet: "Mongabay" },
           alt: "Map of Nepal showing protected areas, road network, traditional elephant migration route, and key locations such as Shuklaphanta, Bardia National Park, Chitwan National Park, Kathmandu, Sundar Haricha, and Bahundangi. The map includes a small inset world map highlighting Nepal's location."
-        },
-        {
-          src: "images/portfolio/maps/2025_60_AA_Monkeyfarms_v4.jpg",
-          thumb: "images/thumbs/maps/2025_60_AA_Monkeyfarms_v4.jpg",
-          width: 1500, height: 1200,
-          title: "Suspected macaque farms in Southeast Asia",
-          client: "Mongabay",
-          story: { url: "https://news.mongabay.com/2025/04/report-alleges-criminality-in-cambodian-vietnamese-monkey-trade/", title: "Report alleges criminality in Cambodian, Vietnamese monkey trade", date: "2025-04-21", outlet: "Mongabay" },
-          alt: "Map of Southeast Asia showing suspected locations of monkey breeding farms in Cambodia, Vietnam, and Laos, with a legend listing farm names and numbers, protected areas in green, and a smuggling point marked with an orange circle."
         },
         {
           src: "images/portfolio/maps/2025_59_AA_Thailand_Dugongs_v4.jpg",
@@ -403,24 +347,6 @@ window.SITE = {
       blurb: "Charts that carry a story’s numbers, drafted in R and finished for print and screen.",
       items: [
         {
-          src: "images/portfolio/charts/2025_91_AA_CITES_Leopards_Chart_v3.jpg",
-          thumb: "images/thumbs/charts/2025_91_AA_CITES_Leopards_Chart_v3.jpg",
-          width: 1500, height: 1200,
-          title: "CITES permits for leopard parts over 25 years",
-          client: "Mongabay",
-          story: { url: "https://news.mongabay.com/2025/06/forgotten-leopards-being-driven-to-silent-extinction-by-poaching-and-trade/", title: "‘Forgotten’ leopards being driven to silent extinction by poaching and trade", date: "2025-06-26", outlet: "Mongabay" },
-          alt: "A graph showing the number of international permits issued for trade leopards over 25 years, categorized by permit type, with a significant decline in permits issued since 2014."
-        },
-        {
-          src: "images/portfolio/charts/2025_96_AA_ClimateBancking_v5-02.jpg",
-          thumb: "images/thumbs/charts/2025_96_AA_ClimateBancking_v5-02.jpg",
-          width: 1500, height: 1200,
-          title: "Top 10 banks financing fossil fuels, 2023–2024",
-          client: "Mongabay",
-          story: { url: "https://news.mongabay.com/2025/06/banks-bet-big-on-fossil-fuels-boosting-financing-in-2024-report-finds/", title: "Banks bet big on fossil fuels, boosting financing in 2024, report finds", date: "2025-06-30", outlet: "Mongabay" },
-          alt: "Bar chart comparing fossil fuel financing by top 10 banks in 2023 and 2024, with percentage increases at the top. JPMorgan Chase had the highest 2024 investment, followed by Bank of America and Citigroup. The chart shows green bars for 2023 investments and dark bars for 2024 investments, with dollar amounts on the y-axis."
-        },
-        {
           src: "images/portfolio/charts/2025_160_AA_CBD_Finance_v3_CopyEdited.jpg",
           thumb: "images/thumbs/charts/2025_160_AA_CBD_Finance_v3_CopyEdited.jpg",
           width: 1500, height: 1200,
@@ -428,85 +354,6 @@ window.SITE = {
           client: "Mongabay",
           story: { url: "https://news.mongabay.com/2026/02/big-biodiversity-goals-run-up-against-small-funding-realities/", title: "Big biodiversity goals run up against small funding realities", date: "2026-02-25", outlet: "Mongabay" },
           alt: "Chart of biodiversity conservation funding: progress toward the $30 billion goal of the Kunming-Montreal Global Biodiversity Framework, and the gaps that remain on other targets."
-        },
-        {
-          src: "images/portfolio/charts/2025_96_AA_ClimateBancking_v5-03.jpg",
-          thumb: "images/thumbs/charts/2025_96_AA_ClimateBancking_v5-03.jpg",
-          width: 1500, height: 1200,
-          title: "Cumulative fossil fuel financing, 2016–2024",
-          client: "Mongabay",
-          story: { url: "https://news.mongabay.com/2025/06/banks-bet-big-on-fossil-fuels-boosting-financing-in-2024-report-finds/", title: "Banks bet big on fossil fuels, boosting financing in 2024, report finds", date: "2025-06-30", outlet: "Mongabay" },
-          alt: "Line graph showing cumulative fossil fuel financing from 2016 to 2024, reaching $7.9 trillion in 2024, with data points labeled each year and a background overlay of US dollar bills."
-        },
-        {
-          src: "images/portfolio/charts/2025_104_AA_Brazil_Karipuna_v3_PT_Chart.jpg",
-          thumb: "images/thumbs/charts/2025_104_AA_Brazil_Karipuna_v3_PT_Chart.jpg",
-          width: 1500, height: 1200,
-          title: "Desmatamento na Terra Indígena Karipuna, 2014–2024",
-          client: "Mongabay Brasil",
-          story: { url: "https://brasil.mongabay.com/2025/08/invasoes-se-intensificam-na-terra-indigena-karipuna-em-rondonia/", title: "Invasões se intensificam na Terra Indígena Karipuna, em Rondônia", date: "2025-08-14", outlet: "Mongabay Brasil" },
-          alt: "Graph showing deforestation of Indigenous Karipuna land from 2014 to 2024, with peaks in 2017, 2018, and 2022. Notable events: 2022 peak marked as the highest deforestation point, and notes indicating that Lula's presidency in 2023 resulted in deforestation remaining in decline, with a federal operation removing invaders in 2024."
-        }
-      ]
-    },
-    {
-      id: "storymaps",
-      title: "StoryMaps",
-      blurb: "Scrollytelling stories built with Mapbox, React and GSAP.",
-      items: [
-        {
-          src: "images/portfolio/storymaps/StoryMap_1.png",
-          thumb: "images/thumbs/storymaps/StoryMap_1.jpg",
-          width: 1500, height: 867,
-          title: "Shifting Sands",
-          client: "Mongabay India",
-          story: { url: "https://india.mongabay.com/2025/11/quarries-devour-buffer-forests-of-western-ghats-after-sand-mining-ban/", title: "Shifting Sands", date: null, outlet: "Mongabay India" },
-          alt: "Opening screen of the Mongabay India story “Shifting Sands”, on quarries eating into the buffer forests of the Western Ghats."
-        },
-        {
-          src: "images/portfolio/storymaps/ScrollyMap_2.png",
-          thumb: "images/thumbs/storymaps/ScrollyMap_2.jpg",
-          width: 1500, height: 870,
-          title: "Damming the Arai River",
-          client: "Mongabay",
-          story: { url: "https://news.mongabay.com/2025/09/cambodian-irrigation-dam-construction-threatens-riverine-communities-in-the-cardamoms/", title: "Damming the Arai River", date: null, outlet: "Mongabay" },
-          alt: "Opening screen of the Mongabay story “Damming the Arai River”, on an irrigation dam in Cambodia’s Cardamom Mountains."
-        },
-        {
-          src: "images/portfolio/storymaps/ScrollyMap_1.png",
-          thumb: "images/thumbs/storymaps/ScrollyMap_1.jpg",
-          width: 1500, height: 868,
-          title: "Clearing the Way",
-          client: "Mongabay",
-          story: { url: "https://news.mongabay.com/custom-story/2025/09/satellite-images-reveal-oil-project-surge-in-ugandan-park-and-wetland/", title: "Clearing the Way", date: null, outlet: "Mongabay" },
-          alt: "Opening screen of the Mongabay story “Clearing the Way”, on satellite images of an oil project in a Ugandan park and wetland."
-        },
-        {
-          src: "images/portfolio/storymaps/Scrolly_Dual.jpg",
-          thumb: "images/thumbs/storymaps/Scrolly_Dual.jpg",
-          width: 1500, height: 867,
-          title: "Dual-purpose?",
-          client: "Mongabay",
-          story: { url: "https://news.mongabay.com/custom-story/2026/03/chinas-deep-sea-mining-fleet-may-also-track-us-submarines/", title: "Dual-purpose?", date: null, outlet: "Mongabay" },
-          alt: "Opening screen of the Mongabay story \"Dual-purpose?\", on a Chinese research vessel that may serve civilian and military roles, over a photograph of the seabed."
-        },
-        {
-          src: "images/portfolio/storymaps/Scrolly.png",
-          thumb: "images/thumbs/storymaps/Scrolly.jpg",
-          width: 1500, height: 874,
-          title: "What does a map miss?",
-          client: "Mongabay India",
-          story: { url: "https://india.mongabay.com/2026/05/what-a-coastal-zoning-map-leaves-out-explained-through-maps/", title: "What does a map miss?", date: null, outlet: "Mongabay India" },
-          alt: "Opening screen of the Mongabay India story “What does a map miss?”, on a coastal zoning map and the details it leaves out."
-        },
-        {
-          src: "images/portfolio/storymaps/Scrolly_Collision.jpg",
-          thumb: "images/thumbs/storymaps/Scrolly_Collision.jpg",
-          width: 1500, height: 867,
-          title: "Collision course",
-          client: "Mongabay",
-          story: { url: "https://news.mongabay.com/custom-story/2026/09/can-we-stop-ships-from-killing-the-mediterraneans-last-great-whales/", title: "Collision course", date: null, outlet: "Mongabay" },
-          alt: "Opening screen of the Mongabay story \"Collision course\", showing a ship and a whale on converging tracks in the Mediterranean."
         }
       ]
     },

@@ -7,12 +7,12 @@
 | Path | What it holds |
 | --- | --- |
 | `index.html` | Home: intro, the filterable work grid with a lightbox, stacking story cards, FAQ accordion, contact |
-| `stories.html` | The scrollytelling stories, with a cursor-following preview on desktop, plus the interactive 3D maps |
+| `stories.html` | The scrollytelling stories as cards; "Click to start this scrolly" plays the live story inside its card. Plus the interactive 3D maps |
 | `services.html`, `faqs.html`, `contact.html` | Inner pages |
 | `about.html` | Redirects to the home page (kept so old links work) |
-| `js/site-data.js` | **All content**: text, links, the 72 portfolio pieces (title, client, story link, alt text), the six stories |
+| `js/site-data.js` | **All content**: text, links, the portfolio pieces (title, client, story link, alt text), the stories |
 | `js/main.js` | Renders the pages from that data: header, sections, work grid and filters, lightbox, forms |
-| `js/motion.js` | The animation layer (GSAP): hero reveal, scroll reveals, stacking cards, hiding header, story preview. Everything works without it, and it switches itself off for people who prefer reduced motion |
+| `js/motion.js` | The animation layer (GSAP): hero reveal, scroll reveals, stacking cards, hiding header. Everything works without it, and it switches itself off for people who prefer reduced motion |
 | `js/vendor/` | GSAP 3.15 and its plugins (ScrollTrigger, Flip, SplitText, Observer), free under the GSAP standard license |
 | `css/style.css` | The look: palette, type, layout. Tokens sit at the top of the file |
 | `fonts/` | Public Sans (variable weight), self-hosted |
@@ -28,7 +28,7 @@ Everything editorial lives in `js/site-data.js`.
   `{ src, thumb, width, height, title, client, alt, story: { url, title, date, outlet } }`. Leave `story` out when there is no article.
 - **Add a video**: use `video` and `poster` instead of `src`; it plays muted on a loop.
 - **Add a before/after slider**: use `compare: [left, right]` instead of `src`, each side `{ src, thumb, alt }`, both images the same size. The card shows them split down the middle; in the lightbox the handle can be dragged.
-- **Add a story**: add an object to `stories.items` (newest first); the first one becomes the featured card on the stories page and the three newest stack on the home page.
+- **Add a story**: add an object to `stories.items` (newest first); the three newest also stack on the home page. `embed` is the address of the scrolly itself (the Vercel app the article embeds), which plays inside the card; leave it out and the card only links to the article. While the pointer is over a playing scrolly the page stays still, so the wheel drives the story.
 - **Change text**: hero, services, FAQs, contact and footer are all named blocks at the top of the file.
 - **How many pieces show before "Show all"**: `work.initial`.
 

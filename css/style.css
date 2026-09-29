@@ -1074,98 +1074,11 @@ a:hover .arrow::after,
   max-width: 60ch;
 }
 
-.story-list {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-  border-top: 1px solid var(--line-strong);
-}
-
-.story-row {
-  border-bottom: 1px solid var(--line-strong);
-}
-
-.story-row__link {
-  display: grid;
-  grid-template-columns: 4rem minmax(0, 1fr) auto;
-  gap: 1rem 2rem;
-  align-items: baseline;
-  padding: clamp(1.4rem, 3vw, 2.4rem) 0;
-  color: inherit;
-}
-
-.story-row__index {
-  font-size: var(--fs-label);
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  color: var(--brown);
-  font-variant-numeric: tabular-nums;
-}
-
-.story-row__title {
-  font-size: clamp(1.6rem, 1rem + 2.4vw, 3.2rem);
-  letter-spacing: -0.03em;
-  transition: color 0.25s ease, transform 0.35s var(--ease);
-}
-
-.story-row__link:hover .story-row__title {
-  color: var(--teal);
-  transform: translateX(6px);
-}
-
-.story-row__deck {
-  margin: 0.5rem 0 0;
-  max-width: 60ch;
-  color: var(--text);
-}
-
-.story-row__meta {
-  margin: 0.6rem 0 0;
-  font-size: var(--fs-label);
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--brown);
-}
-
 .story-row__cta {
   font-size: var(--fs-small);
   font-weight: 600;
   color: var(--teal);
   white-space: nowrap;
-}
-
-.story-row__thumb {
-  display: none;
-  grid-column: 2 / -1;
-  border-radius: var(--radius);
-  border: 1px solid var(--line);
-}
-
-.story-row__extra {
-  grid-column: 2 / -1;
-  margin: 0;
-  font-size: var(--fs-small);
-}
-
-/* floating preview that follows the cursor on desktop */
-.story-preview {
-  position: fixed;
-  left: 0;
-  top: 0;
-  z-index: 50;
-  width: clamp(240px, 26vw, 420px);
-  pointer-events: none;
-  opacity: 0;
-  border-radius: var(--radius);
-  overflow: hidden;
-  box-shadow: var(--shadow);
-  background: var(--white);
-}
-
-.story-preview img {
-  width: 100%;
-  height: auto;
 }
 
 /* ==========================================================================
@@ -1308,29 +1221,6 @@ a:hover .arrow::after,
     columns: 1;
   }
 
-  .story-row__link {
-    grid-template-columns: 1fr;
-    gap: 0.6rem;
-  }
-
-  .story-row__index {
-    display: none;
-  }
-
-  .story-row__thumb {
-    display: block;
-    grid-column: 1 / -1;
-    margin-bottom: 0.4rem;
-  }
-
-  .story-row__extra {
-    grid-column: 1 / -1;
-  }
-
-  .story-preview {
-    display: none;
-  }
-
   .footer__inner {
     grid-template-columns: 1fr;
   }
@@ -1346,9 +1236,6 @@ a:hover .arrow::after,
     transform: none;
   }
 
-  .story-preview {
-    display: none;
-  }
 }
 
 /* anchors land below the sticky header */
@@ -1405,58 +1292,6 @@ a:hover .arrow::after,
   font-weight: 500;
 }
 
-/* stories page: the latest piece leads with an image */
-.story-feature {
-  display: grid;
-  grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
-  gap: 0 clamp(1.5rem, 3vw, 3rem);
-  align-items: center;
-  margin-top: clamp(2rem, 4vw, 3.5rem);
-  border-radius: var(--radius-lg);
-  overflow: hidden;
-  background: var(--forest);
-  color: var(--bone);
-  transition: transform 0.35s var(--ease);
-}
-
-.story-feature:hover {
-  transform: translateY(-3px);
-  color: var(--bone);
-}
-
-.story-feature img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.story-feature__body {
-  display: grid;
-  gap: 0.7rem;
-  padding: clamp(1.5rem, 3vw, 2.5rem) clamp(1.5rem, 3vw, 2.5rem) clamp(1.5rem, 3vw, 2.5rem) 0;
-}
-
-.story-feature__body .label {
-  color: rgb(216 205 185 / 0.75);
-}
-
-.story-feature__title {
-  font-size: var(--fs-h2);
-  font-weight: 700;
-  line-height: 1.05;
-  letter-spacing: -0.03em;
-  color: var(--white);
-}
-
-.story-feature__deck {
-  font-size: var(--fs-small);
-  opacity: 0.9;
-}
-
-.story-feature .story-row__cta {
-  color: var(--bone);
-}
-
 .lightbox__hint {
   margin: 0.4rem 0 0;
   font-size: var(--fs-label);
@@ -1494,13 +1329,6 @@ a:hover .arrow::after,
     flex: none;
   }
 
-  .story-feature {
-    grid-template-columns: 1fr;
-  }
-
-  .story-feature__body {
-    padding: 1.2rem 1.2rem 1.4rem;
-  }
 }
 
 /* ==========================================================================
@@ -1736,5 +1564,167 @@ html.header-hidden .chips--sticky {
 @media (max-width: 1023px) {
   .lightbox__compare {
     --max-h: 55vh;
+  }
+}
+
+/* ==========================================================================
+   Stories page: story cards and the in-card scrolly player
+   ========================================================================== */
+
+.section.stories {
+  padding-top: clamp(0.5rem, 1.5vw, 1.5rem); /* adjust space between the intro and the first card here */
+}
+
+.story-features {
+  display: grid;
+  gap: clamp(1.5rem, 3vw, 2.5rem); /* adjust space between story cards here */
+}
+
+.story-feature {
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); /* adjust picture / text split here */
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  background: var(--forest); /* adjust story card background here */
+  color: var(--bone);
+  transition: grid-template-columns 0.5s var(--ease);
+}
+
+.story-feature__media {
+  position: relative;
+  min-height: 0;
+  background: var(--black);
+}
+
+.story-feature__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.story-feature__media iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  background: var(--white);
+}
+
+/* the start and close buttons sit in the picture's top left corner */
+.story-feature__start,
+.story-feature__close {
+  position: absolute;
+  top: 0.9rem;
+  left: 0.9rem;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5em;
+  padding: 0.55em 1em;
+  border: 1px solid rgb(216 205 185 / 0.35);
+  border-radius: 999px;
+  background: var(--forest); /* adjust start button colour here */
+  color: var(--bone);
+  font: inherit;
+  font-size: var(--fs-small); /* adjust start button text size here */
+  font-weight: 600;
+  line-height: 1.2;
+  cursor: pointer;
+  box-shadow: var(--shadow);
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.story-feature__start span {
+  font-size: 0.8em;
+}
+
+.story-feature__start:hover,
+.story-feature__close:hover {
+  background: var(--teal);
+  color: var(--white);
+}
+
+.story-feature__body {
+  display: grid;
+  gap: 0.7rem;
+  align-content: center;
+  padding: clamp(1.5rem, 3vw, 2.5rem);
+}
+
+.story-feature__body .label {
+  margin: 0;
+  color: rgb(216 205 185 / 0.75);
+}
+
+.story-feature__title {
+  margin: 0;
+  font-size: var(--fs-h2);
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  color: var(--white);
+}
+
+.story-feature__deck {
+  margin: 0;
+  font-size: var(--fs-small);
+  opacity: 0.9;
+}
+
+.story-feature__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.8rem 1.2rem;
+  margin: 0.6rem 0 0;
+}
+
+.story-feature__extra {
+  font-size: var(--fs-small);
+  color: var(--bone);
+}
+
+.story-feature__extra:hover {
+  color: var(--white);
+}
+
+/* playing: the card fills the screen below the header and the scrolly gets most of the width */
+.story-feature.is-active {
+  grid-template-columns: minmax(0, 2.4fr) minmax(15rem, 1fr);
+  height: calc(100svh - var(--header-h) - 2rem); /* adjust scrolly window height here */
+}
+
+.story-feature.is-active .story-feature__media img,
+.story-feature.is-active .story-feature__start {
+  visibility: hidden;
+}
+
+/* the page stays still while the pointer is over a playing scrolly */
+html.scrolly-lock {
+  overflow: hidden;
+}
+
+/* keeps the layout from shifting when the lock hides the scrollbar */
+html {
+  scrollbar-gutter: stable;
+}
+
+@media (max-width: 767px) {
+  .story-feature,
+  .story-feature.is-active {
+    grid-template-columns: 1fr;
+  }
+
+  .story-feature.is-active {
+    height: auto;
+  }
+
+  .story-feature.is-active .story-feature__media {
+    height: 75svh; /* adjust scrolly window height on phones here */
+  }
+
+  .story-feature__body {
+    padding: 1.2rem 1.2rem 1.4rem;
   }
 }

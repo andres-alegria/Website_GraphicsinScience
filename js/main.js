@@ -247,7 +247,7 @@
       parts.hint.textContent = (item.compare ? "Drag across the maps to compare · " : "") + "← → to move between pieces · Esc to close";
       if (item.compare) initCompare(wrap.firstElementChild);
       parts.story.innerHTML = (item.story && item.story.url
-        ? html`<a class="button arrow arrow--ext" href="${item.story.url}" target="_blank" rel="noopener">Read the story</a>`
+        ? html`<a class="button arrow arrow--ext" href="${item.story.url}" target="_blank" rel="noopener">Read the full story</a>`
         : "") + (item.src ? html`<a class="lightbox__full arrow arrow--ext" href="${item.src}" target="_blank" rel="noopener">Open the image at full size</a>` : "");
       if (window.gsap && !reduceMotion) {
         window.gsap.fromTo(wrap.firstElementChild, { opacity: 0, scale: 0.96 }, { opacity: 1, scale: 1, duration: 0.45, ease: "power3.out" });
@@ -407,7 +407,7 @@
           <span class="label">${escapeHtml(story.outlet)} · ${formatDate(story.date)}</span>
           <span class="stack__title">${escapeHtml(story.title)}</span>
           <span class="stack__deck">${escapeHtml(story.deck)}</span>
-          <span class="story-row__cta arrow arrow--ext">Read the story</span>
+          <span class="story-row__cta arrow arrow--ext">Read the full story</span>
         </span>
       </a>`).join("");
     main.appendChild(section("section section--forest stories-teaser", html`
@@ -459,47 +459,91 @@
 
   // ---------- Stories page ----------
 
+  // "Click to start this scrolly": the card grows to fill the screen and the picture becomes the live story.
+  // While the pointer is over the story, the page itself stays still, so scrolling drives the scrolly;
+  // outside it, the page scrolls on as usual. One story plays at a time.
+  function initScrollies(root) {
+    let active = null;
+    const lock = (on) => document.documentElement.classList.toggle("scrolly-lock", on);
+
+    const stop = (card) => {
+      const media = card.querySelector(".story-feature__media");
+      media.querySelector("iframe")?.remove();
+      media.querySelector(".story-feature__close")?.remove();
+      card.classList.remove("is-active");
+      lock(false);
+      if (active === card) active = null;
+      if (window.ScrollTrigger) window.ScrollTrigger.refresh();
+    };
+
+    const start = (card) => {
+      if (active) stop(active);
+      active = card;
+      const media = card.querySelector(".story-feature__media");
+      const frame = document.createElement("iframe");
+      frame.src = card.dataset.embed;
+      frame.title = `${card.dataset.title}: scrollytelling story`;
+      frame.allow = "fullscreen";
+      // the lock waits until the page has finished scrolling the card into view
+      let settling = true;
+      frame.addEventListener("pointerenter", () => { if (!settling) lock(true); });
+      frame.addEventListener("pointerleave", () => lock(false));
+      setTimeout(() => { settling = false; if (active === card && frame.matches(":hover")) lock(true); }, 900);
+      const close = document.createElement("button");
+      close.type = "button";
+      close.className = "story-feature__close";
+      close.innerHTML = '<span aria-hidden="true">×</span> Close the scrolly';
+      close.addEventListener("click", () => { stop(card); card.querySelector(".story-feature__start").focus(); });
+      media.append(frame, close);
+      card.classList.add("is-active");
+      if (window.ScrollTrigger) window.ScrollTrigger.refresh();
+      // bring the whole card into view, just below the header
+      const header = document.getElementById("site-header");
+      const top = card.getBoundingClientRect().top + window.scrollY - (header ? header.offsetHeight : 0) - 16;
+      window.scrollTo({ top, behavior: reduceMotion ? "auto" : "smooth" });
+      frame.focus({ preventScroll: true });
+    };
+
+    root.addEventListener("click", (e) => {
+      const btn = e.target.closest(".story-feature__start");
+      if (btn) start(btn.closest(".story-feature"));
+    });
+    document.addEventListener("keydown", (e) => { if (e.key === "Escape" && active) stop(active); });
+  }
+
+
   function renderStories(main) {
     const s = SITE.stories;
-    const latest = s.items[0];
     main.appendChild(section("stories-hero", html`
       <div class="wrap">
         <p class="label">${escapeHtml(s.label)}</p>
         <h1>${escapeHtml(s.title)}</h1>
         <p class="lead prose">${escapeHtml(s.lead)}</p>
-        <a class="story-feature" href="${latest.url}" target="_blank" rel="noopener">
-          <img src="${latest.image.src}" width="${latest.image.width}" height="${latest.image.height}" alt="${escapeHtml(latest.image.alt)}" decoding="async">
-          <span class="story-feature__body">
-            <span class="label">Latest · ${escapeHtml(latest.outlet)} · ${formatDate(latest.date)}</span>
-            <span class="story-feature__title">${escapeHtml(latest.title)}</span>
-            <span class="story-feature__deck">${escapeHtml(latest.deck)}</span>
-            <span class="story-row__cta arrow arrow--ext">Read the story</span>
-          </span>
-        </a>
       </div>`));
 
-    const rows = s.items.map((story, i) => html`
-      <li class="story-row reveal" data-image="${story.image.src}">
-        <a class="story-row__link" href="${story.url}" target="_blank" rel="noopener">
-          <span class="story-row__index">${String(i + 1).padStart(2, "0")}</span>
-          <div>
-            <h2 class="story-row__title">${escapeHtml(story.title)}</h2>
-            <p class="story-row__deck">${escapeHtml(story.deck)}</p>
-            <p class="story-row__meta">${escapeHtml(story.outlet)} · ${formatDate(story.date)} · ${escapeHtml(story.tools)}</p>
-          </div>
-          <span class="story-row__cta arrow arrow--ext">Read the story</span>
-          <img class="story-row__thumb" src="${story.image.src}" width="${story.image.width}" height="${story.image.height}" alt="${escapeHtml(story.image.alt)}" loading="lazy">
-        </a>
-        ${story.extra ? html`<p class="story-row__extra"><a href="${story.extra.url}" target="_blank" rel="noopener">${escapeHtml(story.extra.label)} ↗</a></p>` : ""}
-      </li>`).join("");
-    main.appendChild(section("section stories", html`
-      <div class="wrap">
-        <ol class="story-list">${rows}</ol>
-      </div>
-      <div class="story-preview" aria-hidden="true"><img alt="" width="1500" height="867"></div>`));
+    // Every story is a card: the picture on the left can turn into the live scrolly, the box on the right links out
+    const cards = s.items.map((story, i) => html`
+      <article class="story-feature reveal" data-embed="${story.embed || ""}" data-title="${escapeHtml(story.title)}">
+        <div class="story-feature__media">
+          <img src="${story.image.src}" width="${story.image.width}" height="${story.image.height}" alt="${escapeHtml(story.image.alt)}" ${i > 0 ? 'loading="lazy"' : ""} decoding="async">
+          ${story.embed ? html`<button class="story-feature__start" type="button"><span aria-hidden="true">▶</span> Click to start this scrolly</button>` : ""}
+        </div>
+        <div class="story-feature__body">
+          <p class="label">${escapeHtml(story.outlet)} · ${formatDate(story.date)}</p>
+          <h2 class="story-feature__title">${escapeHtml(story.title)}</h2>
+          <p class="story-feature__deck">${escapeHtml(story.deck)}</p>
+          <p class="story-feature__actions">
+            <a class="button arrow arrow--ext" href="${story.url}" target="_blank" rel="noopener">Read the full story</a>
+            ${story.extra ? html`<a class="story-feature__extra" href="${story.extra.url}" target="_blank" rel="noopener">${escapeHtml(story.extra.label)} ↗</a>` : ""}
+          </p>
+        </div>
+      </article>`).join("");
+    const list = section("section stories", html`<div class="wrap story-features">${cards}</div>`);
+    main.appendChild(list);
+    initScrollies(list);
 
     const threeD = allItems().filter((i) => i.category === "3d-maps");
-    const cards = threeD.map((item) => html`
+    const threeDCards = threeD.map((item) => html`
       <a class="story-card reveal" href="${item.story ? item.story.url : "#"}" target="_blank" rel="noopener">
         ${mediaHtml(item)}
         <div class="story-card__body">
@@ -511,7 +555,7 @@
     main.appendChild(section("section section--forest interactive", html`
       <div class="wrap">
         ${sectionHead(s.interactive.label, s.interactive.title, escapeHtml(s.interactive.intro))}
-        <div class="story-cards">${cards}</div>
+        <div class="story-cards">${threeDCards}</div>
       </div>`));
   }
 

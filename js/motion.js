@@ -69,31 +69,6 @@
       });
     }
 
-    // ---- Stories page: a preview image follows the cursor across the list ----
-    const preview = document.querySelector(".story-preview");
-    const rows = document.querySelectorAll(".story-row");
-    if (preview && rows.length && window.matchMedia("(pointer: fine)").matches) {
-      const img = preview.querySelector("img");
-      const xTo = gsap.quickTo(preview, "x", { duration: 0.5, ease: "power3" });
-      const yTo = gsap.quickTo(preview, "y", { duration: 0.5, ease: "power3" });
-      const rotTo = gsap.quickTo(preview, "rotation", { duration: 0.6, ease: "power3" });
-      let lastX = 0;
-      gsap.set(preview, { xPercent: -50, yPercent: -50, scale: 0.9 });
-      window.addEventListener("pointermove", (e) => {
-        rotTo(gsap.utils.clamp(-6, 6, (e.clientX - lastX) * 0.15)); // slight tilt in the direction of travel
-        lastX = e.clientX;
-        xTo(e.clientX + 40);
-        yTo(e.clientY);
-      });
-      rows.forEach((row) => {
-        row.addEventListener("pointerenter", () => {
-          img.src = row.dataset.image;
-          gsap.to(preview, { opacity: 1, scale: 1, duration: 0.35, ease: "power2.out", overwrite: true });
-        });
-        row.addEventListener("pointerleave", () => gsap.to(preview, { opacity: 0, scale: 0.9, duration: 0.3, ease: "power2.in", overwrite: true }));
-      });
-    }
-
     return () => document.documentElement.classList.remove("js-motion");
   });
 
