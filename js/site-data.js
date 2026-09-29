@@ -445,7 +445,7 @@ window.SITE = {
           title: "Global and regional risks for increasing levels of global warming",
           client: "IPCC AR6 WGII",
           report: { url: "https://doi.org/10.1017/9781009325844.001", year: "2022" },
-          alt: "Printed page from the Summary for Policymakers of the IPCC Working Group II report, Climate Change 2022, showing the figure 'Global and regional risks for increasing levels of global warming': projected warming to 2100 under five emissions scenarios beside burning-ember bars of rising risk for the Reasons for Concern, ecosystems and health."
+          alt: "Open printed spread of the Summary for Policymakers of the IPCC Working Group II report, Climate Change 2022, with the facing page partly in view and, on the left page, the figure 'Global and regional risks for increasing levels of global warming': projected warming to 2100 under five emissions scenarios beside burning-ember bars of rising risk for the Reasons for Concern, ecosystems and health."
         },
         {
           src: "images/portfolio/ipcc/IPCC_SROCC_ExtremeSeaLevelEvents.jpg",
@@ -454,7 +454,7 @@ window.SITE = {
           title: "Extreme sea level events",
           client: "IPCC SROCC",
           report: { url: "https://doi.org/10.1017/9781009157964.001", year: "2019" },
-          alt: "Printed page from the Summary for Policymakers of the IPCC Special Report on the Ocean and Cryosphere, showing Figure SPM.4, 'Extreme sea level events': a schematic of how sea level rise turns once-a-century extreme sea levels into yearly events, and world maps of when this happens at coastal locations under RCP8.5 and RCP2.6."
+          alt: "Open printed spread of the Summary for Policymakers of the IPCC Special Report on the Ocean and Cryosphere, with the facing page partly in view and, on the left page, Figure SPM.4, 'Extreme sea level events': a schematic of how sea level rise turns once-a-century extreme sea levels into yearly events, and world maps of when this happens at coastal locations under RCP8.5 and RCP2.6."
         }
       ]
     }
