@@ -243,9 +243,9 @@
       parts.meta.textContent = metaLine(item);
       parts.hint.textContent = (item.compare ? "Drag across the maps to compare · " : "") + "← → to move between pieces · Esc to close";
       if (item.compare) initCompare(wrap.firstElementChild);
-      parts.story.innerHTML = (item.story && item.story.url
+      parts.story.innerHTML = item.story && item.story.url
         ? html`<a class="button arrow arrow--ext" href="${item.story.url}" target="_blank" rel="noopener">Read the full story</a>`
-        : "") + (item.src ? html`<a class="lightbox__full arrow arrow--ext" href="${item.src}" target="_blank" rel="noopener">Open the image at full size</a>` : "");
+        : "";
       if (window.gsap && !reduceMotion) {
         window.gsap.fromTo(wrap.firstElementChild, { opacity: 0, scale: 0.96 }, { opacity: 1, scale: 1, duration: 0.45, ease: "power3.out" });
       }

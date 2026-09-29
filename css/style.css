@@ -1355,22 +1355,10 @@ a:hover .arrow::after,
   color: var(--white);
 }
 
-.lightbox__full {
-  display: inline-block;
-  margin-top: 0.7rem;
-  font-size: var(--fs-small);
-  color: var(--bone);
-}
-
-.lightbox__full:hover {
-  color: var(--white);
-}
-
 @media (max-width: 1023px) {
   .stack {
     gap: 1.25rem;
   }
-
 }
 
 /* ==========================================================================
