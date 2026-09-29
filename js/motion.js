@@ -21,25 +21,11 @@
     if (title && window.SplitText) {
       const split = window.SplitText.create(title, { type: "lines", linesClass: "line", mask: "lines", autoSplit: true,
         onSplit: (self) => gsap.from(self.lines, { yPercent: 110, duration: 0.9, stagger: 0.09, ease: "power3.out", delay: 0.1 }) });
-      gsap.from([".hero .label", ".hero__lead", ".hero__actions", ".hero__side"], { opacity: 0, y: 18, duration: 0.7, stagger: 0.08, ease: "power2.out", delay: 0.35 });
+      gsap.from([".hero__lead", ".hero__actions"], { opacity: 0, y: 18, duration: 0.7, stagger: 0.08, ease: "power2.out", delay: 0.35 });
       window.addEventListener("beforeunload", () => split.revert());
     }
 
-    // ---- Selected-work wall: three columns drift at different speeds ----
     if (ST) {
-      const wall = document.querySelector(".wall");
-      if (wall) {
-        const speeds = [-60, -170, -110]; // adjust parallax strength per column here (px)
-        wall.querySelectorAll(".wall__col").forEach((col, i) => {
-          gsap.fromTo(col, { y: -speeds[i] * 0.35 }, {
-            y: speeds[i], ease: "none",
-            scrollTrigger: { trigger: wall, start: "top bottom", end: "bottom top", scrub: 0.6 }
-          });
-        });
-        gsap.from(wall.querySelectorAll(".wall__item"), { opacity: 0, y: 40, duration: 0.8, stagger: 0.06, ease: "power2.out",
-          scrollTrigger: { trigger: wall, start: "top 85%", once: true } });
-      }
-
       // ---- Generic reveals, batched so grids stagger in ----
       const reveals = document.querySelectorAll(".reveal");
       if (reveals.length) {

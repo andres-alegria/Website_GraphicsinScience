@@ -4,14 +4,13 @@
 */
 window.SITE = {
   name: "Andrés Alegría",
-  tagline: "Data graphics",
+  tagline: "Visual science communicator", // shown in lowercase in the header
   siteTitle: "Andrés Alegría | Data Graphics",
 
   nav: [
     { label: "Work", href: "index.html#work", page: "work" },
     { label: "Stories", href: "stories.html", page: "stories" },
     { label: "Services", href: "services.html", page: "services" },
-    { label: "About", href: "index.html#about", page: "about" },
     { label: "FAQs", href: "faqs.html", page: "faqs" },
     { label: "Contact", href: "contact.html", page: "contact" }
   ],
@@ -23,40 +22,20 @@ window.SITE = {
 
   // ---------- Home ----------
   hero: {
-    label: "Visual science communicator",
     // the <em> part is set in the lighter colour
     title: "Clear graphics for <em>complex science.</em>",
     lead: "Hello. I’m Andrés Alegría, a visual science communicator. My work blends graphic design with an academic background in ecology, where I first used research data to shape nature conservation policy and stakeholder engagement across Central America. I’m a tree hugger :-)",
-    facts: [
-      ["Based in", "Germany (CET), working remotely worldwide"],
-      ["Working with", "Researchers, NGOs and newsrooms"],
-      ["Tools", "QGIS · Illustrator · Mapbox · R · Tableau"],
-      ["Languages", "English · Spanish"]
-    ],
     actions: [
-      { label: "See the work", href: "#work", style: "primary" },
       { label: "Get in touch", href: "#contact", style: "ghost" }
     ]
   },
 
-  wall: {
-    label: "Selected work",
-    note: "Twelve pieces from the last few years. Open any of them to read it at full size."
-  },
-
-  marquee: ["Information design", "Cartography", "QGIS", "Tableau", "R", "Graphic design", "Layout", "Mapbox", "Illustrator", "StoryMaps"],
-
   work: {
-    label: "Work",
+    label: "Example",
     title: "Maps, charts, diagrams and stories",
-    intro: "Everything here was made for a scientist, an NGO or a newsroom. Filter by type, open a piece to read it properly, and jump to the story it ran in.",
+    intro: "Open any of them to read it at full size.",
     showMore: "Show all {count} pieces",
     initial: 18
-  },
-
-  clients: {
-    label: "Selected clients and publications",
-    list: ["Mongabay", "Mongabay India", "Mongabay Brasil", "IPCC Working Group II", "Nature Climate Change", "Journal of Environmental Management", "NGOs across Central America"]
   },
 
   storiesTeaser: {
@@ -64,26 +43,6 @@ window.SITE = {
     title: "Stories that unfold as you scroll",
     intro: "Map-driven features for Mongabay, built with Mapbox, React and GSAP.",
     link: { label: "All stories", href: "stories.html" }
-  },
-
-  about: {
-    label: "About",
-    title: "Ecology first, design second, both in every figure.",
-    text: [
-      "<p>I’m a graphic designer specializing in visual science communication, with an academic background in ecology. I started out applying research data to nature conservation policy and stakeholder engagement across Central America, and that habit of starting from the evidence still shapes every map and chart I make.</p>",
-      "<p>Whether you need a data-driven map, a clear infographic or a full interactive visualization, I offer design services tailored to researchers, NGOs and media organizations. I work remotely with teams across time zones, and I send drafts at every key stage so the graphic stays scientifically right while it becomes visually clear.</p>"
-    ],
-    photo: {
-      src: "images/about/AndresAlegria_photo.png",
-      width: 1000, height: 1000,
-      alt: "Photo of Andrés Alegría during a presentation at a Mongabay event."
-    },
-    facts: [
-      ["Deliverables", "Editable vector files (PDF, SVG, AI, EPS) plus high-resolution PNG or TIFF"],
-      ["Formats", "Journal figures, report layouts, news graphics, interactive pieces"],
-      ["Workflow", "Data review, visual options, drafts at key stages, feedback rounds"]
-    ],
-    link: { label: "What I can do for your project", href: "services.html" }
   },
 
   faqTeaser: {
@@ -249,7 +208,7 @@ window.SITE = {
 
   // ---------- Portfolio ----------
   // Each item: src (or video + poster), thumb (800 px copy used in the grid), width, height, title, client, alt,
-  // story { url, title, date, outlet } when it ran in an article, featured: true for the selected-work wall.
+  // story { url, title, date, outlet } when it ran in an article.
   portfolio: [
     {
       id: "maps",
@@ -262,7 +221,6 @@ window.SITE = {
           width: 1500, height: 1200,
           title: "Jaguar range and Indigenous territories, Brazil",
           client: "Mongabay",
-          featured: true,
           story: { url: "https://news.mongabay.com/2026/02/researchers-eye-jaguar-conservation-wins-under-brazil-indigenous-stewardship-project/", title: "Researchers eye jaguar conservation wins under Brazil Indigenous stewardship project", date: "2026-02-18", outlet: "Mongabay" },
           alt: "Map of jaguar distribution across Brazil overlaid with Indigenous Territories, with the Amazon, Caatinga, Cerrado, Atlantic Forest, Pampa and Pantanal biomes in different colours."
         },
@@ -289,7 +247,6 @@ window.SITE = {
           width: 1500, height: 1200,
           title: "The Darién Gap and its protected areas",
           client: "Mongabay",
-          featured: true,
           story: { url: "https://news.mongabay.com/2025/06/panama-boosts-protections-in-the-darien-gap-but-deforestation-threats-still-loom/", title: "Panama boosts protections in the Darién Gap, but deforestation threats still loom", date: "2025-06-24", outlet: "Mongabay" },
           alt: "Map of the Darien Gap region highlighting areas in Panama and Colombia, showing the Darien National Park in Panama, parts of the Comarca Emberá Wounaan and Guna Yala regions, and the main road network."
         },
@@ -362,7 +319,6 @@ window.SITE = {
           width: 1500, height: 1200,
           title: "Nashulai Maasai Conservancy, Kenya",
           client: "Mongabay",
-          featured: true,
           story: { url: "https://news.mongabay.com/2025/12/a-maasai-conservancy-uses-private-lands-to-protect-kenyas-wildlife-corridors/", title: "In Kenya, Maasai private landowners come together to protect wildlife corridors", date: "2025-12-01", outlet: "Mongabay" },
           alt: "Map showing the Nashulai Maasai Conservancy in Kenya, its protected areas, and its boundaries within the Greater Serengeti-Mara Ecosystem, with main roads and the Kenya-Tanzania border indicated."
         },
@@ -432,7 +388,6 @@ window.SITE = {
           width: 1500, height: 1200,
           title: "CITES permits for leopard parts over 25 years",
           client: "Mongabay",
-          featured: true,
           story: { url: "https://news.mongabay.com/2025/06/forgotten-leopards-being-driven-to-silent-extinction-by-poaching-and-trade/", title: "‘Forgotten’ leopards being driven to silent extinction by poaching and trade", date: "2025-06-26", outlet: "Mongabay" },
           alt: "A graph showing the number of international permits issued for trade leopards over 25 years, categorized by permit type, with a significant decline in permits issued since 2014."
         },
@@ -512,7 +467,6 @@ window.SITE = {
           width: 1500, height: 867,
           title: "Dual-purpose?",
           client: "Mongabay",
-          featured: true,
           story: { url: "https://news.mongabay.com/custom-story/2026/03/chinas-deep-sea-mining-fleet-may-also-track-us-submarines/", title: "Dual-purpose?", date: null, outlet: "Mongabay" },
           alt: "Opening screen of the Mongabay story \"Dual-purpose?\", on a Chinese research vessel that may serve civilian and military roles, over a photograph of the seabed."
         },
@@ -531,7 +485,6 @@ window.SITE = {
           width: 1500, height: 867,
           title: "Collision course",
           client: "Mongabay",
-          featured: true,
           story: { url: "https://news.mongabay.com/custom-story/2026/09/can-we-stop-ships-from-killing-the-mediterraneans-last-great-whales/", title: "Collision course", date: null, outlet: "Mongabay" },
           alt: "Opening screen of the Mongabay story \"Collision course\", showing a ship and a whale on converging tracks in the Mediterranean."
         }
@@ -564,7 +517,6 @@ window.SITE = {
           width: 1500, height: 1620,
           title: "Sea level rise and flooding in Venice, 1900–2020",
           client: "IPCC AR6 WGII",
-          featured: true,
           alt: "A detailed infographic showing the relationship between sea level rise and flooding in Venice from 1900 to 2020. The upper section illustrates rising relative sea levels, flood events, and significant water management milestones. The middle section projects future sea level rises with confidence ranges and milestones for lagoon closures. The lower section visualizes projected sea level rises in Venice with confidence intervals. The right side features a satellite map of Venice highlighting key features like the city center, lagoon, barrier islands, and inlets connecting to the sea, with annotations explaining flood prevention infrastructure."
         },
         {
@@ -597,7 +549,6 @@ window.SITE = {
           width: 1500, height: 1620,
           title: "Observed impacts on ecosystems and human systems",
           client: "IPCC AR6 WGII",
-          featured: true,
           alt: "A detailed infographic showing the impacts of climate change on ecosystems and human systems worldwide, divided into sections for impacts on ecosystems and human systems, with various geographic regions and categories."
         },
         {
@@ -724,7 +675,6 @@ window.SITE = {
           width: 1500, height: 1200,
           title: "Governance of the ocean, coasts and cryosphere",
           client: "Report figure",
-          featured: true,
           alt: "Flowchart illustrating governance of the ocean, coasts, and cryosphere under a changing climate, showing levels from local to global, including organizations, governments, indigenous bodies, and global institutions."
         },
         {
@@ -788,7 +738,6 @@ window.SITE = {
           width: 800, height: 800,
           title: "Global methane emissions dashboard",
           client: "Mongabay India · Tableau",
-          featured: true,
           story: { url: "https://india.mongabay.com/2024/12/the-methane-puzzle-of-ambition-and-action-unfolds-at-cop29/", title: "The methane puzzle of ambition and action unfolds at COP29", date: "2024-12-13", outlet: "Mongabay India" },
           alt: "Line charts showing global methane emission projections from 1990 to 2050, and main human sources of methane by sector (agriculture, energy, industrial, waste) with filters for country, region, and subregion."
         },
@@ -820,7 +769,6 @@ window.SITE = {
           width: 800, height: 620,
           title: "The Mariana Trench in 3D",
           client: "Mongabay",
-          featured: true,
           story: { url: "https://news.mongabay.com/2025/12/deep-sea-mining-interests-raise-alarms-among-mariana-trench-communities/", title: "The Mariana Trench in 3D", date: null, outlet: "Mongabay" },
           alt: "Animated 3D map of the Mariana Trench seafloor, turning to show the deep-sea mining areas under discussion."
         },
@@ -854,7 +802,6 @@ window.SITE = {
           width: 1500, height: 1200,
           title: "La Ola magazine: the northern coast of Honduras",
           client: "Publication design",
-          featured: true,
           alt: "An open magazine , with a person in a white coat and wide-brimmed hat on the cover, another page featuring a colorful topographic map of the northern coast of Honduras. "
         },
         {

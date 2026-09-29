@@ -46,7 +46,6 @@
   --max: 1440px;
 
   /* adjust motion here */
-  --marquee-duration: 60s;
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
@@ -338,10 +337,10 @@ a:hover .arrow::after,
 
 .site-title small {
   display: block;
-  font-size: var(--fs-label);
+  font-size: var(--fs-small); /* adjust tagline size here */
   font-weight: 500;
-  letter-spacing: var(--tracking-label);
-  text-transform: uppercase;
+  letter-spacing: 0;
+  text-transform: lowercase;
   color: var(--brown);
 }
 
@@ -542,14 +541,7 @@ a:hover .arrow::after,
 
 .hero__inner {
   display: grid;
-  grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
-  gap: 2rem 6vw;
-  align-items: end;
-}
-
-.hero .label {
-  margin-bottom: 1.4rem;
-  color: rgb(216 205 185 / 0.75);
+  grid-template-columns: minmax(0, 52rem); /* adjust hero text width here */
 }
 
 .hero__title {
@@ -573,196 +565,11 @@ a:hover .arrow::after,
   color: var(--bone);
 }
 
-.hero__side {
-  display: grid;
-  gap: 1.2rem;
-  font-size: var(--fs-small);
-}
-
-.hero__facts {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-  display: grid;
-  gap: 0.6rem;
-  border-top: 1px solid rgb(216 205 185 / 0.22);
-  padding-top: 1.2rem;
-}
-
-.hero__facts li {
-  display: grid;
-  grid-template-columns: 6.5rem minmax(0, 1fr);
-  gap: 1rem;
-}
-
-.hero__facts b {
-  font-weight: 600;
-  color: var(--white);
-}
-
 .hero__actions {
   display: flex;
   flex-wrap: wrap;
   gap: 0.75rem;
   margin-top: 1.8rem;
-}
-
-/* ==========================================================================
-   Selected work wall (scattered, parallax)
-   ========================================================================== */
-
-.wall {
-  position: relative;
-  padding: 0 0 var(--section-y);
-  overflow: clip;
-}
-
-/* the wall starts inside the hero band and spills out of it */
-.wall::before {
-  content: "";
-  position: absolute;
-  inset: 0 0 auto;
-  height: clamp(120px, 18vw, 260px);
-  background: var(--forest);
-}
-
-.wall__head {
-  position: relative;
-  z-index: 2;
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-  gap: 1rem;
-  color: var(--bone);
-  padding-bottom: clamp(1.2rem, 3vw, 2.4rem);
-}
-
-.wall__head .label {
-  color: rgb(216 205 185 / 0.75);
-}
-
-.wall__head p {
-  margin: 0;
-  font-size: var(--fs-small);
-}
-
-.wall__cols {
-  position: relative;
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: clamp(14px, 2.5vw, 40px);
-  align-items: start;
-}
-
-.wall__col {
-  display: grid;
-  gap: clamp(16px, 3vw, 48px);
-  will-change: transform;
-}
-
-/* stagger the columns so the wall doesn't start on one line */
-.wall__col:nth-child(2) {
-  padding-top: clamp(40px, 8vw, 140px);
-}
-
-.wall__col:nth-child(3) {
-  padding-top: clamp(20px, 4vw, 70px);
-}
-
-.wall__item {
-  margin: 0;
-}
-
-/* varied sizes: every item gets a width from this cycle */
-.wall__item:nth-child(3n + 1) {
-  width: 92%;
-}
-
-.wall__item:nth-child(3n + 2) {
-  width: 72%;
-  justify-self: end;
-}
-
-.wall__item:nth-child(3n + 3) {
-  width: 84%;
-  justify-self: center;
-}
-
-.wall__btn {
-  display: block;
-  width: 100%;
-  padding: 0;
-  border: 0;
-  border-radius: var(--radius);
-  background: var(--white);
-  box-shadow: var(--shadow);
-  overflow: hidden;
-  cursor: zoom-in;
-  transition: transform 0.35s var(--ease), box-shadow 0.35s var(--ease);
-}
-
-.wall__btn:hover {
-  transform: translateY(-4px) scale(1.01);
-}
-
-.wall__btn img,
-.wall__btn video {
-  width: 100%;
-  height: auto;
-}
-
-.wall__caption {
-  margin-top: 0.6rem;
-  font-size: var(--fs-small);
-  color: var(--text);
-}
-
-.wall__caption b {
-  display: block;
-  font-weight: 600;
-  color: var(--heading);
-}
-
-/* ==========================================================================
-   Marquee band
-   ========================================================================== */
-
-.marquee-band {
-  background: var(--bone);
-  color: var(--forest);
-  border-block: 1px solid var(--line);
-  padding: 0.9rem 0;
-  overflow: hidden;
-}
-
-.marquee {
-  font-size: var(--fs-label);
-  font-weight: 600;
-  letter-spacing: var(--tracking-label);
-  text-transform: uppercase;
-  white-space: nowrap;
-}
-
-.marquee__track {
-  display: flex;
-  width: max-content;
-  animation: marquee var(--marquee-duration) linear infinite;
-}
-
-.marquee__group {
-  display: flex;
-  align-items: center;
-}
-
-.marquee__sep {
-  margin: 0 1.6em;
-  color: var(--brown);
-}
-
-@keyframes marquee {
-  to {
-    transform: translateX(-50%);
-  }
 }
 
 /* ==========================================================================
@@ -936,81 +743,6 @@ a:hover .arrow::after,
 
 .section--forest .story-card:hover h3 {
   color: var(--white);
-}
-
-/* ==========================================================================
-   Clients
-   ========================================================================== */
-
-.clients {
-  padding-block: clamp(2rem, 4vw, 3.5rem);
-  border-bottom: 1px solid var(--line);
-}
-
-.clients__inner {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 1rem 3rem;
-}
-
-.clients__list {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.6rem 2.2rem;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-  font-weight: 600;
-  color: var(--forest);
-}
-
-/* ==========================================================================
-   About
-   ========================================================================== */
-
-.about__grid {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1.25fr);
-  gap: clamp(2rem, 5vw, 5rem);
-  align-items: center;
-}
-
-.about__photo {
-  margin: 0;
-  border-radius: var(--radius-lg);
-  overflow: hidden;
-  box-shadow: var(--shadow);
-}
-
-.about__photo img {
-  width: 100%;
-  height: auto;
-}
-
-.about__text h2 {
-  font-size: var(--fs-h2);
-  margin-bottom: 1.2rem;
-}
-
-.about__facts {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-  gap: 1rem 1.5rem;
-  margin: 1.6rem 0 0;
-  padding: 1.4rem 0 0;
-  list-style: none;
-  border-top: 1px solid var(--line-strong);
-}
-
-.about__facts b {
-  display: block;
-  font-weight: 600;
-  color: var(--forest);
-}
-
-.about__facts span {
-  font-size: var(--fs-small);
 }
 
 /* ==========================================================================
@@ -1563,8 +1295,6 @@ a:hover .arrow::after,
     display: block;
   }
 
-  .hero__inner,
-  .about__grid,
   .contact__grid,
   .page-grid {
     grid-template-columns: 1fr;
@@ -1572,18 +1302,6 @@ a:hover .arrow::after,
 
   .page-title {
     position: static;
-  }
-
-  .wall__cols {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  .wall__col:nth-child(3) {
-    display: none;
-  }
-
-  .wall__item:nth-child(n) {
-    width: 100%;
   }
 
   .work-grid {
@@ -1621,10 +1339,6 @@ a:hover .arrow::after,
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
-  }
-
-  .marquee__track {
-    animation: none;
   }
 
   .js-motion .reveal {
@@ -1689,21 +1403,6 @@ a:hover .arrow::after,
   letter-spacing: 0;
   font-size: var(--fs-small);
   font-weight: 500;
-}
-
-/* wall captions appear on hover, so the scattered pictures stay clean */
-@media (hover: hover) {
-  .wall__caption {
-    opacity: 0;
-    transform: translateY(-4px);
-    transition: opacity 0.3s var(--ease), transform 0.3s var(--ease);
-  }
-
-  .wall__item:hover .wall__caption,
-  .wall__item:focus-within .wall__caption {
-    opacity: 1;
-    transform: none;
-  }
 }
 
 /* stories page: the latest piece leads with an image */
@@ -1807,19 +1506,6 @@ a:hover .arrow::after,
 /* ==========================================================================
    Round 3 additions
    ========================================================================== */
-
-/* wall: more contrast between big and small pictures */
-.wall__item:nth-child(3n + 1) {
-  width: 100%;
-}
-
-.wall__item:nth-child(3n + 2) {
-  width: 62%;
-}
-
-.wall__item:nth-child(3n + 3) {
-  width: 82%;
-}
 
 /* stacking story cards (home) */
 .stack {
@@ -1954,19 +1640,4 @@ html.header-hidden .chips--sticky {
     height: auto;
     aspect-ratio: 16 / 9;
   }
-}
-
-@media (max-width: 767px) {
-  .wall__item:nth-child(n) {
-    width: 100%;
-  }
-}
-
-/* ==========================================================================
-   Round 4 additions
-   ========================================================================== */
-
-/* the skills ticker pauses under the pointer */
-.marquee:hover .marquee__track {
-  animation-play-state: paused;
 }

@@ -33,11 +33,11 @@
 
   const allItems = () => SITE.portfolio.flatMap((sec) => sec.items.map((item) => ({ ...item, category: sec.id, categoryTitle: sec.title })));
 
-  // Media markup shared by the wall and the work grid: the 800 px thumb when there is one, the full file in the lightbox
-  const mediaHtml = (item, { lazy = true, priority = false } = {}) =>
+  // Media markup for the work grid and story cards: the 800 px thumb when there is one, the full file in the lightbox
+  const mediaHtml = (item) =>
     item.video
       ? html`<video src="${item.video}" poster="${item.poster}" width="${item.width}" height="${item.height}" ${reduceMotion ? "controls" : "autoplay"} muted loop playsinline preload="metadata" aria-label="${escapeHtml(item.alt)}"></video>`
-      : html`<img src="${item.thumb || item.src}" width="${item.width}" height="${item.height}" alt="${escapeHtml(item.alt)}" ${lazy ? 'loading="lazy"' : ""} ${priority ? 'fetchpriority="high"' : ""} decoding="async">`;
+      : html`<img src="${item.thumb || item.src}" width="${item.width}" height="${item.height}" alt="${escapeHtml(item.alt)}" loading="lazy" decoding="async">`;
 
   const metaLine = (item) => {
     const bits = [item.client];
@@ -106,13 +106,6 @@
       <div>${label ? html`<p class="label">${escapeHtml(label)}</p>` : ""}<h2>${escapeHtml(title)}</h2></div>
       ${aside ? html`<p class="section-head__aside">${aside}</p>` : ""}
     </div>`;
-
-  function marqueeHtml(words) {
-    const group = words.map((w) => html`<span class="marquee__item">${escapeHtml(w)}</span><span class="marquee__sep">•</span>`).join("");
-    return html`
-      <p class="visually-hidden">${escapeHtml(words.join(", "))}</p>
-      <div class="marquee" aria-hidden="true"><div class="marquee__track"><div class="marquee__group">${group}${group}</div><div class="marquee__group">${group}${group}</div></div></div>`;
-  }
 
   function contactFormHtml(idPrefix) {
     const f = SITE.contactForm;
@@ -259,45 +252,11 @@
     main.appendChild(section("hero", html`
       <div class="hero__inner wrap">
         <div>
-          <p class="label">${escapeHtml(h.label)}</p>
           <h1 class="hero__title">${h.title}</h1>
           <p class="hero__lead">${escapeHtml(h.lead)}</p>
           <div class="hero__actions">${actions}</div>
         </div>
-        <div class="hero__side">
-          <ul class="hero__facts">${h.facts.map(([k, v]) => html`<li><b>${escapeHtml(k)}</b><span>${escapeHtml(v)}</span></li>`).join("")}</ul>
-        </div>
       </div>`));
-  }
-
-  function renderWall(main) {
-    const featured = allItems().filter((i) => i.featured);
-    const cols = [[], [], []];
-    featured.forEach((item, i) => cols[i % 3].push(item));
-    const colHtml = cols.map((col) => html`
-      <div class="wall__col">${col.map((item, row) => html`
-        <figure class="wall__item">
-          <button class="wall__btn" type="button" data-src="${item.src || item.video}" aria-label="Open ${escapeHtml(item.title)}">${mediaHtml(item, { lazy: row > 1, priority: row === 0 })}</button>
-          <figcaption class="wall__caption"><b>${escapeHtml(item.title)}</b>${escapeHtml(metaLine(item))}</figcaption>
-        </figure>`).join("")}</div>`).join("");
-    const el = section("wall", html`
-      <div class="wrap">
-        <div class="wall__head"><p class="label">${escapeHtml(SITE.wall.label)}</p><p>${escapeHtml(SITE.wall.note)}</p></div>
-        <div class="wall__cols">${colHtml}</div>
-      </div>`);
-    el.addEventListener("click", (e) => {
-      const btn = e.target.closest(".wall__btn");
-      if (!btn) return;
-      lightbox.open(featured, featured.findIndex((i) => (i.src || i.video) === btn.dataset.src));
-    });
-    main.appendChild(el);
-  }
-
-  function renderMarquee(main) {
-    const el = document.createElement("div");
-    el.className = "marquee-band";
-    el.innerHTML = marqueeHtml(SITE.marquee);
-    main.appendChild(el);
   }
 
   function renderWork(main) {
@@ -401,30 +360,6 @@
       </div>`));
   }
 
-  function renderClients(main) {
-    const c = SITE.clients;
-    main.appendChild(section("clients", html`
-      <div class="clients__inner wrap">
-        <p class="label">${escapeHtml(c.label)}</p>
-        <ul class="clients__list">${c.list.map((n) => html`<li>${escapeHtml(n)}</li>`).join("")}</ul>
-      </div>`));
-  }
-
-  function renderAbout(main) {
-    const a = SITE.about;
-    main.appendChild(section("section section--bone about", html`
-      <div class="about__grid wrap">
-        <figure class="about__photo reveal"><img src="${a.photo.src}" width="${a.photo.width}" height="${a.photo.height}" alt="${escapeHtml(a.photo.alt)}" loading="lazy"></figure>
-        <div class="about__text">
-          <p class="label">${escapeHtml(a.label)}</p>
-          <h2>${escapeHtml(a.title)}</h2>
-          <div class="prose">${a.text.join("")}</div>
-          <ul class="about__facts">${a.facts.map(([k, v]) => html`<li><b>${escapeHtml(k)}</b><span>${escapeHtml(v)}</span></li>`).join("")}</ul>
-          <p style="margin:1.6rem 0 0"><a class="arrow" href="${a.link.href}">${escapeHtml(a.link.label)}</a></p>
-        </div>
-      </div>`, { id: "about" }));
-  }
-
   const accordionHtml = (items) => html`
     <div class="accordion">${items.map((f, i) => html`
       <details class="accordion__item"${i === 0 ? " open" : ""}>
@@ -458,12 +393,8 @@
 
   function renderHome(main) {
     renderHero(main);
-    renderWall(main);
-    renderMarquee(main);
     renderWork(main);
     renderStoriesTeaser(main);
-    renderClients(main);
-    renderAbout(main);
     renderFaqTeaser(main);
     renderContact(main);
   }
