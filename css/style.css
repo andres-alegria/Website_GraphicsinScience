@@ -1463,8 +1463,8 @@ a:hover .arrow::after,
   grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); /* adjust picture / text split here */
   border-radius: var(--radius-lg);
   overflow: hidden;
-  background: var(--ink); /* adjust story card background here */
-  color: var(--ink-soft);
+  background: var(--card); /* adjust story card background here (same on the home page and the stories page) */
+  color: var(--ink);
   transition: grid-template-columns 0.5s var(--ease);
 }
 
@@ -1532,22 +1532,21 @@ a:hover .arrow::after,
 
 .story-feature__body .label {
   margin: 0;
-  color: rgb(250 250 247 / 0.75);
+  color: var(--meta);
 }
 
-.story-feature__title {
+.story-feature .story-feature__title {
   margin: 0;
   font-size: var(--fs-h2);
   font-weight: 700;
   line-height: 1.05;
   letter-spacing: -0.03em;
-  color: var(--paper);
+  color: var(--ink);
 }
 
 .story-feature__deck {
   margin: 0;
   font-size: var(--fs-small);
-  opacity: 0.9;
 }
 
 .story-feature__actions {
@@ -1558,13 +1557,15 @@ a:hover .arrow::after,
   margin: 0.6rem 0 0;
 }
 
-.story-feature__extra {
+.story-feature__extra,
+.section--ink a.story-feature__extra {
   font-size: var(--fs-small);
-  color: var(--emerald-light);
+  color: var(--emerald); /* the darker emerald still passes on the card */
 }
 
+.section--ink a.story-feature__extra:hover,
 .story-feature__extra:hover {
-  color: var(--paper);
+  color: var(--emerald-dark);
 }
 
 /* playing: the card fills the screen below the header and the scrolly gets most of the width */
@@ -1613,8 +1614,6 @@ html {
   top: calc(var(--header-h) + 1.5rem);
   min-height: min(64vh, 560px);
   margin-bottom: 14vh;
-  background: var(--card); /* adjust home story card background here */
-  color: var(--ink);
   box-shadow: 0 30px 60px -30px rgb(0 0 0 / 0.6);
   will-change: transform;
 }
@@ -1627,23 +1626,6 @@ html {
 .story-feature--stack.is-active {
   position: relative;
   top: auto;
-}
-
-.story-feature--stack .story-feature__body .label {
-  color: var(--meta);
-}
-
-.story-feature--stack .story-feature__title {
-  color: var(--ink);
-}
-
-.story-feature--stack .story-feature__deck {
-  color: var(--ink);
-  opacity: 1;
-}
-
-.section--ink .story-feature--stack .story-feature__extra {
-  color: var(--emerald); /* the darker emerald still passes on the card */
 }
 
 @media (max-width: 1023px) {
