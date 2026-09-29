@@ -56,7 +56,8 @@
 
   const metaLine = (item) => {
     const bits = [item.client];
-    if (item.story && item.story.date) bits.push(item.story.date.slice(0, 4));
+    const date = (item.story && item.story.date) || (item.paper && item.paper.year);
+    if (date) bits.push(String(date).slice(0, 4));
     return bits.filter(Boolean).join(" · ");
   };
 
@@ -241,11 +242,13 @@
       parts.counter.textContent = `${index + 1} / ${items.length}${item.categoryTitle ? " · " + item.categoryTitle : ""}`;
       parts.title.textContent = item.title;
       parts.meta.textContent = metaLine(item);
-      parts.hint.textContent = (item.compare ? "Drag across the maps to compare · " : "") + "← → to move between pieces · Esc to close";
+      parts.hint.textContent = item.compare ? "Drag across the maps to compare" : "";
       if (item.compare) initCompare(wrap.firstElementChild);
       parts.story.innerHTML = item.story && item.story.url
         ? html`<a class="button arrow arrow--ext" href="${item.story.url}" target="_blank" rel="noopener">Read the full story</a>`
-        : "";
+        : item.paper && item.paper.url
+          ? html`<a class="button arrow arrow--ext" href="${item.paper.url}" target="_blank" rel="noopener">Read the full paper</a>`
+          : "";
       if (window.gsap && !reduceMotion) {
         window.gsap.fromTo(wrap.firstElementChild, { opacity: 0, scale: 0.96 }, { opacity: 1, scale: 1, duration: 0.45, ease: "power3.out" });
       }

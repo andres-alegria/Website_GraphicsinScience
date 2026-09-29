@@ -1307,6 +1307,10 @@ a:hover .arrow::after,
   letter-spacing: 0.04em;
 }
 
+.lightbox__hint:empty {
+  display: none;
+}
+
 .lightbox__hint {
   margin: 0.4rem 0 0;
   font-size: var(--fs-label);

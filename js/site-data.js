@@ -233,7 +233,7 @@ window.SITE = {
 
   // ---------- Portfolio ----------
   // Each item: src (or video + poster), thumb (800 px copy used in the grid), width, height, title, client, alt,
-  // story { url, title, date, outlet } when it ran in an article.
+  // story { url, title, date, outlet } when it ran in an article; paper { url, year } for a journal paper (the DOI link).
   portfolio: [
     {
       id: "maps",
@@ -391,7 +391,8 @@ window.SITE = {
           thumb: "images/thumbs/peer-reviewed/1733307062760.jpg",
           width: 1500, height: 1501,
           title: "Progress and gaps in climate change adaptation in coastal cities",
-          client: "Journal article",
+          client: "Nature Cities",
+          paper: { url: "https://doi.org/10.1038/s44284-024-00106-9", year: "2024" },
           alt: "Open magazine or journal page titled \"Progress and gaps in climate change adaptation in coastal cities across the globe\" with charts and graphs about climate risks and vulnerabilities."
         },
         {
@@ -399,7 +400,8 @@ window.SITE = {
           thumb: "images/thumbs/peer-reviewed/1733306697481.jpg",
           width: 1500, height: 1501,
           title: "The tragedy of climate change science",
-          client: "Nature Climate Change",
+          client: "Climate and Development",
+          paper: { url: "https://doi.org/10.1080/17565529.2021.2008855", year: "2022" },
           alt: "Page from academic journal titled 'The tragedy of climate change science' with a graph showing responses by science to climate change since 1970, and indicators of adverse change."
         },
         {
@@ -408,23 +410,26 @@ window.SITE = {
           width: 1500, height: 1501,
           title: "A global assessment of actors and their roles in climate change adaptation",
           client: "Nature Climate Change",
-          alt: "Open publication of a scientific article titled 'A global assessment of factors and their roles in climate change adaptation' with colorful pie charts and data visualizations on climate adaptation by region and actor type."
+          paper: { url: "https://doi.org/10.1038/s41558-023-01824-z", year: "2023" },
+          alt: "Open publication of a scientific article titled 'A global assessment of actors and their roles in climate change adaptation' with colorful pie charts and data visualizations on climate adaptation by region and actor type."
         },
         {
           src: "images/portfolio/peer-reviewed/1733396318491.jpeg",
           thumb: "images/thumbs/peer-reviewed/1733396318491.jpg",
           width: 1500, height: 1501,
           title: "Towards an IPCC Atlas for comprehensive climate change risk assessments",
-          client: "Journal article",
+          client: "npj Climate Action",
+          paper: { url: "https://doi.org/10.1038/s44168-024-00193-3", year: "2024" },
           alt: "Scientific article titled 'Towards an IPCC Atlas for comprehensive climate change risk assessments' with maps and diagrams about climate risk, exposure, and response, and authors listed below the title."
         },
         {
           src: "images/portfolio/peer-reviewed/_linkedin-09.jpg",
           thumb: "images/thumbs/peer-reviewed/_linkedin-09.jpg",
           width: 1500, height: 1500,
-          title: "Figures for a research paper",
-          client: "Journal article",
-          alt: "Sample figures from a peer-reviewed paper, laid out as a set."
+          title: "Climate change on television reaches the engaged but misses distant audiences",
+          client: "Nature Climate Change",
+          paper: { url: "https://doi.org/10.1038/s41558-026-02575-3", year: "2026" },
+          alt: "Nature Climate Change article 'Climate change on television reaches the engaged but misses distant audiences', open to its charts of climate coverage across German television programme categories and of how the topic ranked on the news agenda from September to November 2022."
         }
       ]
     }
