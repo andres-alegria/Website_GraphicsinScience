@@ -297,15 +297,6 @@ window.SITE = {
           alt: "Map showing global trade flow of leopards based on permits issued between 2000 and 2024, with major hotspots in South Africa, Zimbabwe, and Namibia, and the US as a top importer, sourced from CITES."
         },
         {
-          src: "images/portfolio/maps/2025_113_AA_Nashulai_v2.jpg",
-          thumb: "images/thumbs/maps/2025_113_AA_Nashulai_v2.jpg",
-          width: 1500, height: 1200,
-          title: "Nashulai Maasai Conservancy, Kenya",
-          client: "Mongabay",
-          story: { url: "https://news.mongabay.com/2025/12/a-maasai-conservancy-uses-private-lands-to-protect-kenyas-wildlife-corridors/", title: "In Kenya, Maasai private landowners come together to protect wildlife corridors", date: "2025-12-01", outlet: "Mongabay" },
-          alt: "Map showing the Nashulai Maasai Conservancy in Kenya, its protected areas, and its boundaries within the Greater Serengeti-Mara Ecosystem, with main roads and the Kenya-Tanzania border indicated."
-        },
-        {
           src: "images/portfolio/maps/2026_003_AA_ChinaVessels_v10_Viz_8.jpg",
           thumb: "images/thumbs/maps/2026_003_AA_ChinaVessels_v10_Viz_8.jpg",
           width: 1500, height: 1200,
