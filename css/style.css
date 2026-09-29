@@ -787,6 +787,16 @@ a:hover .arrow::after,
   color: var(--white);
 }
 
+/* on the home page the 3D maps follow the scrollies in the same dark band, after a thin divider */
+.stories-teaser + .interactive {
+  padding-top: 0;
+}
+
+.stories-teaser + .interactive .wrap {
+  padding-top: var(--section-y);
+  border-top: 1px solid rgb(216 205 185 / 0.16); /* adjust divider colour here */
+}
+
 /* ==========================================================================
    Accordion (FAQ)
    ========================================================================== */

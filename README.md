@@ -6,7 +6,7 @@
 
 | Path | What it holds |
 | --- | --- |
-| `index.html` | Home: intro, every piece on a scattered, drifting wall with a lightbox, stacking story cards, FAQ accordion, contact |
+| `index.html` | Home: intro, every piece on a scattered, drifting wall with a lightbox, stacking story cards, the interactive 3D maps, FAQ accordion, contact |
 | `stories.html` | The scrollytelling stories as cards; "Click to start this scrolly" plays the live story inside its card. Plus the interactive 3D maps |
 | `services.html`, `faqs.html`, `contact.html` | Inner pages |
 | `about.html` | Redirects to the home page (kept so old links work) |
@@ -27,7 +27,7 @@ Everything editorial lives in `js/site-data.js`.
 - **Add a piece**: put the full-size file in `images/portfolio/<category>/`, make an 800 px copy in `images/thumbs/<category>/` (same name, `.jpg`), and add an entry to that category's `items`:
   `{ src, thumb, width, height, title, client, alt, story: { url, title, date, outlet } }`. Leave `story` out when there is no article. The wall deals the pieces into its three columns in the order of the file.
 - **Add a video**: use `video` and `poster` instead of `src`; it plays muted on a loop.
-- **Add a 3D map**: add `{ video, poster, width, height, title, client, url, alt }` to `stories.interactive.items`; it shows on the stories page, not on the home wall.
+- **Add a 3D map**: add `{ video, poster, width, height, title, client, url, alt }` to `stories.interactive.items`; it shows on the stories page and on the home page after the scrollies, not on the wall. Videos load only when scrolled near.
 - **Add a before/after slider**: use `compare: [left, right]` instead of `src`, each side `{ src, thumb, alt }`, both images the same size. The wall shows them split down the middle; in the lightbox the handle can be dragged.
 - **Add a story**: add an object to `stories.items` (newest first); the three newest also stack on the home page. `embed` is the address of the scrolly itself (the Vercel app the article embeds), which plays inside the card on both pages; leave it out and the card only links to the article. While the pointer is over a playing scrolly the page stays still, so the wheel drives the story.
 - **Change text**: hero, services, FAQs, contact and footer are all named blocks at the top of the file.
