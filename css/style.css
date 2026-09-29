@@ -35,7 +35,7 @@
   --fs-small: 0.875rem;
   --fs-label: 0.75rem;
   --lh-body: 1.6;
-  --tracking-label: 0.12em;
+  --tracking-label: 0.01em;
 
   /* adjust spacing here */
   --gutter: clamp(20px, 4vw, 64px);
@@ -201,10 +201,9 @@ button {
 
 .label {
   margin: 0;
-  font-size: var(--fs-label);
+  font-size: var(--fs-small); /* adjust size of the small section labels here */
   font-weight: 600;
   letter-spacing: var(--tracking-label);
-  text-transform: uppercase;
   color: var(--brown);
 }
 
@@ -340,7 +339,6 @@ a:hover .arrow::after,
   font-size: var(--fs-small); /* adjust tagline size here */
   font-weight: 500;
   letter-spacing: 0;
-  text-transform: lowercase;
   color: var(--brown);
 }
 
@@ -783,10 +781,8 @@ a:hover .arrow::after,
 .story-card__meta {
   display: block;
   margin-top: 0.7rem;
-  font-size: var(--fs-label);
+  font-size: var(--fs-small);
   font-weight: 600;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
   opacity: 0.7;
 }
 
@@ -1044,10 +1040,8 @@ a:hover .arrow::after,
 
 .lightbox__meta {
   margin: 0;
-  font-size: var(--fs-label);
+  font-size: var(--fs-small);
   font-weight: 600;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
   opacity: 0.75;
 }
 

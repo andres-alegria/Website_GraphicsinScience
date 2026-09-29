@@ -4,7 +4,7 @@
 */
 window.SITE = {
   name: "Andrés Alegría",
-  tagline: "Visual science communicator", // shown in lowercase in the header
+  tagline: "Visual science communicator",
   siteTitle: "Andrés Alegría | Visual Science Communicator",
 
   nav: [
