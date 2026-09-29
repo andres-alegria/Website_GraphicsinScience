@@ -596,9 +596,9 @@ a:hover .arrow::after,
   position: relative;
   z-index: 2;
   display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-  gap: 1rem;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.4rem 1.2rem; /* adjust space between the label and the line beside it here */
   color: var(--bone);
   padding-bottom: clamp(1.2rem, 3vw, 2.4rem);
 }
