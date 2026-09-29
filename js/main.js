@@ -341,7 +341,7 @@
     const t = SITE.storiesTeaser;
     // the three newest stories; on wide screens the cards stick and stack as the page scrolls (see js/motion.js)
     const cards = SITE.stories.items.slice(0, 3).map((story) => storyCardHtml(story, { classes: "story-feature--stack" })).join("");
-    const el = section("section section--forest stories-teaser", html`
+    const el = section("section section--ink stories-teaser", html`
       <div class="wrap">
         ${sectionHead(t.label, t.title, escapeHtml(t.intro))}
         <div class="stack">${cards}</div>
@@ -493,7 +493,7 @@
           <span class="story-card__meta">${escapeHtml(item.client)}</span>
         </div>
       </a>`).join("");
-    main.appendChild(section("section section--forest interactive", html`
+    main.appendChild(section("section section--ink interactive", html`
       <div class="wrap">
         ${sectionHead(t.label, t.title, escapeHtml(t.intro))}
         <div class="story-cards">${cards}</div>

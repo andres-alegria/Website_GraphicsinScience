@@ -4,24 +4,24 @@
 
 :root {
   /* palette — the only colours used on the site; adjust here */
-  --teal: #276f70;    /* primary actions, links */
-  --forest: #1a3127;  /* headings, dark bands */
-  --white: #e4e5e1;   /* page background */
-  --bone: #d8cdb9;    /* alternate sections */
-  --wine: #8e1033;    /* rare emphasis, link hover */
-  --black: #2b2d2b;   /* body text */
-  --brown: #8a5a2b;   /* tags, meta, dividers */
+  --paper: #fafaf7;          /* page background */
+  --card: #f0efea;           /* cards and quiet panels */
+  --ink: #141414;            /* text, headings, dark bands */
+  --ink-soft: #c9c8c2;       /* body text on the dark bands */
+  --meta: #6b6a65;           /* dates, publishers, small labels */
+  --emerald: #0e7453;        /* the one accent: buttons, links, focus */
+  --emerald-dark: #0b5e44;   /* accent hover */
+  --emerald-light: #5cc49a;  /* accent on the dark bands */
 
   /* roles */
-  --bg: var(--white);
-  --text: var(--black);
-  --heading: var(--forest);
-  --link: var(--teal);
-  --link-hover: var(--wine);
-  --line: rgb(26 49 39 / 0.14);         /* hairlines: forest at low opacity */
-  --line-strong: rgb(26 49 39 / 0.32);
-  --panel: rgb(26 49 39 / 0.05);        /* faint panel tint on white */
-  --shadow: 0 18px 40px -22px rgb(26 49 39 / 0.45); /* adjust card lift shadow here */
+  --bg: var(--paper);
+  --text: var(--ink);
+  --heading: var(--ink);
+  --link: var(--emerald);
+  --link-hover: var(--emerald-dark);
+  --line: rgb(20 20 20 / 0.1);          /* hairlines: ink at low opacity */
+  --line-strong: rgb(20 20 20 / 0.25);
+  --shadow: 0 18px 40px -22px rgb(20 20 20 / 0.35); /* adjust card lift shadow here */
 
   /* adjust fonts here */
   --font: "Public Sans", system-ui, -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
@@ -159,7 +159,7 @@ button {
 }
 
 :focus-visible {
-  outline: 2px solid var(--teal);
+  outline: 2px solid var(--emerald);
   outline-offset: 2px;
 }
 
@@ -182,8 +182,8 @@ button {
   z-index: 400;
   padding: 0.5rem 1rem;
   border-radius: var(--radius);
-  background: var(--teal);
-  color: var(--white);
+  background: var(--emerald);
+  color: var(--paper);
 }
 
 .skip-link:focus {
@@ -204,7 +204,7 @@ button {
   font-size: var(--fs-small); /* adjust size of the small section labels here */
   font-weight: 600;
   letter-spacing: var(--tracking-label);
-  color: var(--brown);
+  color: var(--meta);
 }
 
 .prose {
@@ -236,10 +236,10 @@ button {
   align-items: center;
   gap: 0.5em;
   padding: 0.85em 1.4em;
-  border: 1px solid var(--teal);
+  border: 1px solid var(--emerald);
   border-radius: var(--radius);
-  background: var(--teal);
-  color: var(--white);
+  background: var(--emerald);
+  color: var(--paper);
   font-size: var(--fs-small);
   font-weight: 600;
   letter-spacing: 0.01em;
@@ -248,9 +248,9 @@ button {
 }
 
 .button:hover {
-  background: var(--wine);
-  border-color: var(--wine);
-  color: var(--white);
+  background: var(--emerald-dark);
+  border-color: var(--emerald-dark);
+  color: var(--paper);
   transform: translateY(-1px);
 }
 
@@ -262,8 +262,15 @@ button {
 
 .button--ghost:hover {
   background: transparent;
-  color: var(--wine);
-  border-color: var(--wine);
+  color: var(--emerald-dark);
+  border-color: var(--emerald-dark);
+}
+
+/* on the dark bands the ghost button lights up in the lighter green */
+.hero .button--ghost:hover,
+.section--ink .button--ghost:hover {
+  color: var(--emerald-light);
+  border-color: var(--emerald-light);
 }
 
 .button:disabled {
@@ -295,19 +302,13 @@ a:hover .arrow::after,
   top: 0;
   z-index: 100;
   height: var(--header-h);
-  background: rgb(228 229 225 / 0.92); /* page colour, slightly translucent */
+  background: rgb(250 250 247 / 0.92); /* page colour, slightly translucent */
   border-bottom: 1px solid var(--line);
   transition: transform 0.35s var(--ease);
 }
 
 .site-header.is-hidden {
   transform: translateY(-100%);
-}
-
-.site-header--dark {
-  background: rgb(26 49 39 / 0.94);
-  border-bottom-color: rgb(216 205 185 / 0.16);
-  color: var(--bone);
 }
 
 .header-inner {
@@ -327,11 +328,7 @@ a:hover .arrow::after,
 }
 
 .site-title:hover {
-  color: var(--teal);
-}
-
-.site-header--dark .site-title:hover {
-  color: var(--white);
+  color: var(--emerald);
 }
 
 .site-title small {
@@ -339,11 +336,7 @@ a:hover .arrow::after,
   font-size: var(--fs-small); /* adjust tagline size here */
   font-weight: 500;
   letter-spacing: 0;
-  color: var(--brown);
-}
-
-.site-header--dark .site-title small {
-  color: rgb(216 205 185 / 0.7);
+  color: var(--meta);
 }
 
 .site-nav {
@@ -368,11 +361,7 @@ a:hover .arrow::after,
 }
 
 .site-nav a:hover {
-  color: var(--teal);
-}
-
-.site-header--dark .site-nav a:hover {
-  color: var(--white);
+  color: var(--emerald);
 }
 
 .header-social,
@@ -436,8 +425,8 @@ a:hover .arrow::after,
   justify-content: center;
   gap: 2.5rem;
   padding: var(--gutter);
-  background: var(--forest);
-  color: var(--bone);
+  background: var(--ink);
+  color: var(--paper);
 }
 
 .mobile-menu[hidden] {
@@ -464,41 +453,27 @@ a:hover .arrow::after,
   padding-block: var(--section-y);
 }
 
-.section--bone {
-  background: var(--bone);
+.section--ink {
+  background: var(--ink);
+  color: var(--ink-soft);
 }
 
-.section--forest {
-  background: var(--forest);
-  color: var(--bone);
+.section--ink h1,
+.section--ink h2,
+.section--ink h3 {
+  color: var(--paper);
 }
 
-.section--forest h1,
-.section--forest h2,
-.section--forest h3 {
-  color: var(--white);
+.section--ink .label {
+  color: rgb(250 250 247 / 0.75);
 }
 
-.section--forest .label {
-  color: rgb(216 205 185 / 0.75);
+.section--ink a:not(.button) {
+  color: var(--emerald-light);
 }
 
-.section--forest a:not(.button) {
-  color: var(--bone);
-}
-
-.section--forest a:not(.button):hover {
-  color: var(--white);
-}
-
-.section--bone a:not(.button) {
-  color: var(--forest); /* teal fails contrast on bone, so links go forest with an underline */
-  text-decoration: underline;
-  text-underline-offset: 0.15em;
-}
-
-.section--bone a:not(.button):hover {
-  color: var(--wine);
+.section--ink a:not(.button):hover {
+  color: var(--paper);
 }
 
 .section-head {
@@ -532,8 +507,8 @@ a:hover .arrow::after,
 
 .hero {
   position: relative;
-  background: var(--forest);
-  color: var(--bone);
+  background: var(--ink);
+  color: var(--ink-soft);
   padding: clamp(3.5rem, 8vw, 7rem) 0 clamp(4rem, 9vw, 8rem);
 }
 
@@ -547,20 +522,20 @@ a:hover .arrow::after,
   font-size: var(--fs-hero);
   line-height: 0.98;
   letter-spacing: -0.035em;
-  color: var(--white);
+  color: var(--paper);
   text-wrap: balance;
 }
 
 .hero__title em {
   font-style: normal;
-  color: var(--bone);
+  color: var(--emerald-light);
 }
 
 .hero__lead {
   max-width: 56ch;
   font-size: var(--fs-lead);
   line-height: 1.5;
-  color: var(--bone);
+  color: var(--ink-soft);
 }
 
 .hero__actions {
@@ -587,7 +562,7 @@ a:hover .arrow::after,
   position: absolute;
   inset: 0 0 auto;
   height: clamp(120px, 18vw, 260px); /* adjust how far the dark band reaches into the wall here */
-  background: var(--forest);
+  background: var(--ink);
 }
 
 .wall__head {
@@ -597,12 +572,12 @@ a:hover .arrow::after,
   flex-wrap: wrap;
   align-items: baseline;
   gap: 0.4rem 1.2rem; /* adjust space between the label and the line beside it here */
-  color: var(--bone);
+  color: var(--ink-soft);
   padding-bottom: clamp(1.2rem, 3vw, 2.4rem);
 }
 
 .wall__head .label {
-  color: rgb(216 205 185 / 0.75);
+  color: rgb(250 250 247 / 0.75);
 }
 
 .wall__head p {
@@ -678,7 +653,7 @@ a:hover .arrow::after,
   padding: 0;
   border: 0;
   border-radius: var(--radius);
-  background: var(--white);
+  background: var(--paper);
   box-shadow: var(--shadow);
   overflow: hidden;
   cursor: zoom-in;
@@ -751,14 +726,14 @@ a:hover .arrow::after,
   color: inherit;
   border-radius: var(--radius-lg);
   overflow: hidden;
-  background: rgb(216 205 185 / 0.08);
-  border: 1px solid rgb(216 205 185 / 0.16);
+  background: rgb(250 250 247 / 0.08);
+  border: 1px solid rgb(250 250 247 / 0.16);
   transition: transform 0.35s var(--ease), border-color 0.2s ease;
 }
 
 .story-card:hover {
   transform: translateY(-4px);
-  border-color: rgb(216 205 185 / 0.45);
+  border-color: rgb(250 250 247 / 0.45);
 }
 
 .story-card img,
@@ -786,8 +761,12 @@ a:hover .arrow::after,
   opacity: 0.7;
 }
 
-.section--forest .story-card:hover h3 {
-  color: var(--white);
+.section--ink a.story-card {
+  color: var(--ink-soft);
+}
+
+.section--ink .story-card:hover h3 {
+  color: var(--paper);
 }
 
 /* on the home page the 3D maps follow the scrollies in the same dark band, after a thin divider */
@@ -797,7 +776,7 @@ a:hover .arrow::after,
 
 .stories-teaser + .interactive .wrap {
   padding-top: var(--section-y);
-  border-top: 1px solid rgb(216 205 185 / 0.16); /* adjust divider colour here */
+  border-top: 1px solid rgb(250 250 247 / 0.16); /* adjust divider colour here */
 }
 
 /* ==========================================================================
@@ -823,7 +802,7 @@ a:hover .arrow::after,
   font-size: var(--fs-h3);
   font-weight: 600;
   line-height: 1.3;
-  color: var(--forest);
+  color: var(--ink);
 }
 
 .accordion__item summary::-webkit-details-marker {
@@ -840,7 +819,7 @@ a:hover .arrow::after,
   border: 1px solid var(--line-strong);
   border-radius: 50%;
   font-weight: 400;
-  color: var(--teal);
+  color: var(--emerald);
   transition: transform 0.3s var(--ease);
 }
 
@@ -883,13 +862,13 @@ a:hover .arrow::after,
   margin-bottom: 0.4rem;
   font-size: var(--fs-small);
   font-weight: 600;
-  color: var(--forest);
+  color: var(--ink);
 }
 
 .field__required {
   margin-left: 0.3em;
   font-weight: 500;
-  color: var(--brown);
+  color: var(--meta);
 }
 
 .field input,
@@ -899,7 +878,7 @@ a:hover .arrow::after,
   padding: 0.8rem 0.9rem;
   border: 1px solid var(--line-strong);
   border-radius: var(--radius);
-  background: rgb(228 229 225 / 0.6);
+  background: rgb(250 250 247 / 0.6);
   color: inherit;
   font: inherit;
   transition: border-color 0.2s ease;
@@ -907,9 +886,9 @@ a:hover .arrow::after,
 
 .field input:focus,
 .field textarea:focus {
-  border-color: var(--teal);
+  border-color: var(--emerald);
   outline: none;
-  box-shadow: 0 0 0 2px rgb(39 111 112 / 0.25);
+  box-shadow: 0 0 0 2px rgb(14 116 83 / 0.25);
 }
 
 .field textarea {
@@ -924,7 +903,7 @@ a:hover .arrow::after,
 .form-status {
   margin: 0;
   font-size: var(--fs-small);
-  color: var(--forest);
+  color: var(--ink);
 }
 
 .spam-trap {
@@ -936,8 +915,8 @@ a:hover .arrow::after,
    ========================================================================== */
 
 .site-footer {
-  background: var(--forest);
-  color: var(--bone);
+  background: var(--ink);
+  color: var(--ink-soft);
   padding-block: clamp(2.5rem, 5vw, 4.5rem);
 }
 
@@ -951,7 +930,7 @@ a:hover .arrow::after,
   margin: 0 0 0.5rem;
   font-size: 1.15rem;
   font-weight: 700;
-  color: var(--white);
+  color: var(--paper);
 }
 
 .footer__tagline {
@@ -969,20 +948,20 @@ a:hover .arrow::after,
 
 .footer__nav a,
 .footer__social a {
-  color: var(--bone);
+  color: var(--ink-soft);
   font-size: var(--fs-small);
 }
 
 .footer__nav a:hover,
 .footer__social a:hover {
-  color: var(--white);
+  color: var(--paper);
 }
 
 .footer__note {
   grid-column: 1 / -1;
   margin: 1.5rem 0 0;
   padding-top: 1.2rem;
-  border-top: 1px solid rgb(216 205 185 / 0.2);
+  border-top: 1px solid rgb(250 250 247 / 0.2);
   font-size: var(--fs-label);
   letter-spacing: 0.04em;
   opacity: 0.7;
@@ -998,8 +977,8 @@ a:hover .arrow::after,
   z-index: 300;
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(280px, 360px);
-  background: rgb(26 49 39 / 0.97); /* forest, nearly opaque */
-  color: var(--bone);
+  background: rgb(20 20 20 / 0.97); /* ink, nearly opaque */
+  color: var(--ink-soft);
 }
 
 .lightbox[hidden] {
@@ -1021,7 +1000,7 @@ a:hover .arrow::after,
   height: auto;
   object-fit: contain;
   border-radius: var(--radius);
-  background: var(--white);
+  background: var(--paper);
 }
 
 .lightbox__info {
@@ -1029,13 +1008,13 @@ a:hover .arrow::after,
   flex-direction: column;
   gap: 0.8rem;
   padding: clamp(1.5rem, 3vw, 2.5rem) clamp(1.2rem, 2.5vw, 2rem);
-  border-left: 1px solid rgb(216 205 185 / 0.16);
+  border-left: 1px solid rgb(250 250 247 / 0.16);
   overflow: auto;
 }
 
 .lightbox__info h2 {
   font-size: var(--fs-h3);
-  color: var(--white);
+  color: var(--paper);
 }
 
 .lightbox__meta {
@@ -1069,10 +1048,10 @@ a:hover .arrow::after,
   height: 44px;
   display: grid;
   place-items: center;
-  border: 1px solid rgb(216 205 185 / 0.3);
+  border: 1px solid rgb(250 250 247 / 0.3);
   border-radius: 50%;
-  background: rgb(26 49 39 / 0.6);
-  color: var(--white);
+  background: rgb(20 20 20 / 0.6);
+  color: var(--paper);
   font-size: 1.2rem;
   cursor: pointer;
   transition: background-color 0.2s ease, border-color 0.2s ease;
@@ -1080,8 +1059,8 @@ a:hover .arrow::after,
 
 .lightbox__close:hover,
 .lightbox__nav:hover {
-  background: var(--teal);
-  border-color: var(--teal);
+  background: var(--emerald);
+  border-color: var(--emerald);
 }
 
 .lightbox__close {
@@ -1147,7 +1126,7 @@ a:hover .arrow::after,
   font-size: var(--fs-small);
   font-weight: 500;
   letter-spacing: 0;
-  color: var(--brown);
+  color: var(--meta);
 }
 
 .faq__question {
@@ -1220,7 +1199,7 @@ a:hover .arrow::after,
 
   .lightbox__info {
     border-left: 0;
-    border-top: 1px solid rgb(216 205 185 / 0.16);
+    border-top: 1px solid rgb(250 250 247 / 0.16);
     max-height: 40vh;
   }
 
@@ -1341,8 +1320,8 @@ a:hover .arrow::after,
   height: 44px;
   border: 1px solid var(--line-strong);
   border-radius: 50%;
-  background: var(--white);
-  color: var(--forest);
+  background: var(--paper);
+  color: var(--ink);
   font-size: 1.1rem;
   cursor: pointer;
   opacity: 0;
@@ -1358,9 +1337,9 @@ a:hover .arrow::after,
 }
 
 .to-top:hover {
-  background: var(--teal);
-  border-color: var(--teal);
-  color: var(--white);
+  background: var(--emerald);
+  border-color: var(--emerald);
+  color: var(--paper);
 }
 
 @media (max-width: 1023px) {
@@ -1374,8 +1353,8 @@ a:hover .arrow::after,
    ========================================================================== */
 
 .compare {
-  --handle-line: var(--forest); /* adjust slider line colour here */
-  --handle-grip: var(--forest); /* adjust slider grip colour here */
+  --handle-line: var(--ink); /* adjust slider line colour here */
+  --handle-grip: var(--ink); /* adjust slider grip colour here */
   position: relative;
   display: block;
   overflow: hidden;
@@ -1403,7 +1382,7 @@ a:hover .arrow::after,
   width: 2px; /* adjust slider line width here */
   margin-left: -1px;
   background: var(--handle-line);
-  box-shadow: 0 0 0 1px rgb(228 229 225 / 0.8);
+  box-shadow: 0 0 0 1px rgb(250 250 247 / 0.8);
   pointer-events: none;
 }
 
@@ -1417,10 +1396,10 @@ a:hover .arrow::after,
   display: grid;
   place-items: center;
   transform: translate(-50%, -50%);
-  border: 2px solid var(--white);
+  border: 2px solid var(--paper);
   border-radius: 50%;
   background: var(--handle-grip);
-  color: var(--bone);
+  color: var(--paper);
   font-size: 1.05rem;
   line-height: 1;
 }
@@ -1441,7 +1420,7 @@ a:hover .arrow::after,
 }
 
 .compare:has(.compare__range:focus-visible) .compare__handle::after {
-  outline: 2px solid var(--teal);
+  outline: 2px solid var(--emerald);
   outline-offset: 2px;
 }
 
@@ -1484,15 +1463,15 @@ a:hover .arrow::after,
   grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); /* adjust picture / text split here */
   border-radius: var(--radius-lg);
   overflow: hidden;
-  background: var(--forest); /* adjust story card background here */
-  color: var(--bone);
+  background: var(--ink); /* adjust story card background here */
+  color: var(--ink-soft);
   transition: grid-template-columns 0.5s var(--ease);
 }
 
 .story-feature__media {
   position: relative;
   min-height: 0;
-  background: var(--black);
+  background: var(--ink);
 }
 
 .story-feature__media img {
@@ -1507,7 +1486,7 @@ a:hover .arrow::after,
   width: 100%;
   height: 100%;
   border: 0;
-  background: var(--white);
+  background: var(--paper);
 }
 
 /* the start and close buttons sit in the picture's top left corner */
@@ -1521,10 +1500,10 @@ a:hover .arrow::after,
   align-items: center;
   gap: 0.5em;
   padding: 0.55em 1em;
-  border: 1px solid rgb(216 205 185 / 0.35);
+  border: 1px solid rgb(250 250 247 / 0.35);
   border-radius: 999px;
-  background: var(--forest); /* adjust start button colour here */
-  color: var(--bone);
+  background: var(--ink); /* adjust start button colour here */
+  color: var(--paper);
   font: inherit;
   font-size: var(--fs-small); /* adjust start button text size here */
   font-weight: 600;
@@ -1540,8 +1519,8 @@ a:hover .arrow::after,
 
 .story-feature__start:hover,
 .story-feature__close:hover {
-  background: var(--teal);
-  color: var(--white);
+  background: var(--emerald);
+  color: var(--paper);
 }
 
 .story-feature__body {
@@ -1553,7 +1532,7 @@ a:hover .arrow::after,
 
 .story-feature__body .label {
   margin: 0;
-  color: rgb(216 205 185 / 0.75);
+  color: rgb(250 250 247 / 0.75);
 }
 
 .story-feature__title {
@@ -1562,7 +1541,7 @@ a:hover .arrow::after,
   font-weight: 700;
   line-height: 1.05;
   letter-spacing: -0.03em;
-  color: var(--white);
+  color: var(--paper);
 }
 
 .story-feature__deck {
@@ -1581,11 +1560,11 @@ a:hover .arrow::after,
 
 .story-feature__extra {
   font-size: var(--fs-small);
-  color: var(--bone);
+  color: var(--emerald-light);
 }
 
 .story-feature__extra:hover {
-  color: var(--white);
+  color: var(--paper);
 }
 
 /* playing: the card fills the screen below the header and the scrolly gets most of the width */
@@ -1628,14 +1607,14 @@ html {
   }
 }
 
-/* the home page's story cards: bone on the forest band, sticking and stacking on wide screens */
+/* the home page's story cards: pale cards on the ink band, sticking and stacking on wide screens */
 .story-feature--stack {
   position: sticky;
   top: calc(var(--header-h) + 1.5rem);
   min-height: min(64vh, 560px);
   margin-bottom: 14vh;
-  background: var(--bone); /* adjust home story card background here */
-  color: var(--forest);
+  background: var(--card); /* adjust home story card background here */
+  color: var(--ink);
   box-shadow: 0 30px 60px -30px rgb(0 0 0 / 0.6);
   will-change: transform;
 }
@@ -1651,20 +1630,20 @@ html {
 }
 
 .story-feature--stack .story-feature__body .label {
-  color: var(--brown);
+  color: var(--meta);
 }
 
 .story-feature--stack .story-feature__title {
-  color: var(--forest);
+  color: var(--ink);
 }
 
 .story-feature--stack .story-feature__deck {
-  color: var(--black);
+  color: var(--ink);
   opacity: 1;
 }
 
-.section--forest .story-feature--stack .story-feature__extra {
-  color: var(--forest); /* teal does not pass on bone */
+.section--ink .story-feature--stack .story-feature__extra {
+  color: var(--emerald); /* the darker emerald still passes on the card */
 }
 
 @media (max-width: 1023px) {

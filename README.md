@@ -37,7 +37,7 @@ Everything editorial lives in `js/site-data.js`.
 
 ## Changing the look
 
-- **Colours**: the seven palette tokens at the top of `css/style.css`, plus the role tokens under them. Approved text/background pairings: forest on bone, bone on forest, wine on white, white on teal, teal on white, black on white, bone on black, brown on white. Teal and brown do not pass contrast on bone, which is why links on bone sections are forest.
+- **Colours**: eight palette tokens at the top of `css/style.css` (paper, card, ink, ink-soft, meta, and emerald in three strengths), plus the role tokens under them. Neutrals frame the work; emerald is the only colour and marks what can be clicked. On the light page use `--emerald` for links and buttons (`--emerald-dark` on hover); on the ink bands use `--emerald-light` for links and text on ink is `--ink-soft` or `--paper`. Every pairing passes WCAG AA.
 - **Type**: `--font` and the `--fs-*` sizes.
 - **Motion**: the durations and how far the wall's pieces float are marked in `js/motion.js`.
 
