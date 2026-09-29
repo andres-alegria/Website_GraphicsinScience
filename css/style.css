@@ -1269,6 +1269,20 @@ a:hover .arrow::after,
 
 }
 
+/* Pre-written content: the published pages carry the text in the HTML for search engines (tools/prerender.mjs).
+   With JavaScript on, it waits hidden for the moment the scripts take to redraw it, so the entrance animations
+   don't flicker; if the scripts never run it shows after 3 s anyway. */
+.js #main[data-prerendered] {
+  visibility: hidden;
+  animation: show-prerendered 0s 3s forwards;
+}
+
+@keyframes show-prerendered {
+  to {
+    visibility: visible;
+  }
+}
+
 /* anchors land below the sticky header */
 [id] {
   scroll-margin-top: calc(var(--header-h) + 1rem);

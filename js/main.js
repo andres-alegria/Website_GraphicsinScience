@@ -557,10 +557,15 @@
   }
 
   const renderers = { home: renderHome, stories: renderStories, services: renderServices, faqs: renderFaqs, contact: renderContactPage };
+  // The published pages already carry a written-out copy of the content for search engines (tools/prerender.mjs);
+  // it is swapped for the live version here, so the lightbox, sliders and scrolly players work.
+  const main = document.getElementById("main");
+  main.replaceChildren();
   renderHeader();
-  (renderers[page] || renderHome)(document.getElementById("main"));
+  (renderers[page] || renderHome)(main);
   renderFooter();
-  lazyVideos(document.getElementById("main"));
+  main.removeAttribute("data-prerendered");
+  lazyVideos(main);
 
   // back-to-top button, shown once the page has scrolled a screen and a half
   const toTop = document.createElement("button");

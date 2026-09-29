@@ -1,6 +1,6 @@
 # Graphics in Science website
 
-[graphicsinscience.com](https://www.graphicsinscience.com): the portfolio of Andrés Alegría, visual science communicator. Plain HTML, CSS and JavaScript, served by GitHub Pages. No build step, no backend.
+[graphicsinscience.com](https://www.graphicsinscience.com): the portfolio of Andrés Alegría, visual science communicator. Plain HTML, CSS and JavaScript, served by GitHub Pages. No build tools to install, no backend.
 
 ## Structure
 
@@ -20,6 +20,8 @@
 | `images/thumbs/<category>/` | 800 px JPEG copies (and 800 px videos) used on the wall; the lightbox opens the full file |
 | `images/stories/` | The story card pictures, 1100 px JPEG |
 | `images/about/`, `images/share/` | Portrait (not on the pages at the moment); link-preview image |
+| `tools/prerender.mjs` | Writes each page's finished content into its HTML for search engines; runs on every push (see below) |
+| `.github/workflows/pages.yml` | The GitHub Action that runs it and publishes the site |
 
 ## Editing content
 
@@ -49,6 +51,7 @@ Then open http://localhost:8000. The Cloudflare Analytics beacon logs a CORS err
 
 ## Services in use
 
-- **Hosting**: GitHub Pages from `main`, custom domain `www.graphicsinscience.com` (`CNAME` file). DNS is at Squarespace Domains.
+- **Hosting**: GitHub Pages, custom domain `www.graphicsinscience.com` (`CNAME` file). DNS is at Squarespace Domains. Every push to `main` runs the "Publish site" Action: `tools/prerender.mjs` opens each page in headless Chrome and writes its content into the HTML, so search engines, link previews and AI tools that don't run JavaScript can read it; then the result is published. The written-out copies are never committed, and in the browser `js/main.js` swaps them for the live version. Settings → Pages → Source must be "GitHub Actions". To check the result locally: `node tools/prerender.mjs` (needs Node and Chrome), then look in `_site/`.
+- **Search**: each page has its own title, description and canonical address; the home page carries structured data (schema.org Person and WebSite) in its `<head>`. `sitemap.xml` lists the pages; add new ones there.
 - **Contact form**: Web3Forms. The public access key sits in `contactForm.hiddenFields`; messages go to the address linked in the Web3Forms dashboard. A hidden `botcheck` field catches bots.
 - **Analytics**: Cloudflare Web Analytics, the snippet before `</body>` on every page. Copy it into any new page.
