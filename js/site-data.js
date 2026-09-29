@@ -341,53 +341,6 @@ window.SITE = {
       ]
     },
     {
-      id: "peer-reviewed",
-      title: "Peer-reviewed",
-      blurb: "Figures for papers in peer-reviewed journals.",
-      items: [
-        {
-          src: "images/portfolio/peer-reviewed/1733307062760.jpeg",
-          thumb: "images/thumbs/peer-reviewed/1733307062760.jpg",
-          width: 1500, height: 1501,
-          title: "Progress and gaps in climate change adaptation in coastal cities",
-          client: "Journal article",
-          alt: "Open magazine or journal page titled \"Progress and gaps in climate change adaptation in coastal cities across the globe\" with charts and graphs about climate risks and vulnerabilities."
-        },
-        {
-          src: "images/portfolio/peer-reviewed/1733306697481.jpeg",
-          thumb: "images/thumbs/peer-reviewed/1733306697481.jpg",
-          width: 1500, height: 1501,
-          title: "The tragedy of climate change science",
-          client: "Nature Climate Change",
-          alt: "Page from academic journal titled 'The tragedy of climate change science' with a graph showing responses by science to climate change since 1970, and indicators of adverse change."
-        },
-        {
-          src: "images/portfolio/peer-reviewed/1733307273965.jpeg",
-          thumb: "images/thumbs/peer-reviewed/1733307273965.jpg",
-          width: 1500, height: 1501,
-          title: "A global assessment of actors and their roles in climate change adaptation",
-          client: "Nature Climate Change",
-          alt: "Open publication of a scientific article titled 'A global assessment of factors and their roles in climate change adaptation' with colorful pie charts and data visualizations on climate adaptation by region and actor type."
-        },
-        {
-          src: "images/portfolio/peer-reviewed/1733396318491.jpeg",
-          thumb: "images/thumbs/peer-reviewed/1733396318491.jpg",
-          width: 1500, height: 1501,
-          title: "Towards an IPCC Atlas for comprehensive climate change risk assessments",
-          client: "Journal article",
-          alt: "Scientific article titled 'Towards an IPCC Atlas for comprehensive climate change risk assessments' with maps and diagrams about climate risk, exposure, and response, and authors listed below the title."
-        },
-        {
-          src: "images/portfolio/peer-reviewed/_linkedin-09.jpg",
-          thumb: "images/thumbs/peer-reviewed/_linkedin-09.jpg",
-          width: 1500, height: 1500,
-          title: "Figures for a research paper",
-          client: "Journal article",
-          alt: "Sample figures from a peer-reviewed paper, laid out as a set."
-        }
-      ]
-    },
-    {
       id: "layouts",
       title: "Layouts",
       blurb: "Editorial and publication design: magazines, brochures, handbooks.",
@@ -431,6 +384,53 @@ window.SITE = {
           title: "How to Adapt to a Changing Climate: Summary for All",
           client: "IPCC",
           alt: "Three pink booklets titled \"How to Adapt to a Changing Climate: Summary for All\" with icons related to climate change on the cover."
+        }
+      ]
+    },
+    {
+      id: "peer-reviewed",
+      title: "Peer-reviewed",
+      blurb: "Figures for papers in peer-reviewed journals.",
+      items: [
+        {
+          src: "images/portfolio/peer-reviewed/1733307062760.jpeg",
+          thumb: "images/thumbs/peer-reviewed/1733307062760.jpg",
+          width: 1500, height: 1501,
+          title: "Progress and gaps in climate change adaptation in coastal cities",
+          client: "Journal article",
+          alt: "Open magazine or journal page titled \"Progress and gaps in climate change adaptation in coastal cities across the globe\" with charts and graphs about climate risks and vulnerabilities."
+        },
+        {
+          src: "images/portfolio/peer-reviewed/1733306697481.jpeg",
+          thumb: "images/thumbs/peer-reviewed/1733306697481.jpg",
+          width: 1500, height: 1501,
+          title: "The tragedy of climate change science",
+          client: "Nature Climate Change",
+          alt: "Page from academic journal titled 'The tragedy of climate change science' with a graph showing responses by science to climate change since 1970, and indicators of adverse change."
+        },
+        {
+          src: "images/portfolio/peer-reviewed/1733307273965.jpeg",
+          thumb: "images/thumbs/peer-reviewed/1733307273965.jpg",
+          width: 1500, height: 1501,
+          title: "A global assessment of actors and their roles in climate change adaptation",
+          client: "Nature Climate Change",
+          alt: "Open publication of a scientific article titled 'A global assessment of factors and their roles in climate change adaptation' with colorful pie charts and data visualizations on climate adaptation by region and actor type."
+        },
+        {
+          src: "images/portfolio/peer-reviewed/1733396318491.jpeg",
+          thumb: "images/thumbs/peer-reviewed/1733396318491.jpg",
+          width: 1500, height: 1501,
+          title: "Towards an IPCC Atlas for comprehensive climate change risk assessments",
+          client: "Journal article",
+          alt: "Scientific article titled 'Towards an IPCC Atlas for comprehensive climate change risk assessments' with maps and diagrams about climate risk, exposure, and response, and authors listed below the title."
+        },
+        {
+          src: "images/portfolio/peer-reviewed/_linkedin-09.jpg",
+          thumb: "images/thumbs/peer-reviewed/_linkedin-09.jpg",
+          width: 1500, height: 1500,
+          title: "Figures for a research paper",
+          client: "Journal article",
+          alt: "Sample figures from a peer-reviewed paper, laid out as a set."
         }
       ]
     }
