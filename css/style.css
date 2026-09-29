@@ -721,19 +721,18 @@ a:hover .arrow::after,
   gap: clamp(16px, 2.5vw, 32px);
 }
 
+/* 3D map cards: the same pale card as the story cards */
 .story-card {
   display: block;
-  color: inherit;
+  color: var(--ink);
   border-radius: var(--radius-lg);
   overflow: hidden;
-  background: rgb(250 250 247 / 0.08);
-  border: 1px solid rgb(250 250 247 / 0.16);
-  transition: transform 0.35s var(--ease), border-color 0.2s ease;
+  background: var(--card); /* adjust 3D card background here */
+  transition: transform 0.35s var(--ease);
 }
 
 .story-card:hover {
   transform: translateY(-4px);
-  border-color: rgb(250 250 247 / 0.45);
 }
 
 .story-card img,
@@ -751,6 +750,8 @@ a:hover .arrow::after,
 .story-card__body h3 {
   font-size: var(--fs-h3);
   margin-bottom: 0.4rem;
+  color: var(--ink);
+  transition: color 0.2s ease;
 }
 
 .story-card__meta {
@@ -758,15 +759,15 @@ a:hover .arrow::after,
   margin-top: 0.7rem;
   font-size: var(--fs-small);
   font-weight: 600;
-  opacity: 0.7;
+  color: var(--meta);
 }
 
 .section--ink a.story-card {
-  color: var(--ink-soft);
+  color: var(--ink);
 }
 
 .section--ink .story-card:hover h3 {
-  color: var(--paper);
+  color: var(--emerald);
 }
 
 /* on the home page the 3D maps follow the scrollies in the same dark band, after a thin divider */
