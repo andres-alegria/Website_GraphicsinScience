@@ -448,13 +448,13 @@ window.SITE = {
           alt: "Open printed spread of the Summary for Policymakers of the IPCC Working Group II report, Climate Change 2022, with the facing page partly in view and, on the left page, the figure 'Global and regional risks for increasing levels of global warming': projected warming to 2100 under five emissions scenarios beside burning-ember bars of rising risk for the Reasons for Concern, ecosystems and health."
         },
         {
-          src: "images/portfolio/ipcc/IPCC_SROCC_ExtremeSeaLevelEvents.jpg",
-          thumb: "images/thumbs/ipcc/IPCC_SROCC_ExtremeSeaLevelEvents.jpg",
+          src: "images/portfolio/ipcc/IPCC_AR6_WGII_AnnexI_HabitatLoss.jpg",
+          thumb: "images/thumbs/ipcc/IPCC_AR6_WGII_AnnexI_HabitatLoss.jpg",
           width: 1500, height: 1500,
-          title: "Extreme sea level events",
-          client: "IPCC SROCC",
-          report: { url: "https://doi.org/10.1017/9781009157964.001", year: "2019" },
-          alt: "Open printed spread of the Summary for Policymakers of the IPCC Special Report on the Ocean and Cryosphere, with the facing page partly in view and, on the left page, Figure SPM.4, 'Extreme sea level events': a schematic of how sea level rise turns once-a-century extreme sea levels into yearly events, and world maps of when this happens at coastal locations under RCP8.5 and RCP2.6."
+          title: "Present and projected habitat losses of climatically suitable area in terrestrial biodiversity hotspots",
+          client: "IPCC AR6 WGII",
+          report: { url: "https://doi.org/10.1017/9781009325844.028", year: "2022" },
+          alt: "Open printed spread of Annex I, the Global to Regional Atlas, of the IPCC Working Group II report, Climate Change 2022, with Figure AI.10 on the left page: world maps and circle clusters of habitat loss across the 143 terrestrial biodiversity hotspots at today's warming, 1.5 °C and 2 °C, from very low to very high loss. The facing page, with Figure AI.11, is partly in view."
         }
       ]
     }
