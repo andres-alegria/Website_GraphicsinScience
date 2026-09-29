@@ -366,7 +366,7 @@ window.SITE = {
           width: 1500, height: 1200,
           title: "Guía metodológica: zonas de recuperación pesquera",
           client: "Publication design",
-          alt: "Brochure titled 'Guia Metodologica para evaluar el desarrollo de las zonas de recuperación pesquera en ecosistemas marinos del Caribe Hondureño' with a graphic of a fish tank with fish and a grid chart, dated May 2018, authored by Andre Alvarado, with CEM logo."
+          alt: "Brochure titled 'Guia Metodologica para evaluar el desarrollo de las zonas de recuperación pesquera en ecosistemas marinos del Caribe Hondureño'."
         },
         {
           src: "images/portfolio/layouts/Portfolio_-14.jpg",
