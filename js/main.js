@@ -56,7 +56,7 @@
 
   const metaLine = (item) => {
     const bits = [item.client];
-    const date = (item.story && item.story.date) || (item.paper && item.paper.year) || item.year;
+    const date = (item.story && item.story.date) || (item.paper && item.paper.year) || (item.report && item.report.year) || item.year;
     if (date) bits.push(String(date).slice(0, 4));
     return bits.filter(Boolean).join(" · ");
   };
@@ -244,11 +244,12 @@
       parts.meta.textContent = metaLine(item);
       parts.hint.textContent = item.compare ? "Drag across the maps to compare" : "";
       if (item.compare) initCompare(wrap.firstElementChild);
-      parts.story.innerHTML = item.story && item.story.url
-        ? html`<a class="button arrow arrow--ext" href="${item.story.url}" target="_blank" rel="noopener">Read the full story</a>`
-        : item.paper && item.paper.url
-          ? html`<a class="button arrow arrow--ext" href="${item.paper.url}" target="_blank" rel="noopener">Read the full paper</a>`
-          : "";
+      // one outbound button: the article a piece ran in, or the paper or report it belongs to
+      const link = [["story", "Read the full story"], ["paper", "Read the full paper"], ["report", "Read the full report"]]
+        .find(([key]) => item[key] && item[key].url);
+      parts.story.innerHTML = link
+        ? html`<a class="button arrow arrow--ext" href="${item[link[0]].url}" target="_blank" rel="noopener">${link[1]}</a>`
+        : "";
       if (window.gsap && !reduceMotion) {
         window.gsap.fromTo(wrap.firstElementChild, { opacity: 0, scale: 0.96 }, { opacity: 1, scale: 1, duration: 0.45, ease: "power3.out" });
       }

@@ -233,7 +233,7 @@ window.SITE = {
 
   // ---------- Portfolio ----------
   // Each item: src (or video + poster), thumb (800 px copy used in the grid), width, height, title, client, alt,
-  // story { url, title, date, outlet } when it ran in an article; paper { url, year } for a journal paper (the DOI link); year alone when there is no link.
+  // story { url, title, date, outlet } when it ran in an article; paper { url, year } for a journal paper and report { url, year } for a report (the DOI links); year alone when there is no link.
   portfolio: [
     {
       id: "maps",
@@ -444,7 +444,7 @@ window.SITE = {
           width: 1500, height: 1500,
           title: "Global and regional risks for increasing levels of global warming",
           client: "IPCC AR6 WGII",
-          year: "2022",
+          report: { url: "https://doi.org/10.1017/9781009325844.001", year: "2022" },
           alt: "Printed page from the Summary for Policymakers of the IPCC Working Group II report, Climate Change 2022, showing the figure 'Global and regional risks for increasing levels of global warming': projected warming to 2100 under five emissions scenarios beside burning-ember bars of rising risk for the Reasons for Concern, ecosystems and health."
         },
         {
@@ -453,7 +453,7 @@ window.SITE = {
           width: 1500, height: 1500,
           title: "Extreme sea level events",
           client: "IPCC SROCC",
-          year: "2019",
+          report: { url: "https://doi.org/10.1017/9781009157964.001", year: "2019" },
           alt: "Printed page from the Summary for Policymakers of the IPCC Special Report on the Ocean and Cryosphere, showing Figure SPM.4, 'Extreme sea level events': a schematic of how sea level rise turns once-a-century extreme sea levels into yearly events, and world maps of when this happens at coastal locations under RCP8.5 and RCP2.6."
         }
       ]
