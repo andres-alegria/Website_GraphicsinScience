@@ -780,12 +780,6 @@ a:hover .arrow::after,
   margin-bottom: 0.4rem;
 }
 
-.story-card__body p {
-  margin: 0;
-  font-size: var(--fs-small);
-  opacity: 0.85;
-}
-
 .story-card__meta {
   display: block;
   margin-top: 0.7rem;
@@ -1046,13 +1040,6 @@ a:hover .arrow::after,
 .lightbox__info h2 {
   font-size: var(--fs-h3);
   color: var(--white);
-}
-
-.lightbox__desc {
-  font-size: var(--fs-small);
-  line-height: 1.55;
-  margin: 0;
-  opacity: 0.9;
 }
 
 .lightbox__meta {

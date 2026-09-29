@@ -39,7 +39,7 @@
     const [left, right] = item.compare;
     const tag = full ? "div" : "span"; // wall pieces are buttons, so only inline elements inside
     const img = (side, cls = "") => html`<img${cls} src="${full ? side.src : side.thumb || side.src}" width="${item.width}" height="${item.height}" alt="${escapeHtml(side.alt)}" ${full ? "" : 'loading="lazy"'} decoding="async">`;
-    return html`<${tag} class="compare${full ? " lightbox__media lightbox__compare" : ""}" style="--pos: 50%; --ratio: ${item.width / item.height}">
+    return html`<${tag} class="compare${full ? " lightbox__media lightbox__compare" : ""}"${full ? html` role="group" aria-label="${escapeHtml(item.alt)}"` : ""} style="--pos: 50%; --ratio: ${item.width / item.height}">
       ${img(right)}${img(left, ' class="compare__top"')}
       <span class="compare__handle" aria-hidden="true"></span>
       ${full ? html`<input class="compare__range" type="range" min="0" max="100" step="1" value="50" aria-label="Slide between the two maps">` : ""}
@@ -192,7 +192,6 @@
         <p class="lightbox__counter"></p>
         <h2></h2>
         <p class="lightbox__meta"></p>
-        <p class="lightbox__desc"></p>
         <div class="lightbox__story"></div>
         <p class="lightbox__hint"></p>
       </aside>`;
@@ -203,7 +202,6 @@
       counter: root.querySelector(".lightbox__counter"),
       title: root.querySelector("h2"),
       meta: root.querySelector(".lightbox__meta"),
-      desc: root.querySelector(".lightbox__desc"),
       story: root.querySelector(".lightbox__story"),
       hint: root.querySelector(".lightbox__hint")
     };
@@ -243,7 +241,6 @@
       parts.counter.textContent = `${index + 1} / ${items.length}${item.categoryTitle ? " · " + item.categoryTitle : ""}`;
       parts.title.textContent = item.title;
       parts.meta.textContent = metaLine(item);
-      parts.desc.textContent = item.alt;
       parts.hint.textContent = (item.compare ? "Drag across the maps to compare · " : "") + "← → to move between pieces · Esc to close";
       if (item.compare) initCompare(wrap.firstElementChild);
       parts.story.innerHTML = (item.story && item.story.url
@@ -493,7 +490,6 @@
         ${mediaHtml(item)}
         <div class="story-card__body">
           <h3>${escapeHtml(item.title)}</h3>
-          <p>${escapeHtml(item.alt)}</p>
           <span class="story-card__meta">${escapeHtml(item.client)}</span>
         </div>
       </a>`).join("");
