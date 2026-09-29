@@ -28,7 +28,7 @@ Everything editorial lives in `js/site-data.js`.
   `{ src, thumb, width, height, title, client, alt, story: { url, title, date, outlet } }`. Leave `story` out when there is no article.
 - **Add a video**: use `video` and `poster` instead of `src`; it plays muted on a loop.
 - **Add a before/after slider**: use `compare: [left, right]` instead of `src`, each side `{ src, thumb, alt }`, both images the same size. The card shows them split down the middle; in the lightbox the handle can be dragged.
-- **Add a story**: add an object to `stories.items` (newest first); the three newest also stack on the home page. `embed` is the address of the scrolly itself (the Vercel app the article embeds), which plays inside the card; leave it out and the card only links to the article. While the pointer is over a playing scrolly the page stays still, so the wheel drives the story.
+- **Add a story**: add an object to `stories.items` (newest first); the three newest also stack on the home page. `embed` is the address of the scrolly itself (the Vercel app the article embeds), which plays inside the card on both pages; leave it out and the card only links to the article. While the pointer is over a playing scrolly the page stays still, so the wheel drives the story.
 - **Change text**: hero, services, FAQs, contact and footer are all named blocks at the top of the file.
 - **How many pieces show before "Show all"**: `work.initial`.
 

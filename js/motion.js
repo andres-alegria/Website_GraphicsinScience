@@ -74,7 +74,7 @@
 
   // ---- Home: story cards stack; each one shrinks back as the next slides over it ----
   mm.add("(min-width: 1024px) and (prefers-reduced-motion: no-preference)", () => {
-    const cards = gsap.utils.toArray(".stack__card");
+    const cards = gsap.utils.toArray(".stack .story-feature");
     cards.forEach((card, i) => {
       const next = cards[i + 1];
       if (!next) return;

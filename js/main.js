@@ -398,24 +398,16 @@
 
   function renderStoriesTeaser(main) {
     const t = SITE.storiesTeaser;
-    const latest = SITE.stories.items.slice(0, 3);
-    // on wide screens the cards stick and stack as the page scrolls (see js/motion.js)
-    const cards = latest.map((story) => html`
-      <a class="stack__card" href="${story.url}" target="_blank" rel="noopener">
-        <img src="${story.image.src}" width="${story.image.width}" height="${story.image.height}" alt="${escapeHtml(story.image.alt)}" loading="lazy" decoding="async">
-        <span class="stack__body">
-          <span class="label">${escapeHtml(story.outlet)} · ${formatDate(story.date)}</span>
-          <span class="stack__title">${escapeHtml(story.title)}</span>
-          <span class="stack__deck">${escapeHtml(story.deck)}</span>
-          <span class="story-row__cta arrow arrow--ext">Read the full story</span>
-        </span>
-      </a>`).join("");
-    main.appendChild(section("section section--forest stories-teaser", html`
+    // the three newest stories; on wide screens the cards stick and stack as the page scrolls (see js/motion.js)
+    const cards = SITE.stories.items.slice(0, 3).map((story) => storyCardHtml(story, { classes: "story-feature--stack" })).join("");
+    const el = section("section section--forest stories-teaser", html`
       <div class="wrap">
         ${sectionHead(t.label, t.title, escapeHtml(t.intro))}
         <div class="stack">${cards}</div>
         <p class="stack__more"><a class="button button--ghost arrow" href="${t.link.href}">${escapeHtml(t.link.label)}</a></p>
-      </div>`));
+      </div>`);
+    main.appendChild(el);
+    initScrollies(el);
   }
 
   const accordionHtml = (items) => html`
@@ -458,6 +450,25 @@
   }
 
   // ---------- Stories page ----------
+
+  // One story as a card: the picture on the left can turn into the live scrolly (see initScrollies),
+  // the box on the right links to the article. Used on the stories page and, stacked, on the home page.
+  const storyCardHtml = (story, { lazy = true, classes = "" } = {}) => html`
+      <article class="story-feature ${classes}" data-embed="${story.embed || ""}" data-title="${escapeHtml(story.title)}">
+        <div class="story-feature__media">
+          <img src="${story.image.src}" width="${story.image.width}" height="${story.image.height}" alt="${escapeHtml(story.image.alt)}" ${lazy ? 'loading="lazy"' : ""} decoding="async">
+          ${story.embed ? html`<button class="story-feature__start" type="button"><span aria-hidden="true">▶</span> Click to start this scrolly</button>` : ""}
+        </div>
+        <div class="story-feature__body">
+          <p class="label">${escapeHtml(story.outlet)} · ${formatDate(story.date)}</p>
+          <h2 class="story-feature__title">${escapeHtml(story.title)}</h2>
+          <p class="story-feature__deck">${escapeHtml(story.deck)}</p>
+          <p class="story-feature__actions">
+            <a class="button arrow arrow--ext" href="${story.url}" target="_blank" rel="noopener">Read the full story</a>
+            ${story.extra ? html`<a class="story-feature__extra" href="${story.extra.url}" target="_blank" rel="noopener">${escapeHtml(story.extra.label)} ↗</a>` : ""}
+          </p>
+        </div>
+      </article>`;
 
   // "Click to start this scrolly": the card grows to fill the screen and the picture becomes the live story.
   // While the pointer is over the story, the page itself stays still, so scrolling drives the scrolly;
@@ -521,23 +532,7 @@
         <p class="lead prose">${escapeHtml(s.lead)}</p>
       </div>`));
 
-    // Every story is a card: the picture on the left can turn into the live scrolly, the box on the right links out
-    const cards = s.items.map((story, i) => html`
-      <article class="story-feature reveal" data-embed="${story.embed || ""}" data-title="${escapeHtml(story.title)}">
-        <div class="story-feature__media">
-          <img src="${story.image.src}" width="${story.image.width}" height="${story.image.height}" alt="${escapeHtml(story.image.alt)}" ${i > 0 ? 'loading="lazy"' : ""} decoding="async">
-          ${story.embed ? html`<button class="story-feature__start" type="button"><span aria-hidden="true">▶</span> Click to start this scrolly</button>` : ""}
-        </div>
-        <div class="story-feature__body">
-          <p class="label">${escapeHtml(story.outlet)} · ${formatDate(story.date)}</p>
-          <h2 class="story-feature__title">${escapeHtml(story.title)}</h2>
-          <p class="story-feature__deck">${escapeHtml(story.deck)}</p>
-          <p class="story-feature__actions">
-            <a class="button arrow arrow--ext" href="${story.url}" target="_blank" rel="noopener">Read the full story</a>
-            ${story.extra ? html`<a class="story-feature__extra" href="${story.extra.url}" target="_blank" rel="noopener">${escapeHtml(story.extra.label)} ↗</a>` : ""}
-          </p>
-        </div>
-      </article>`).join("");
+    const cards = s.items.map((story, i) => storyCardHtml(story, { lazy: i > 0, classes: "reveal" })).join("");
     const list = section("section stories", html`<div class="wrap story-features">${cards}</div>`);
     main.appendChild(list);
     initScrollies(list);
