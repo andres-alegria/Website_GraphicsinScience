@@ -39,7 +39,7 @@ window.SITE = {
   storiesTeaser: {
     label: "Scrollytelling",
     title: "Stories that unfold as you scroll",
-    intro: "Map-driven features for Mongabay, built with Mapbox, React and GSAP.",
+    intro: "Map-driven features co-developed with environmental journalists at Mongabay.com.",
     link: { label: "All stories", href: "stories.html" }
   },
 
