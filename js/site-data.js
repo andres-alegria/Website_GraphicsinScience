@@ -24,7 +24,7 @@ window.SITE = {
   hero: {
     // the <em> part is set in the lighter colour
     title: "Clear graphics for <em>complex science.</em>",
-    lead: "Hello. I’m Andrés Alegría, a visual science communicator. My work blends graphic design with an academic background in ecology, where I first used research data to shape nature conservation policy and stakeholder engagement across Central America. I’m a tree hugger :-)",
+    lead: "Hello. I’m Andrés Alegría, a visual science communicator. My work blends skills in graphic design with a background in data science and ecology.",
     actions: [
       { label: "Get in touch", href: "#contact", style: "ghost" }
     ]
