@@ -455,6 +455,15 @@ window.SITE = {
           client: "IPCC AR6 WGII",
           report: { url: "https://doi.org/10.1017/9781009325844.028", year: "2022" },
           alt: "Open printed spread of Annex I, the Global to Regional Atlas, of the IPCC Working Group II report, Climate Change 2022, with Figure AI.10 on the left page: world maps and circle clusters of habitat loss across the 143 terrestrial biodiversity hotspots at today's warming, 1.5 °C and 2 °C, from very low to very high loss. The facing page, with Figure AI.11, is partly in view."
+        },
+        {
+          src: "images/portfolio/ipcc/IPCC_SROCC_Ch5_FAQ5-1_LifeInTheSea.jpg",
+          thumb: "images/thumbs/ipcc/IPCC_SROCC_Ch5_FAQ5-1_LifeInTheSea.jpg",
+          width: 1500, height: 1500,
+          title: "How is life in the sea affected by climate change?",
+          client: "IPCC SROCC",
+          report: { url: "https://doi.org/10.1017/9781009157964.007", year: "2019" },
+          alt: "Open printed spread of Chapter 5 of the IPCC Special Report on the Ocean and Cryosphere, with FAQ 5.1, Figure 1 on the right page: a grid of icons summarising how ocean warming, acidification, storms, deoxygenation and other human impacts affect coral reefs, polar seas and fisheries, and the ecological, economic and wellbeing consequences. The facing page is partly in view."
         }
       ]
     }
