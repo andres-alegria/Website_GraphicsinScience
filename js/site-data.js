@@ -17,14 +17,15 @@ window.SITE = {
 
   social: [
     { label: "Behance", href: "https://www.behance.net/andres-alegria", text: "Bē" },
-    { label: "LinkedIn", href: "https://www.linkedin.com/in/graphicsinscience", text: "in" }
+    { label: "LinkedIn", href: "https://www.linkedin.com/in/graphicsinscience", text: "in" },
+    { label: "ORCID", href: "https://orcid.org/0000-0002-3416-7525", text: "iD" }
   ],
 
   // ---------- Home ----------
   hero: {
     // the <em> part is set in the lighter colour
     title: "Clear graphics for <em>complex science.</em>",
-    lead: "Hello. I’m Andrés Alegría, a visual science communicator. My work blends skills in graphic design with a background in data science and ecology.",
+    lead: "Hello. I’m Andrés Alegría, a researcher and visual science communicator. My work blends skills in graphic design with a background in data science and ecology.",
     actions: [
       { label: "Get in touch", href: "#contact", style: "ghost" }
     ]
