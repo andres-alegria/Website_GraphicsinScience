@@ -394,6 +394,7 @@ a:hover .arrow::after,
 
 .menu-toggle {
   display: none;
+  flex: none; /* keeps its full size when the name and tagline are long */
   position: relative;
   width: 40px;
   height: 40px;
@@ -1237,6 +1238,14 @@ a:hover .arrow::after,
   }
 }
 
+/* the header's "Get in touch" button drops out before the row (name, tagline, links, marks, button) gets too
+   wide for the screen, and the links fold into the menu button on phones; adjust these widths if the header grows */
+@media (max-width: 859px) {
+  .nav-cta {
+    display: none;
+  }
+}
+
 @media (max-width: 767px) {
   :root {
     --header-h: 60px;
@@ -1320,12 +1329,6 @@ a:hover .arrow::after,
 
 @media (max-width: 1023px) {
   .lightbox__hint {
-    display: none;
-  }
-}
-
-@media (max-width: 767px) {
-  .nav-cta {
     display: none;
   }
 }
