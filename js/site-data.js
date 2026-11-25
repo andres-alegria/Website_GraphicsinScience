@@ -80,9 +80,9 @@ window.SITE = {
   },
 
   footer: {
-    title: "Andrés Alegría | Visual Science Communicator",
+    title: "graphicsinscience.com",
     tagline: "Maps, charts and stories for science that needs to be understood.",
-    note: "© {year} Andrés Alegría · graphicsinscience.com"
+    note: "© {year}"
   },
 
   // ---------- Stories page ----------
